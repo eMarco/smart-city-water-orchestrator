@@ -14,23 +14,32 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.unict.ing.iot;
+package org.unict.ing.iot.utils.model;
 
-import javax.ejb.Stateless;
-import javax.ejb.LocalBean;
+import org.jongo.marshall.jackson.oid.ObjectId;
 
 /**
  *
- * @author martin
+ * @author aleskandro
  */
-@Stateless
-@LocalBean
-public class NewSessionBean {
+public final class Zone extends GenericValue {
+    private final Tank tank;
 
-    public void businessMethod() {
+    public Zone(Tank tank, ObjectId _id) {
+        super(_id);
+        this.tank = tank;
     }
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+    public Zone(Tank tank) {
+        this.tank = tank;
+    }
 
+    public Zone() {
+        this(new Tank());
+    }
+
+    public Tank getTank() {
+        return tank;
+    }
+    
 }

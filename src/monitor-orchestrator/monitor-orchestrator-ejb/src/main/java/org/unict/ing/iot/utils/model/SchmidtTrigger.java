@@ -14,23 +14,44 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.unict.ing.iot;
+package org.unict.ing.iot.utils.model;
 
-import javax.ejb.Stateless;
-import javax.ejb.LocalBean;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.io.Serializable;
 
 /**
  *
- * @author martin
+ * @author aleskandro
  */
-@Stateless
-@LocalBean
-public class NewSessionBean {
-
-    public void businessMethod() {
+public final class SchmidtTrigger implements Serializable {
+    private boolean opened;
+    
+    /**
+     * Close the circuit
+     */
+    @JsonIgnore
+    public void open (){
+        this.opened = true;
+    }
+    
+    /**
+     * Open the circuit
+     */
+    @JsonIgnore
+    public void close() {
+        this.opened = false;
     }
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+    public SchmidtTrigger(boolean opened) {
+        this.opened = opened;
+    }
 
+    public SchmidtTrigger() {
+        open();
+    }
+
+    public boolean isOpened() {
+        return opened;
+    }
+    
 }

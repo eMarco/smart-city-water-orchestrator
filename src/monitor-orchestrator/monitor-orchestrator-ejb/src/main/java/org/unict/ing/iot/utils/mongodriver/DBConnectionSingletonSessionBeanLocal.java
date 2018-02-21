@@ -14,23 +14,16 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.unict.ing.iot;
+package org.unict.ing.iot.utils.mongodriver;
 
-import javax.ejb.Stateless;
-import javax.ejb.LocalBean;
+import com.mongodb.DB;
+import javax.ejb.Local;
 
 /**
  *
- * @author martin
  */
-@Stateless
-@LocalBean
-public class NewSessionBean {
-
-    public void businessMethod() {
-    }
-
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
-
+@Local
+public interface DBConnectionSingletonSessionBeanLocal {
+    public DB getDatabase();
+    public Storage getStorage();
 }

@@ -14,23 +14,37 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.unict.ing.iot;
+package org.unict.ing.iot.utils.model;
 
-import javax.ejb.Stateless;
-import javax.ejb.LocalBean;
+import java.util.LinkedList;
+import java.util.List;
+import org.jongo.marshall.jackson.oid.ObjectId;
 
 /**
  *
- * @author martin
+ * @author aleskandro
  */
-@Stateless
-@LocalBean
-public class NewSessionBean {
+public final class Network extends GenericValue {
+    
+    private final List<WaterWell> waterWells;
 
-    public void businessMethod() {
+    public Network(List<WaterWell> waterWells, ObjectId _id) {
+        super(_id);
+        this.waterWells = waterWells;
     }
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+    public Network(List<WaterWell> waterWells) {
+        super();
+        this.waterWells = waterWells;
+    }
 
+    public Network() {
+        super();
+        this.waterWells = new LinkedList<>();
+    }
+
+    public List<WaterWell> getWaterWells() {
+        return waterWells;
+    }
+    
 }

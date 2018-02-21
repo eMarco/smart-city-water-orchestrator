@@ -14,23 +14,23 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.unict.ing.iot;
+package org.unict.ing.iot.utils.mongodriver;
 
-import javax.ejb.Stateless;
-import javax.ejb.LocalBean;
-
+import java.util.List;
+import org.bson.types.ObjectId;
+import org.unict.ing.iot.utils.model.GenericValue;
 /**
  *
- * @author martin
  */
-@Stateless
-@LocalBean
-public class NewSessionBean {
+public interface Storage {
 
-    public void businessMethod() {
-    }
+    public List<GenericValue> find(ObjectId _id);
+    public void remove(ObjectId _id);
+    public void update(GenericValue elem);
+    public void insert(GenericValue elem);
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
-
+    // Not used (TODO delete)
+    public void findOrInsert(GenericValue elem);
+    public void updateOrInsert(GenericValue elem);
+    
 }
