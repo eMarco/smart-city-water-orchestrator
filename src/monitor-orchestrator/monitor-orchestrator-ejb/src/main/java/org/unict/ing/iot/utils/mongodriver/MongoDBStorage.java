@@ -76,4 +76,25 @@ public class MongoDBStorage implements Storage {
     public void updateOrInsert(GenericValue elem) {
         update(elem);
     }
+    
+    @Override
+    public List<GenericValue> findByClassName(String name) {
+        String query = "{ className: {$regex: \".*" + name + ".*\" } }";
+        return findBy(query);
+    }
+    
+    private List<GenericValue> findBy(String query) {
+        MongoCursor<GenericValue> iterDoc;
+        List<GenericValue> ret = new LinkedList();
+
+        if (query == null) {
+            // Put HERE a default query (TODO)
+            iterDoc = collection.find().as(GenericValue.class);
+        } else {
+            iterDoc = collection.find(query).as(GenericValue.class);
+        }
+
+        iterDoc.forEach(v -> ret.add(v));
+        return ret;
+    }
 }

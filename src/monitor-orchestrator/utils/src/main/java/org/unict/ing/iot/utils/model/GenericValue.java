@@ -16,30 +16,33 @@
  */
 package org.unict.ing.iot.utils.model;
 
-import org.jongo.marshall.jackson.oid.ObjectId;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import java.io.Serializable;
+import org.bson.types.ObjectId;
 
 /**
- *
- * @author aleskandro
+ * GenericValue has only a Key, extending this class you can creates your model for several kind of Datas
+ * Created to make specific-data-structure agnostic 
  */
-public final class Zone extends GenericValue {
-    private final Tank tank;
+@JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, include = JsonTypeInfo.As.PROPERTY, property = "className")
+public abstract class GenericValue implements Serializable {
 
-    public Zone(Tank tank, ObjectId _id) {
-        super(_id);
-        this.tank = tank;
+    
+    protected ObjectId _id;
+    
+    public GenericValue() {
     }
 
-    public Zone(Tank tank) {
-        this.tank = tank;
+    public GenericValue(ObjectId _id) {
+        this._id = _id;
     }
 
-    public Zone() {
-        this(new Tank());
+    public ObjectId getId() {
+        return _id;
     }
 
-    public Tank getTank() {
-        return tank;
+    public void setId(ObjectId _id) {
+        this._id = _id;
     }
     
 }

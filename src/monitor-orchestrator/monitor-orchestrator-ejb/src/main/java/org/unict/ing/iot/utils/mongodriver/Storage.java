@@ -25,6 +25,7 @@ import org.unict.ing.iot.utils.model.GenericValue;
 public interface Storage {
 
     public List<GenericValue> find(ObjectId _id);
+    public List<GenericValue> findByClassName(String name);
     public void remove(ObjectId _id);
     public void update(GenericValue elem);
     public void insert(GenericValue elem);

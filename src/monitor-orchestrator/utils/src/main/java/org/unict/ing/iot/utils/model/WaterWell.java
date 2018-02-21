@@ -18,7 +18,7 @@ package org.unict.ing.iot.utils.model;
 
 import java.util.LinkedList;
 import java.util.List;
-import org.jongo.marshall.jackson.oid.ObjectId;
+import org.bson.types.ObjectId;
 
 /**
  *

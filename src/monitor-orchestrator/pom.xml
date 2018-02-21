@@ -10,5 +10,6 @@
     <module>monitor-orchestrator-ear</module>
     <module>monitor-orchestrator-web</module>
     <module>monitor-orchestrator-ejb</module>
+    <module>utils</module>
   </modules>
 </project>
