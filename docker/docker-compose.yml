@@ -5,18 +5,21 @@ services:
         restart: always
         volumes:
             - ../src/web-frontend/:/code/
-        depends_on: orchestrator
+        depends_on: 
+            - orchestrator
         ports:
             - 80:80
     orchestrator:
         build:
             context: .
-            dockerfile: ./datamanager/Dockerfile
+            dockerfile: ./orchestrator/Dockerfile
             args:
                 - WILDFLY_ADMIN=root
                 - WILDFLY_PASSWORD=toor
         restart: always
-        depends_on: broker
+        depends_on: 
+            - broker
+            - mongodb
         volumes:
             - ../src/monitor-orchestrator/monitor-orchestrator-ear:/code/
         ports:
