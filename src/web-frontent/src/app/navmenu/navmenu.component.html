@@ -1,0 +1,19 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class='navbar-brand' [routerLink]="['/home']">Analyzer</a>
+    </div>
+    <ul class='nav navbar-nav'>
+        <li [routerLinkActive]="['link-active']">
+            <a [routerLink]="['/home']">
+                <span class='glyphicon glyphicon-home'></span> Home
+            </a>
+        </li>
+        <li [routerLinkActive]="['link-active']">
+            <a [routerLink]="['/analyzer']">
+                <span class='glyphicon glyphicon-stats'></span> Analyzer
+            </a>
+        </li>
+    </ul>
+  </div>
+</nav>
