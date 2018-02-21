@@ -1,0 +1,47 @@
+version: '2.2'
+services:
+    web:
+        build: web/
+        restart: always
+        volumes:
+            - ../src/web-frontend/:/code/
+        depends_on: orchestrator
+        ports:
+            - 80:80
+    orchestrator:
+        build:
+            context: .
+            dockerfile: ./datamanager/Dockerfile
+            args:
+                - WILDFLY_ADMIN=root
+                - WILDFLY_PASSWORD=toor
+        restart: always
+        depends_on: broker
+        volumes:
+            - ../src/monitor-orchestrator/monitor-orchestrator-ear:/code/
+        ports:
+            - 8080:8080
+            - 9990:9990
+
+    broker:
+        image: toke/mosquitto
+        restart: always
+        ports:
+            - 1883:1883
+            - 9001:9001
+
+    mongodb:
+        image: mongo:latest
+        restart: always
+        environment:
+            - MONGO_DATA_DIR=/data/db
+            - MONGO_LOG_DIR=/dev/null
+        volumes:
+            - db:/data/db
+        ports:
+            - 27017:27017
+        command: mongod --smallfiles # --quiet
+
+### Volumes and networking
+volumes:
+    db:
