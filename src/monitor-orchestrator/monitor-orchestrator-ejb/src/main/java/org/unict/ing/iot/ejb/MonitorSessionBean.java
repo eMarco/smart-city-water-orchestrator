@@ -19,8 +19,12 @@ import org.unict.ing.iot.utils.mongodriver.DBConnectionSingletonSessionBeanLocal
 public class MonitorSessionBean implements MonitorSessionBeanRemote {
 
     @EJB
-    private DBConnectionSingletonSessionBeanLocal db;
+    private MQTTClientSessionBeanLocal mqttClientSessionBean;
 
+    @EJB
+    private DBConnectionSingletonSessionBeanLocal db;
+    
+    private static float number = 0;
     
     /**
      * Used by the MqttSessionBean to put elements in the database
@@ -40,7 +44,15 @@ public class MonitorSessionBean implements MonitorSessionBeanRemote {
         return db.getStorage().findByClassName("Zone");
     }
     
+    @Override
+    public void modify(float num) {
+        number = num;
+    }
     
+    @Override
+    public float obtainValue() {
+        return number;
+    }
     /**
      * TODO Methods for RestAPIs
      */

@@ -20,4 +20,7 @@ public interface MonitorSessionBeanRemote {
 
     List<GenericValue> getZones();
     
+    float obtainValue();
+    
+    void modify(float num);
 }

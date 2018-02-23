@@ -28,6 +28,9 @@ import org.unict.ing.iot.utils.model.Zone;
 @Singleton
 @Startup
 public class OrchestratorSessionBean implements OrchestratorSessionBeanLocal {
+
+    @EJB
+    private MQTTClientSessionBeanLocal mQTTClientSessionBean;
     /***
      * CONFIGS for the timers of periodically called methods
      */
@@ -46,6 +49,7 @@ public class OrchestratorSessionBean implements OrchestratorSessionBeanLocal {
         TimerService timerService = context.getTimerService();
         timerService.getTimers().forEach((Timer t) -> t.cancel());
         timerService.createIntervalTimer(2020, ZONE_MULT * PERIOD * 1000, new TimerConfig("ZONE", true));
+        mQTTClientSessionBean.createConnection();
         //timerService.createIntervalTimer(4000, FIXFINGER_MULT * PERIOD * 1000, new TimerConfig("FIXFINGERS", true));
     }
 

@@ -62,6 +62,14 @@ public class GenericResource {
     @Consumes(MediaType.APPLICATION_XML)
     public void putXml(String content) {
     }
+    
+   
+    @GET
+    @Path("/1")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String getMessage() {
+        return Float.toString(monitorSessionBean.obtainValue());
+    }
 
     private MonitorSessionBeanRemote lookupMonitorSessionBeanRemote() {
         try {
