@@ -35,16 +35,15 @@ public class MQTTClientSessionBean implements MQTTClientSessionBeanLocal, MqttCa
     @EJB
     private MonitorSessionBeanRemote monitorSessionBean;
     
-    private final String broker = "tcp://iot_broker_1:1883";
-    private final int qos = 0;
+    private final String broker   = "tcp://iot_broker_1:1883";
+    private final int qos         = 0;
     private final String clientId = "MQTTClient";
     private MqttClient client;
     
-    
     /*@PostConstruct
     private void init() {
-        System.out.println("sono in init");
-        createConnession();
+        System.out.println("[MQTT] Creating connection...");
+        createConnection();
     }*/
     
     @Override
@@ -84,18 +83,20 @@ public class MQTTClientSessionBean implements MQTTClientSessionBeanLocal, MqttCa
     @Override
     @Lock(LockType.READ)
     public void connectionLost(Throwable thrwbl) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.err.println("[MQTT] CONNECTION LOST CALLBACK RAN...");
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     @Lock(LockType.READ)
     public void messageArrived(String topic, MqttMessage message) throws Exception {
-        monitorSessionBean.modify(ByteBuffer.wrap(message.getPayload()).getFloat());
-        System.out.println("Received a message. Topic: " + topic + " Value: " + ByteBuffer.wrap(message.getPayload()).getFloat());
+        float a = ByteBuffer.wrap(message.getPayload()).getFloat();
+        monitorSessionBean.modify(a);
+        System.out.println("[MQTT] Received a message. Topic: " + topic + " Value: " + a);
     }
 
     @Override
     public void deliveryComplete(IMqttDeliveryToken imdt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.err.println("[MQTT] DELIVERY COMPLETED...");
     }
 }

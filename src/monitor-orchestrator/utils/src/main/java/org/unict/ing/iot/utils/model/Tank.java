@@ -26,24 +26,25 @@ public final class Tank implements Serializable {
     private float capacity;
     private float inputFlowRate;
     private float outputFlowRate;
-
+    private int   tankId;
     private final SchmidtTrigger trigger;
     private final Electrovalve   valve;
 
-    public Tank(float capacity, float inputFlowRate, float outputFlowRate, SchmidtTrigger trigger, Electrovalve valve) {
+    public Tank(float capacity, float inputFlowRate, float outputFlowRate, int tankId, SchmidtTrigger trigger, Electrovalve valve) {
         this.capacity       = capacity;
         this.inputFlowRate  = inputFlowRate;
         this.outputFlowRate = outputFlowRate;
         this.trigger        = trigger;
         this.valve          = valve;
+        this.tankId         = tankId;
     }
 
-    public Tank(float capacity, float inputFlowRate, float outputFlowRate) {
-        this(capacity, inputFlowRate, outputFlowRate, new SchmidtTrigger(), new Electrovalve());
+    public Tank(float capacity, float inputFlowRate, float outputFlowRate, int tankId) {
+        this(capacity, inputFlowRate, outputFlowRate, tankId, new SchmidtTrigger(), new Electrovalve());
     }
 
     public Tank() {
-        this(0, 0, 0);
+        this(0, 0, 0, 0);
     }
 
     public float getCapacity() {
@@ -76,6 +77,14 @@ public final class Tank implements Serializable {
 
     public Electrovalve getValve() {
         return valve;
+    }
+
+    public int getTankId() {
+        return tankId;
+    }
+
+    public void setTankId(int tankId) {
+        this.tankId = tankId;
     }
 
 }
