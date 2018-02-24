@@ -22,11 +22,12 @@ import java.io.Serializable;
  *
  * @author aleskandro
  */
-public final class Tank implements Serializable {
+public final class Tank extends GenericValue implements Serializable {
     private float capacity;
     private float inputFlowRate;
     private float outputFlowRate;
     private int   tankId;
+    
     private final SchmidtTrigger trigger;
     private final Electrovalve   valve;
 
