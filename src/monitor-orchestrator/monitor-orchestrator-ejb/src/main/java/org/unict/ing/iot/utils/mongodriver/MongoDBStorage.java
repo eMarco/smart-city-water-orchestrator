@@ -108,8 +108,8 @@ public class MongoDBStorage implements Storage {
         });
         
         tanksIds.forEach((tId) -> {
-            collection.find("{ $and: { className: {$regex: \".*Tank.*\" }, tankId: " + tId + " } }")
-                    .as(GenericValue.class).forEach(v -> ret.add(v));
+            ret.add(collection.find("{ $and: { className: {$regex: \".*Tank.*\" }, tankId: " + tId + " } }")
+                    .as(GenericValue.class).next());// forEach(v -> ret.add(v));
         });
         
         return ret;
