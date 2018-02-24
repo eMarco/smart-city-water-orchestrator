@@ -1,7 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/* 
+ * Copyright (C) 2018 aleskandro - eMarco - cursedLondor
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package org.unict.ing.iot.ejb;
 
@@ -28,6 +39,9 @@ import org.unict.ing.iot.utils.model.Zone;
 @Singleton
 @Startup
 public class OrchestratorSessionBean implements OrchestratorSessionBeanLocal {
+
+    @EJB
+    private MQTTClientSessionBeanLocal mQTTClientSessionBean;
     /***
      * CONFIGS for the timers of periodically called methods
      */
@@ -46,6 +60,7 @@ public class OrchestratorSessionBean implements OrchestratorSessionBeanLocal {
         TimerService timerService = context.getTimerService();
         timerService.getTimers().forEach((Timer t) -> t.cancel());
         timerService.createIntervalTimer(2020, ZONE_MULT * PERIOD * 1000, new TimerConfig("ZONE", true));
+        mQTTClientSessionBean.createConnection();
         //timerService.createIntervalTimer(4000, FIXFINGER_MULT * PERIOD * 1000, new TimerConfig("FIXFINGERS", true));
     }
 
@@ -60,11 +75,11 @@ public class OrchestratorSessionBean implements OrchestratorSessionBeanLocal {
     }
     
     private void tankActuation() {
-        List<GenericValue> zones = monitorSessionBean.getZones();
-        zones.forEach(zone -> {
-            if (zone instanceof Zone) {
-                String log = zone.toString();
-                Tank tank = ((Zone) zone).getTank();
+        List<GenericValue> tanks = monitorSessionBean.getTanks(); 
+        tanks.forEach(tankk -> { 
+            if (tankk instanceof Tank) {
+                Tank tank = (Tank) tankk;
+                String log = tank.toString();
                 float diff = tank.getOutputFlowRate() - tank.getInputFlowRate();
                 log += " " + diff;
                 if (diff < flowRateError()) {
@@ -81,6 +96,10 @@ public class OrchestratorSessionBean implements OrchestratorSessionBeanLocal {
                     log += " OPENING TRIGGER";
                     tank.getTrigger().open();
                 }
+                monitorSessionBean.put(tank);
+                // TODO bool value for Tank to ? Actuation? (metrics)
+                // TODO MQTTClient.publish decomment
+                //mQTTClientSessionBean.publish("/" + tank.getTankId(), tank);
                 LOG.warning(log);
             }
         });
