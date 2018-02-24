@@ -31,7 +31,7 @@ public final class Tank extends GenericValue implements Serializable {
     private final SchmidtTrigger trigger;
     private final Electrovalve   valve;
 
-    public Tank(float capacity, float inputFlowRate, float outputFlowRate, int tankId, SchmidtTrigger trigger, Electrovalve valve) {
+    public Tank(float capacity, float inputFlowRate, float outputFlowRate, int tankId, Electrovalve valve, SchmidtTrigger trigger) {
         this.capacity       = capacity;
         this.inputFlowRate  = inputFlowRate;
         this.outputFlowRate = outputFlowRate;
@@ -41,7 +41,7 @@ public final class Tank extends GenericValue implements Serializable {
     }
 
     public Tank(float capacity, float inputFlowRate, float outputFlowRate, int tankId) {
-        this(capacity, inputFlowRate, outputFlowRate, tankId, new SchmidtTrigger(), new Electrovalve());
+        this(capacity, inputFlowRate, outputFlowRate, tankId, new Electrovalve(), new SchmidtTrigger());
     }
 
     public Tank() {
@@ -86,6 +86,11 @@ public final class Tank extends GenericValue implements Serializable {
 
     public void setTankId(int tankId) {
         this.tankId = tankId;
+    }
+
+    @Override
+    public String toString() {
+        return "Tank{" + "capacity=" + capacity + ", inputFlowRate=" + inputFlowRate + ", outputFlowRate=" + outputFlowRate + ", tankId=" + tankId + ", trigger=" + trigger + ", valve=" + valve + '}';
     }
 
 }

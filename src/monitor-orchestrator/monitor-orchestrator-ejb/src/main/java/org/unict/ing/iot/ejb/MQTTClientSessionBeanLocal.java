@@ -6,6 +6,7 @@
 package org.unict.ing.iot.ejb;
 
 import javax.ejb.Local;
+import org.unict.ing.iot.utils.model.Tank;
 
 /**
  *
@@ -14,7 +15,7 @@ import javax.ejb.Local;
 @Local
 public interface MQTTClientSessionBeanLocal {
     
-    public void publish(String topic, float val);
+    public void publish(String topic, Tank tank);
     
     public void createConnection();
     
