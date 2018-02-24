@@ -25,6 +25,7 @@ import org.jongo.MongoCollection;
 import org.jongo.MongoCursor;
 import org.unict.ing.iot.utils.helper.JsonHelper;
 import org.unict.ing.iot.utils.model.GenericValue;
+import org.unict.ing.iot.utils.model.Tank;
 
 /**
  * An implementation of the Storage interface for MongoDB
@@ -95,6 +96,22 @@ public class MongoDBStorage implements Storage {
         }
 
         iterDoc.forEach(v -> ret.add(v));
+        return ret;
+    }
+
+    @Override
+    public List<GenericValue> findLastTanks() {
+        List<Integer> tanksIds = new LinkedList<>();
+        List<GenericValue> ret = new LinkedList<>();
+        collection.distinct("tankId").as(Tank.class).forEach((t) -> {
+            tanksIds.add(t.getTankId());
+        });
+        
+        tanksIds.forEach((tId) -> {
+            collection.find("{ $and: { className: {$regex: \".*Tank.*\" }, tankId: " + tId + " } }")
+                    .as(GenericValue.class).forEach(v -> ret.add(v));
+        });
+        
         return ret;
     }
 }

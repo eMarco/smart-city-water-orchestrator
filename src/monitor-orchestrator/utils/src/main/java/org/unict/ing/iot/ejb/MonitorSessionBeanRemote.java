@@ -30,6 +30,7 @@ public interface MonitorSessionBeanRemote {
     void put(final GenericValue elem);
 
     List<GenericValue> getZones();
+    List<GenericValue> getTanks();
     
     float obtainValue();
     

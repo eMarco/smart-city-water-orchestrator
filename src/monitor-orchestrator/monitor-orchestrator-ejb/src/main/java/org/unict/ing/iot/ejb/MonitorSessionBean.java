@@ -46,17 +46,6 @@ public class MonitorSessionBean implements MonitorSessionBeanRemote {
         db.getStorage().insert(elem);
     }
 
-    
-        
-    /**
-     * Used by the MqttSessionBean to put elements in the database
-     * @param elem 
-     */
-    @Override
-    public void get(final GenericValue elem) {
-        db.getStorage().insert(elem);
-    }
-    
     /**
      * Used by the OrchestratorSessionBean to get the zones
      * @return 
@@ -66,6 +55,11 @@ public class MonitorSessionBean implements MonitorSessionBeanRemote {
     public List<GenericValue> getZones() {
         // TODO only the last one record for each zone
         return db.getStorage().findByClassName("Zone");
+    }
+    
+    @Override
+    public List<GenericValue> getTanks() {
+        return db.getStorage().findLastTanks();
     }
     
     @Override

@@ -75,11 +75,11 @@ public class OrchestratorSessionBean implements OrchestratorSessionBeanLocal {
     }
     
     private void tankActuation() {
-        List<GenericValue> zones = monitorSessionBean.getZones(); // Tanks
-        zones.forEach(zone -> { // tank in tanks
-            if (zone instanceof Zone) {
-                String log = zone.toString();
-                Tank tank = ((Zone) zone).getTank();
+        List<GenericValue> tanks = monitorSessionBean.getTanks(); 
+        tanks.forEach(tankk -> { 
+            if (tankk instanceof Tank) {
+                Tank tank = (Tank) tankk;
+                String log = tank.toString();
                 float diff = tank.getOutputFlowRate() - tank.getInputFlowRate();
                 log += " " + diff;
                 if (diff < flowRateError()) {
@@ -96,10 +96,10 @@ public class OrchestratorSessionBean implements OrchestratorSessionBeanLocal {
                     log += " OPENING TRIGGER";
                     tank.getTrigger().open();
                 }
-                // TODO put Tank monitorSessionBean
+                monitorSessionBean.put(tank);
                 // TODO bool value for Tank to ? Actuation? (metrics)
-                // TODO MQTTClient.publish
-                
+                // TODO MQTTClient.publish decomment
+                //mQTTClientSessionBean.publish("/" + tank.getTankId(), tank);
                 LOG.warning(log);
             }
         });
