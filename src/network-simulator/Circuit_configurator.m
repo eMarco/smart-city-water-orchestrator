@@ -20,10 +20,6 @@ vasca_3_sw   = uint8(1);
 v_pompa      = 1600;
 r_pompa      = 100;
 
-% CONFIG END
-
-addpath RealTime_Pacer/
-
 % float capacity;
 % float inputFlowRate;
 % float outputFlowRate;
@@ -32,7 +28,24 @@ addpath RealTime_Pacer/
 
 model_name = 'Rete'
 zone_name = 'Vasca%d'
-read_elements = ['Voltimeter/v_vasca', 'iFlowRate', 'flowRate', 'Variable Resistor', 'Switch/sw_vasca']
+read_elements = [
+      struct('Name', 'Voltimeter/v_vasca', 'Type', 'single'),
+      struct('Name', 'iFlowRate', 'Type', 'single'),
+      struct('Name', 'flowRate', 'Type', 'single'),
+      struct('Name', 'Variable Resistor', 'Type', 'single'),
+      struct('Name', 'Switch/sw_vasca', 'Type', 'uint8'),
+]
+
+write_elements = [
+      struct('Name', 'Variable Resistor', 'Type', 'single'),
+      struct('Name', 'Switch/sw_vasca', 'Type', 'uint8'),
+]
+
+% CONFIG END
+
+addpath RealTime_Pacer/
+
+
 
 % zone = sprintf(zone_name, i);
 % sprintf('%s/%s/%s', model_name, zone, param_name);
@@ -52,34 +65,64 @@ for i = 1:zones_num
   tmp = struct('Sub', subscribe(myMQTT, sprintf('/actuators/zones/%d/', i)));
   subscriptions(i) = tmp;
 
-  publish_urls(i) = sprintf('/sensors/zones/${i}/', i);
+  publish_urls(i) = sprintf('/sensors/zones/%d/', i);
 end
-
-
 
 
 while 1
-    try
-      % publish(myMQTT, 'myMQTT', 'testMessage');
-      % pause(1);
-      % test = read(mySub);
-      readings = {}
+    % PUBLISH
+    for i=1:zones_num
+      zone = sprintf(zone_name, i);
 
-      for k=1:length(subscriptions)
-        subscription=subscriptions{k};
-        readings{k} = read(mySub);
+      readings = {}
+      for k=1:length(read_elements)
+        element = sprintf('%s/%s/%s', model_name, zone, read_elements(k).Name);
+
+        % TODO : FIX ME!
+        tmp = get_param(element, 'SignalObject');
+
+        % TODO : Cast on read_elements(k).Type basis
+
+
+        readings{k} = tmp;
       end
 
-    catch
+      payload = concatb({readings});
+
+      try
+        publish(myMQTT, publish_urls(i), payload);
+      catch
+      end
+
+      % PUBLISH end
+      % READ
+
+      % try
+        % TODO : does the read return bits?
+        bits = read(subscriptions{k}.Sub);
+      % catch
+      % end
+
+      start_bit = 0;
+      for k=length(write_elements):-1:1
+
+        % TODO : Increment on write_elements(k).Type basis
+        end_bit = start_bit + 8*1 -1;
+        tmp = bitsliceget(bits, start_bit, end_bit);
+
+        set_param(sprintf('%s/%s/%s', model_name, zone, write_elements(k).Name), 'value', tmp);
+
+        start_bit = end_bit;
+      end
+      %
+      % tmp1 = bitsliceget(bits, 5*8-1, 1*8-1);
+      % tmp2 = bitsliceget(bits, 1*8-1, 0*8);
+
+
+      %READ END
     end
 
     pause(period);
-end
-
-
-
-function y = actuate(bits)
-  y = fi(varargin);
 end
 
 
