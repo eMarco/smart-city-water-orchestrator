@@ -9,12 +9,14 @@ import java.nio.ByteBuffer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.ejb.ConcurrencyManagement;
 import javax.ejb.ConcurrencyManagementType;
 import javax.ejb.Lock;
 import javax.ejb.LockType;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
+import javax.enterprise.context.Destroyed;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttClient;
@@ -41,7 +43,17 @@ public class MQTTClientSessionBean implements MQTTClientSessionBeanLocal, MqttCa
     private void init() {
         System.out.println("[MQTT] Creating connection...");
         createConnection();
-         System.out.println("[MQTT] Created connection...");
+        System.out.println("[MQTT] Created connection...");
+    }
+    
+    @PreDestroy
+    public void destroyed() {
+        try {
+            client.disconnect();
+            client.close(true);
+        } catch (MqttException ex) {
+            Logger.getLogger(MQTTClientSessionBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     @Override
@@ -59,11 +71,11 @@ public class MQTTClientSessionBean implements MQTTClientSessionBeanLocal, MqttCa
                 if(tank.getTrigger().isOpened()== true) bbuf.put((byte)1);
                 else bbuf.put((byte)0);*/
                 //MqttMessage message = new MqttMessage(ByteBuffer.allocate(4).putFloat(val).array());
-                
+
                 MqttMessage message = new MqttMessage(payload.getBytes());
                 message.setQos(qos);
                 client.publish("/actuators/zones/" + topic, message);
-                
+
                 /*
                 ByteBuffer bbuf = ByteBuffer.allocate(5);
                 bbuf.putFloat(tank.getValve().getFlowRateResistance());
@@ -83,6 +95,7 @@ public class MQTTClientSessionBean implements MQTTClientSessionBeanLocal, MqttCa
         try {
             client = new MqttClient(broker, clientId);
             MqttConnectOptions connOpts = new MqttConnectOptions();
+            connOpts.setAutomaticReconnect(true);
             connOpts.setCleanSession(true);
             if(!client.isConnected()) {
                 System.out.println("Client on");
@@ -103,22 +116,29 @@ public class MQTTClientSessionBean implements MQTTClientSessionBeanLocal, MqttCa
     @Lock(LockType.READ)
     public void connectionLost(Throwable thrwbl) {
         System.err.println("[MQTT] CONNECTION LOST CALLBACK RAN...");
+        //createConnection();
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     @Lock(LockType.READ)
-    public void messageArrived(String topic, MqttMessage message) throws Exception {
+    public void messageArrived(String topic, MqttMessage message) {
         System.out.println("Entered in arrived");
-        String payload = new String(message.getPayload(), 0);
-        String[] split = payload.split("[|]");
-        String[] split2 = topic.split("[/]");
-        
-        Tank t = new Tank(Float.parseFloat(split[0]), Float.parseFloat(split[1]), Float.parseFloat(split[2]), Integer.parseInt(split2[3]));
-        t.getValve().setFlowRateResistance(Float.parseFloat(split[3]));
-        if(Integer.parseInt(split[4]) == 0) t.getTrigger().setOpened(false);
-        else t.getTrigger().setOpened(true);
-        
+        try {
+            String payload = new String(message.getPayload(), 0);
+            System.out.println(payload);
+            String[] split = payload.split("[|]");
+            String[] split2 = topic.split("[/]");
+            Tank t = new Tank(Float.parseFloat(split[0]), Float.parseFloat(split[1]), Float.parseFloat(split[2]), Integer.parseInt(split2[3]));
+            t.getValve().setFlowRateResistance(Float.parseFloat(split[3]));
+            if(Integer.parseInt(split[4]) == 0) t.getTrigger().setOpened(false);
+            else t.getTrigger().setOpened(true);
+            System.out.println("[MQTT] Received a message. Topic: " + topic + " Value: " + t.toString());
+        } catch (Exception e) {
+            System.err.println("Error on Arrived" + e.getMessage());
+            return;
+        }
+
         /*ByteBuffer bbuf = ByteBuffer.wrap(message.getPayload());
         Tank t = new Tank(bbuf.getFloat(), bbuf.getFloat(), bbuf.getFloat(), Integer.parseInt(split[3]));
         t.getValve().setFlowRateResistance(bbuf.getFloat());
@@ -130,9 +150,9 @@ public class MQTTClientSessionBean implements MQTTClientSessionBeanLocal, MqttCa
         else {
             t.getTrigger().setOpened(true);
         }*/
-        
+
         //monitorSessionBean.put(t);
-        System.out.println("[MQTT] Received a message. Topic: " + topic + " Value: " + t.toString());
+        //System.out.println("[MQTT] Received a message. Topic: " + topic + " Value: " + t.toString());
     }
 
     @Override
