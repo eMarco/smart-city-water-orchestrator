@@ -43,9 +43,12 @@ write_elements = [
 
 % CONFIG END
 
+classes = {'double','single','int8','uint8','int16','uint16','int32','uint32','int64','uint64'};
+sizes = [8,4,1,1,2,2,4,4,8,8];
+handles2b = {0, @single2b, 0, @boolean2b, 0, 0, 0, 0, 0, 0};
+handles2v = {0, @b2single, 0, @b2boolean2b, 0, 0, 0, 0, 0, 0};
+
 addpath RealTime_Pacer/
-
-
 
 % zone = sprintf(zone_name, i);
 % sprintf('%s/%s/%s', model_name, zone, param_name);
@@ -81,10 +84,14 @@ while 1
         % TODO : FIX ME!
         tmp = get_param(element, 'SignalObject');
 
-        % TODO : Cast on read_elements(k).Type basis
+        % Get type index
+        tmp_index = find(strcmp(sizes, write_elements(i).Type));
 
+        % Retrieve serialization function
+        f = handles2b(tmp_index);
 
-        readings{k} = tmp;
+        % Append the binary data
+        readings{k} = f(tmp);
       end
 
       payload = concatb({readings});
@@ -106,18 +113,22 @@ while 1
       start_bit = 0;
       for k=length(write_elements):-1:1
 
-        % TODO : Increment on write_elements(k).Type basis
-        end_bit = start_bit + 8*1 -1;
+        % Get type index
+        tmp_index = find(strcmp(sizes, write_elements(i).Type));
+
+        % Calculate end bit on size basis
+        end_bit = start_bit + sizes(tmp_index) * 8 - 1;
         tmp = bitsliceget(bits, start_bit, end_bit);
+
+        % Retrieve deserilization function
+        f = handles2v(tmp_index);
+        % Convert to value
+        tmp = f(tmp);
 
         set_param(sprintf('%s/%s/%s', model_name, zone, write_elements(k).Name), 'value', tmp);
 
-        start_bit = end_bit;
+        start_bit = end_bit + 1;
       end
-      %
-      % tmp1 = bitsliceget(bits, 5*8-1, 1*8-1);
-      % tmp2 = bitsliceget(bits, 1*8-1, 0*8);
-
 
       %READ END
     end
