@@ -39,7 +39,7 @@ public class MongoDBStorage implements Storage {
         // Using a single connection to provide better (query-oriented) scalability
         this.db = db;
         Jongo jongo = new Jongo(db);
-        this.collection = jongo.getCollection("waterCollection");
+        this.collection = jongo.getCollection("waterCollection2");
     }
     /**
      * Insert
@@ -103,12 +103,12 @@ public class MongoDBStorage implements Storage {
     public List<GenericValue> findLastTanks() {
         List<Integer> tanksIds = new LinkedList<>();
         List<GenericValue> ret = new LinkedList<>();
-        collection.distinct("tankId").as(Tank.class).forEach((t) -> {
-            tanksIds.add(t.getTankId());
+        collection.distinct("tankId").as(Integer.class).forEach((t) -> {
+            tanksIds.add(t);
         });
         
         tanksIds.forEach((tId) -> {
-            ret.add(collection.find("{ $and: { className: {$regex: \".*Tank.*\" }, tankId: " + tId + " } }")
+            ret.add(collection.find("{ $and: [ { \"className\": {$regex: \".*Tank.*\" } }, {\"tankId\": " + tId + "} ] }")
                     .as(GenericValue.class).next());// forEach(v -> ret.add(v));
         });
         

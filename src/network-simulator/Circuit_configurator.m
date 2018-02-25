@@ -87,37 +87,39 @@ while 1
 
       % PUBLISH end
 
-      % % READ
-      % try
-      %   % bytes = uint8(read(subscriptions(i).Sub));
-      %   values = strsplit(read(subscriptions(i).Sub), '|');
-      % catch
-      % end
-      %
-      % % start_byte = 0;
-      % % for k=length(write_elements):-1:1
-      % for k=1:length(write_elements)
-      %   % Get type index
-      %   tmp_index = find(strcmp(classes, read_elements(k).Type));
-      %
-      % %   % Calculate end bit on size basis
-      % %   end_byte = start_byte + sizes(tmp_index) - 1;
-      % %   tmp = bytes(start_byte:end_byte);
-      %
-      %   % Get i-th element
-      %   tmp = values(i);
-      %
-      %   % Retrieve deserilization function
-      %   f = cell2mat(handles2v(tmp_index));
-      %
-      %   % Convert to value
-      %   tmp = f(tmp);
-      %
-      %   element = sprintf('%s/%s', model_name, sprintf(write_elements(k).Name, i));
-      %   set_param(element, 'value', tmp);
-      %
-      % %   start_byte = end_bit + 1;
-      % end
+      % READ
+      try
+        % bytes = uint8(read(subscriptions(i).Sub));
+        values = strsplit(read(subscriptions(i).Sub), '|');
+        display(values);
+        %
+        % % start_byte = 0;
+        % % for k=length(write_elements):-1:1
+        for k=1:length(write_elements)
+            % Get type index
+            tmp_index = find(strcmp(classes, read_elements(k).Type));
+            %
+            % %   % Calculate end bit on size basis
+            % %   end_byte = start_byte + sizes(tmp_index) - 1;
+            % %   tmp = bytes(start_byte:end_byte);
+            %
+            %   % Get i-th element
+            tmp = values(i);
+            %
+            %   % Retrieve deserilization function
+            f = cell2mat(handles2v(tmp_index));
+            %
+            %   % Convert to value
+            tmp = f(tmp);
+            %
+            element = sprintf('%s/%s', model_name, sprintf(write_elements(k).Name, i));
+            
+            set_param(element, 'value', tmp);
+            %
+            % %   start_byte = end_bit + 1;
+        end
+      catch
+      end
       % %READ END
     end
 
@@ -137,9 +139,11 @@ function y = boolean2b(x)
 end
 
 function y = b2single(x)
-  y = single(x);
+  %y = single(x);
+  y = sprintf('single(%s)',x);
 end
 
 function y = b2boolean(x)
-  y = uint8(x);
+    y = sprintf('uint8(%s)',x);
+ % y = uint8(x);
 end

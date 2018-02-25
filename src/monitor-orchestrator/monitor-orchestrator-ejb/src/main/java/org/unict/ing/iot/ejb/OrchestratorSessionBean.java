@@ -95,10 +95,10 @@ public class OrchestratorSessionBean implements OrchestratorSessionBeanLocal {
                     log += " OPENING TRIGGER";
                     tank.getTrigger().open();
                 }
-                monitorSessionBean.put(tank);
+                //monitorSessionBean.put(tank);
                 // TODO bool value for Tank to ? Actuation? (metrics)
                 // TODO MQTTClient.publish decomment
-                //mQTTClientSessionBean.publish("/" + tank.getTankId(), tank);
+                mQTTClientSessionBean.publish(tank.getTankId() + "/", tank);
                 LOG.warning(log);
             }
         });
