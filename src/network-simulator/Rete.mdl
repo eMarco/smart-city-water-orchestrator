@@ -1,12 +1,12 @@
 Model {
   Name			  "Rete"
   Version		  9.0
-  SavedCharacterEncoding  "UTF-8"
+  SavedCharacterEncoding  "windows-1252"
   GraphicalInterface {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.20"
+    ComputedModelVersion    "1.26"
     NumModelReferences	    0
     NumTestPointedSignals   0
     NumProvidedFunctions    0
@@ -364,7 +364,7 @@ Model {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [0.0, 0.0, 1920.0, 1050.0]
+      Location		      [1920.0, 0.0, 1680.0, 1020.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -388,9 +388,9 @@ Model {
 	IsActive		[1]
 	ViewObjType		"SimulinkTopLevel"
 	LoadSaveID		"0"
-	Extents			[1882.0, 872.0]
-	ZoomFactor		[1.25]
-	Offset			[-59.8770219748086, -455.66569925583661]
+	Extents			[1642.0, 836.0]
+	ZoomFactor		[1.0]
+	Offset			[88.999168501381973, -611.28236592250323]
       }
       Object {
 	$PropName		"DockComponentsInfo"
@@ -410,26 +410,26 @@ Model {
       "AAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0Ac"
       "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQAAAAAAP////8AAABiAP///wAAAAEAAAAAAAAAAPwCA"
       "AAAAfsAAABUAEcATABVAEUAMgA6AFAAcgBvAHAAZQByAHQAeQBJAG4AcwBwAGUAYwB0AG8AcgAvAFAAcgBvAHAAZQByAHQAeQAgAEkAbgBzAHAAZ"
-      "QBjAHQAbwByAAAAAAD/////AAAALAD///8AAAeAAAADpgAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
+      "QBjAHQAbwByAAAAAAD/////AAAALgD///8AAAaQAAADhAAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
       "////wEAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
       "////wEAAACA/////wAAAAAAAAAA/////wEAAADo/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAFo/////wAAAAAAAAAA/"
-      "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAANR/////wAAAAAAAAAA/"
-      "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA"
+      "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAOw/////wAAAAAAAAAA/"
+      "////wEAAAPi/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA"
     }
   }
   HideAutomaticNames	  on
   PhysicalModelingChecksum "3969218746"
-  PhysicalModelingParameterChecksum "2278119597"
+  PhysicalModelingParameterChecksum "4050542475"
   PhysicalModelingProducts "SimElectronics|Simscape"
   Created		  "Fri Feb 23 12:38:28 2018"
   Creator		  "aleskandro"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "marco"
+  LastModifiedBy	  "aleskandro"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Fri Feb 23 19:06:25 2018"
-  RTWModifiedTimeStamp	  441306511
-  ModelVersionFormat	  "1.%<AutoIncrement:20>"
+  LastModifiedDate	  "Sun Feb 25 12:55:02 2018"
+  RTWModifiedTimeStamp	  441463955
+  ModelVersionFormat	  "1.%<AutoIncrement:26>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "disabled"
@@ -482,7 +482,7 @@ Model {
     $ObjectID		    7
     $ClassName		    "Simulink.SimulationData.ModelLoggingInfo"
     model_		    "Rete"
-    overrideMode_	    [0U]
+    overrideMode_	    [0.0]
     Array {
       Type		      "Cell"
       Dimension		      1
@@ -1209,7 +1209,7 @@ Model {
 	}
 	SSC.SimscapeCC {
 	  $ObjectID		  21
-	  Version		  "1.17.1"
+	  Version		  "1.0"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    1
@@ -1217,17 +1217,24 @@ Model {
 	    PropName		    "DisabledProps"
 	  }
 	  Description		  ""
-	  Name			  Simscape
-	  EditingMode		  Full
-	  ExplicitSolverDiagnosticOptions warning
-	  GlobalZcOffDiagnosticOptions warning
-	  SimscapeLogType	  none
+	  Name			  "Simscape"
+	  EditingMode		  "Full"
+	  ExplicitSolverDiagnosticOptions "warning"
+	  GlobalZcOffDiagnosticOptions "warning"
+	  SimscapeNormalizeSystem off
+	  SimscapeNominalValues	  "[{\"value\":\"1\",\"unit\":\"A\"},{\"value\":\"1\",\"unit\":\"bar\"},{\"value\":\"1\",\"un"
+	  "it\":\"cm^2\"},{\"value\":\"1\",\"unit\":\"cm^3/s\"},{\"value\":\"1\",\"unit\":\"kJ/kg\"},{\"value\":\"1\",\"unit\""
+	  ":\"kW\"},{\"value\":\"1\",\"unit\":\"l\"},{\"value\":\"1\",\"unit\":\"N\"},{\"value\":\"1\",\"unit\":\"N*m\"},{\"va"
+	  "lue\":\"1\",\"unit\":\"V\"}]"
+	  SimscapeLogType	  "none"
 	  SimscapeLogSimulationStatistics off
 	  SimscapeLogOpenViewer	  off
-	  SimscapeLogName	  simlog
+	  SimscapeLogName	  "simlog"
 	  SimscapeLogDecimation	  1
 	  SimscapeLogLimitData	  on
 	  SimscapeLogDataHistory  5000
+	  SimscapeUseOperatingPoints off
+	  SimscapeOperatingPoint  ""
 	  SelectedTab		  ""
 	}
 	PropName		"Components"
@@ -1325,6 +1332,17 @@ Model {
       PreserveConstantTs      off
     }
     Block {
+      BlockType		      DataTypeConversion
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: Inherit via back propagation"
+      LockScale		      off
+      ConvertRealWorld	      "Real World Value (RWV)"
+      RndMeth		      "Zero"
+      SaturateOnIntegerOverflow	on
+      SampleTime	      "-1"
+    }
+    Block {
       BlockType		      DiscretePulseGenerator
       PulseType		      "Sample based"
       TimeSource	      "Use simulation time"
@@ -1403,7 +1421,7 @@ Model {
   }
   System {
     Name		    "Rete"
-    Location		    [0, 0, 1920, 1050]
+    Location		    [1920, 0, 3600, 1020]
     Open		    on
     PortBlocksUseCompactNotation off
     ModelBrowserVisibility  off
@@ -1416,9 +1434,9 @@ Model {
     TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "125"
+    ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "315"
+    SIDHighWatermark	    "323"
     Block {
       BlockType		      Reference
       Name		      "Electrical Reference1"
@@ -1429,7 +1447,7 @@ Model {
       BlockRotation	      270
       BlockMirror	      on
       ShowName		      off
-      LibraryVersion	      "8008000.1"
+      LibraryVersion	      "9000000.1"
       SourceBlock	      "fl_lib/Electrical/Electrical Elements/Electrical Reference"
       SourceType	      "Electrical Reference"
       SourceProductName	      "Simscape"
@@ -1438,9 +1456,9 @@ Model {
       SourceFile	      "foundation.electrical.elements.reference"
       ComponentPath	      "foundation.electrical.elements.reference"
       ComponentVariants	      "foundation.electrical.elements.reference"
-      ComponentVariantNames   reference
-      ClassName		      reference
-      SchemaVersion	      1
+      ComponentVariantNames   "reference"
+      ClassName		      "reference"
+      SchemaVersion	      "1"
     }
     Block {
       BlockType		      Reference
@@ -1452,7 +1470,7 @@ Model {
       BlockRotation	      270
       BlockMirror	      on
       ShowName		      off
-      LibraryVersion	      "8008000.1"
+      LibraryVersion	      "9000000.1"
       SourceBlock	      "fl_lib/Electrical/Electrical Elements/Electrical Reference"
       SourceType	      "Electrical Reference"
       SourceProductName	      "Simscape"
@@ -1461,9 +1479,9 @@ Model {
       SourceFile	      "foundation.electrical.elements.reference"
       ComponentPath	      "foundation.electrical.elements.reference"
       ComponentVariants	      "foundation.electrical.elements.reference"
-      ComponentVariantNames   reference
-      ClassName		      reference
-      SchemaVersion	      1
+      ComponentVariantNames   "reference"
+      ClassName		      "reference"
+      SchemaVersion	      "1"
     }
     Block {
       BlockType		      Reference
@@ -1475,7 +1493,7 @@ Model {
       BlockRotation	      270
       BlockMirror	      on
       ShowName		      off
-      LibraryVersion	      "8008000.1"
+      LibraryVersion	      "9000000.1"
       SourceBlock	      "fl_lib/Electrical/Electrical Elements/Electrical Reference"
       SourceType	      "Electrical Reference"
       SourceProductName	      "Simscape"
@@ -1484,9 +1502,9 @@ Model {
       SourceFile	      "foundation.electrical.elements.reference"
       ComponentPath	      "foundation.electrical.elements.reference"
       ComponentVariants	      "foundation.electrical.elements.reference"
-      ComponentVariantNames   reference
-      ClassName		      reference
-      SchemaVersion	      1
+      ComponentVariantNames   "reference"
+      ClassName		      "reference"
+      SchemaVersion	      "1"
     }
     Block {
       BlockType		      Reference
@@ -1498,7 +1516,7 @@ Model {
       BlockRotation	      270
       BlockMirror	      on
       ShowName		      off
-      LibraryVersion	      "8008000.1"
+      LibraryVersion	      "9000000.1"
       SourceBlock	      "fl_lib/Electrical/Electrical Elements/Electrical Reference"
       SourceType	      "Electrical Reference"
       SourceProductName	      "Simscape"
@@ -1507,9 +1525,9 @@ Model {
       SourceFile	      "foundation.electrical.elements.reference"
       ComponentPath	      "foundation.electrical.elements.reference"
       ComponentVariants	      "foundation.electrical.elements.reference"
-      ComponentVariantNames   reference
-      ClassName		      reference
-      SchemaVersion	      1
+      ComponentVariantNames   "reference"
+      ClassName		      "reference"
+      SchemaVersion	      "1"
     }
     Block {
       BlockType		      SubSystem
@@ -1570,7 +1588,7 @@ Model {
 	      Ports		      [0, 0, 0, 0, 0, 1, 2]
 	      Position		      [105, 190, 145, 230]
 	      ZOrder		      272
-	      LibraryVersion	      "8008000.1"
+	      LibraryVersion	      "9000000.1"
 	      SourceBlock	      "fl_lib/Electrical/Electrical Sensors/Current Sensor"
 	      SourceType	      "Current Sensor"
 	      SourceProductName	      "Simscape"
@@ -1579,9 +1597,9 @@ Model {
 	      SourceFile	      "foundation.electrical.sensors.current"
 	      ComponentPath	      "foundation.electrical.sensors.current"
 	      ComponentVariants	      "foundation.electrical.sensors.current"
-	      ComponentVariantNames   current
-	      ClassName		      current
-	      SchemaVersion	      1
+	      ComponentVariantNames   "current"
+	      ClassName		      "current"
+	      SchemaVersion	      "1"
 	    }
 	    Block {
 	      BlockType		      Reference
@@ -1591,19 +1609,19 @@ Model {
 	      Position		      [140, 85, 170, 115]
 	      ZOrder		      277
 	      BlockRotation	      270
-	      LibraryVersion	      "1.1"
+	      LibraryVersion	      "2.0"
 	      SourceBlock	      "nesl_utility/PS-Simulink\nConverter"
 	      SourceType	      "PS-Simulink\nConverter"
 	      SourceProductName	      "Simscape"
 	      SourceProductBaseCode   "SS"
 	      ContentPreviewEnabled   off
-	      PhysicalDomain	      network_engine_domain
-	      SubClassName	      ps_output
-	      LeftPortType	      input
-	      RightPortType	      output
+	      PhysicalDomain	      "network_engine_domain"
+	      SubClassName	      "ps_output"
+	      LeftPortType	      "input"
+	      RightPortType	      "output"
 	      PseudoPeriodic	      off
-	      Frequencies	      []
-	      Unit		      A
+	      Frequencies	      "[]"
+	      Unit		      "A"
 	      AffineConversion	      off
 	    }
 	    Block {
@@ -1702,7 +1720,7 @@ Model {
 	      Ports		      [0, 0, 0, 0, 0, 1, 2]
 	      Position		      [105, 190, 145, 230]
 	      ZOrder		      272
-	      LibraryVersion	      "8008000.1"
+	      LibraryVersion	      "9000000.1"
 	      SourceBlock	      "fl_lib/Electrical/Electrical Sensors/Current Sensor"
 	      SourceType	      "Current Sensor"
 	      SourceProductName	      "Simscape"
@@ -1711,9 +1729,9 @@ Model {
 	      SourceFile	      "foundation.electrical.sensors.current"
 	      ComponentPath	      "foundation.electrical.sensors.current"
 	      ComponentVariants	      "foundation.electrical.sensors.current"
-	      ComponentVariantNames   current
-	      ClassName		      current
-	      SchemaVersion	      1
+	      ComponentVariantNames   "current"
+	      ClassName		      "current"
+	      SchemaVersion	      "1"
 	    }
 	    Block {
 	      BlockType		      Reference
@@ -1723,19 +1741,19 @@ Model {
 	      Position		      [140, 85, 170, 115]
 	      ZOrder		      277
 	      BlockRotation	      270
-	      LibraryVersion	      "1.1"
+	      LibraryVersion	      "2.0"
 	      SourceBlock	      "nesl_utility/PS-Simulink\nConverter"
 	      SourceType	      "PS-Simulink\nConverter"
 	      SourceProductName	      "Simscape"
 	      SourceProductBaseCode   "SS"
 	      ContentPreviewEnabled   off
-	      PhysicalDomain	      network_engine_domain
-	      SubClassName	      ps_output
-	      LeftPortType	      input
-	      RightPortType	      output
+	      PhysicalDomain	      "network_engine_domain"
+	      SubClassName	      "ps_output"
+	      LeftPortType	      "input"
+	      RightPortType	      "output"
 	      PseudoPeriodic	      off
-	      Frequencies	      []
-	      Unit		      A
+	      Frequencies	      "[]"
+	      Unit		      "A"
 	      AffineConversion	      off
 	    }
 	    Block {
@@ -1809,7 +1827,7 @@ Model {
 	  Ports			  [0, 0, 0, 0, 0, 1, 1]
 	  Position		  [385, 131, 425, 159]
 	  ZOrder		  266
-	  LibraryVersion	  "8008000.1"
+	  LibraryVersion	  "9000000.1"
 	  SourceBlock		  "elec_lib/Passive Devices/Resistor"
 	  SourceType		  "Resistor"
 	  SourceProductName	  "Simscape Electronics"
@@ -1820,97 +1838,101 @@ Model {
 	  ComponentVariants	  "elec.passive.resistor, elec.passive.resistor_thermal"
 	  ComponentVariantNames	  "No thermal port, Show thermal port"
 	  ClassName		  "Simscape variant"
-	  SchemaVersion		  1
-	  R			  r_pompa
-	  R_unit		  Ohm
-	  R_conf		  compiletime
-	  R_tol			  5
-	  R_tol_unit		  1
-	  R_tol_conf		  compiletime
-	  enable_R_tol		  0
-	  enable_R_tol_unit	  1
-	  enable_R_tol_conf	  compiletime
-	  tol_distribution	  1
-	  tol_distribution_unit	  1
-	  tol_distribution_conf	  compiletime
-	  nSigma		  4
-	  nSigma_unit		  1
-	  nSigma_conf		  compiletime
-	  enable_operating_limits 0
-	  enable_operating_limits_unit 1
-	  enable_operating_limits_conf compiletime
-	  operating_limit_action  2
-	  operating_limit_action_unit 1
-	  operating_limit_action_conf compiletime
-	  max_working_voltage	  100
-	  max_working_voltage_unit V
-	  max_working_voltage_conf compiletime
-	  power_rating		  1
-	  power_rating_unit	  W
-	  power_rating_conf	  compiletime
-	  enable_faults		  0
-	  enable_faults_unit	  1
-	  enable_faults_conf	  compiletime
-	  fault_action		  1
-	  fault_action_unit	  1
-	  fault_action_conf	  compiletime
-	  R_faulted		  Inf
-	  R_faulted_unit	  Ohm
-	  R_faulted_conf	  compiletime
-	  enable_temporal_fault	  0
-	  enable_temporal_fault_unit 1
-	  enable_temporal_fault_conf compiletime
-	  t_fault		  1
-	  t_fault_unit		  s
-	  t_fault_conf		  compiletime
-	  enable_behavioral_fault 0
-	  enable_behavioral_fault_unit 1
-	  enable_behavioral_fault_conf compiletime
-	  max_permissible_current 1
-	  max_permissible_current_unit A
-	  max_permissible_current_conf compiletime
-	  t_fail_on_current	  1
-	  t_fail_on_current_unit  s
-	  t_fail_on_current_conf  compiletime
-	  noise_mode		  0
-	  noise_mode_unit	  1
-	  noise_mode_conf	  compiletime
-	  sample_time		  0.001
-	  sample_time_unit	  s
-	  sample_time_conf	  compiletime
-	  repeatability		  1
-	  repeatability_unit	  1
-	  repeatability_conf	  compiletime
-	  auto_seed		  3797408467
-	  auto_seed_unit	  1
-	  auto_seed_conf	  compiletime
-	  user_seed		  0
-	  user_seed_unit	  1
-	  user_seed_conf	  compiletime
-	  Tdevice		  25
-	  Tdevice_unit		  degC
-	  Tdevice_conf		  compiletime
-	  alpha			  0.00393
+	  SchemaVersion		  "1"
+	  R			  "r_pompa"
+	  R_unit		  "Ohm"
+	  R_conf		  "compiletime"
+	  R_tol			  "5"
+	  R_tol_unit		  "1"
+	  R_tol_conf		  "compiletime"
+	  enable_R_tol		  "0"
+	  enable_R_tol_unit	  "1"
+	  enable_R_tol_conf	  "compiletime"
+	  tol_distribution	  "1"
+	  tol_distribution_unit	  "1"
+	  tol_distribution_conf	  "compiletime"
+	  nSigma		  "4"
+	  nSigma_unit		  "1"
+	  nSigma_conf		  "compiletime"
+	  enable_operating_limits "0"
+	  enable_operating_limits_unit "1"
+	  enable_operating_limits_conf "compiletime"
+	  operating_limit_action  "2"
+	  operating_limit_action_unit "1"
+	  operating_limit_action_conf "compiletime"
+	  max_working_voltage	  "100"
+	  max_working_voltage_unit "V"
+	  max_working_voltage_conf "compiletime"
+	  power_rating		  "1"
+	  power_rating_unit	  "W"
+	  power_rating_conf	  "compiletime"
+	  enable_faults		  "0"
+	  enable_faults_unit	  "1"
+	  enable_faults_conf	  "compiletime"
+	  fault_action		  "1"
+	  fault_action_unit	  "1"
+	  fault_action_conf	  "compiletime"
+	  R_faulted		  "Inf"
+	  R_faulted_unit	  "Ohm"
+	  R_faulted_conf	  "compiletime"
+	  enable_temporal_fault	  "0"
+	  enable_temporal_fault_unit "1"
+	  enable_temporal_fault_conf "compiletime"
+	  t_fault		  "1"
+	  t_fault_unit		  "s"
+	  t_fault_conf		  "compiletime"
+	  enable_behavioral_fault "0"
+	  enable_behavioral_fault_unit "1"
+	  enable_behavioral_fault_conf "compiletime"
+	  max_permissible_current "1"
+	  max_permissible_current_unit "A"
+	  max_permissible_current_conf "compiletime"
+	  t_fail_on_current	  "1"
+	  t_fail_on_current_unit  "s"
+	  t_fail_on_current_conf  "compiletime"
+	  noise_mode		  "0"
+	  noise_mode_unit	  "1"
+	  noise_mode_conf	  "compiletime"
+	  sample_time		  "0.001"
+	  sample_time_unit	  "s"
+	  sample_time_conf	  "compiletime"
+	  repeatability		  "1"
+	  repeatability_unit	  "1"
+	  repeatability_conf	  "compiletime"
+	  auto_seed		  "3797408467"
+	  auto_seed_unit	  "1"
+	  auto_seed_conf	  "compiletime"
+	  user_seed		  "0"
+	  user_seed_unit	  "1"
+	  user_seed_conf	  "compiletime"
+	  Tdevice		  "25"
+	  Tdevice_unit		  "degC"
+	  Tdevice_conf		  "compiletime"
+	  alpha			  "3.93e-3"
 	  alpha_unit		  "1/K"
-	  alpha_conf		  compiletime
-	  Tmeas			  25
-	  Tmeas_unit		  degC
-	  Tmeas_conf		  compiletime
-	  thermal_mass		  100
+	  alpha_conf		  "compiletime"
+	  Tmeas			  "25"
+	  Tmeas_unit		  "degC"
+	  Tmeas_conf		  "compiletime"
+	  thermal_mass		  "100"
 	  thermal_mass_unit	  "J/K"
-	  thermal_mass_conf	  compiletime
-	  initial_temperature	  25
-	  initial_temperature_unit degC
-	  initial_temperature_conf compiletime
-	  power_derating_T1	  70
-	  power_derating_T1_unit  degC
-	  power_derating_T1_conf  compiletime
-	  power_derating_T2	  155
-	  power_derating_T2_unit  degC
-	  power_derating_T2_conf  compiletime
-	  operating_temperature_range_vec [ -50 150 ]
-	  operating_temperature_range_vec_unit degC
-	  operating_temperature_range_vec_conf compiletime
+	  thermal_mass_conf	  "compiletime"
+	  power_derating_T1	  "70"
+	  power_derating_T1_unit  "degC"
+	  power_derating_T1_conf  "compiletime"
+	  power_derating_T2	  "155"
+	  power_derating_T2_unit  "degC"
+	  power_derating_T2_conf  "compiletime"
+	  operating_temperature_range_vec "[-50, 150]"
+	  operating_temperature_range_vec_unit "degC"
+	  operating_temperature_range_vec_conf "compiletime"
+	  temperature_specify	  off
+	  temperature_priority	  "High"
+	  temperature		  "298.15"
+	  temperature_unit	  "K"
+	  temperature_nominal_specify off
+	  temperature_nominal_unit "K"
+	  temperature_nominal_value "1"
 	}
 	Block {
 	  BlockType		  Reference
@@ -1921,7 +1943,7 @@ Model {
 	  ZOrder		  338
 	  BlockRotation		  270
 	  BlockMirror		  on
-	  LibraryVersion	  "8008000.1"
+	  LibraryVersion	  "9000000.1"
 	  SourceBlock		  "elec_lib/Sources/Voltage Source"
 	  SourceType		  "Voltage Source"
 	  SourceProductName	  "Simscape Electronics"
@@ -1930,39 +1952,53 @@ Model {
 	  SourceFile		  "elec.sources.voltage_source"
 	  ComponentPath		  "elec.sources.voltage_source"
 	  ComponentVariants	  "elec.sources.voltage_source"
-	  ComponentVariantNames	  voltage_source
-	  ClassName		  voltage_source
-	  SchemaVersion		  1
-	  dc_voltage		  v_pompa
-	  dc_voltage_unit	  V
-	  dc_voltage_conf	  compiletime
-	  ac_voltage		  0
-	  ac_voltage_unit	  V
-	  ac_voltage_conf	  compiletime
-	  ac_shift		  0
-	  ac_shift_unit		  deg
-	  ac_shift_conf		  compiletime
-	  ac_frequency		  0
-	  ac_frequency_unit	  Hz
-	  ac_frequency_conf	  compiletime
-	  noise_mode		  0
-	  noise_mode_unit	  1
-	  noise_mode_conf	  compiletime
-	  PSD			  0
+	  ComponentVariantNames	  "voltage_source"
+	  ClassName		  "voltage_source"
+	  SchemaVersion		  "1"
+	  dc_voltage		  "v_pompa"
+	  dc_voltage_unit	  "V"
+	  dc_voltage_conf	  "compiletime"
+	  ac_voltage		  "0"
+	  ac_voltage_unit	  "V"
+	  ac_voltage_conf	  "compiletime"
+	  ac_shift		  "0"
+	  ac_shift_unit		  "deg"
+	  ac_shift_conf		  "compiletime"
+	  ac_frequency		  "0"
+	  ac_frequency_unit	  "Hz"
+	  ac_frequency_conf	  "compiletime"
+	  noise_mode		  "0"
+	  noise_mode_unit	  "1"
+	  noise_mode_conf	  "compiletime"
+	  PSD			  "0"
 	  PSD_unit		  "V^2/Hz"
-	  PSD_conf		  compiletime
-	  sample_time		  0.001
-	  sample_time_unit	  s
-	  sample_time_conf	  compiletime
-	  repeatability		  1
-	  repeatability_unit	  1
-	  repeatability_conf	  compiletime
-	  auto_seed		  2589191353
-	  auto_seed_unit	  1
-	  auto_seed_conf	  compiletime
-	  user_seed		  0
-	  user_seed_unit	  1
-	  user_seed_conf	  compiletime
+	  PSD_conf		  "compiletime"
+	  repeatability		  "1"
+	  repeatability_unit	  "1"
+	  repeatability_conf	  "compiletime"
+	  auto_seed		  "2589191353"
+	  auto_seed_unit	  "1"
+	  auto_seed_conf	  "compiletime"
+	  user_seed		  "0"
+	  user_seed_unit	  "1"
+	  user_seed_conf	  "compiletime"
+	  sample_time		  "0.001"
+	  sample_time_unit	  "s"
+	  sample_time_conf	  "compiletime"
+	  i_specify		  off
+	  i_priority		  "None"
+	  i			  "0"
+	  i_unit		  "A"
+	  i_nominal_specify	  off
+	  i_nominal_unit	  "A"
+	  i_nominal_value	  "1"
+	  v_specify		  off
+	  v_priority		  "None"
+	  v			  "0"
+	  v_unit		  "V"
+	  v_nominal_specify	  off
+	  v_nominal_unit	  "V"
+	  v_nominal_value	  "1"
 	}
 	Block {
 	  BlockType		  PMIOPort
@@ -2070,46 +2106,45 @@ Model {
       Ports		      [0, 0, 0, 0, 0, 0, 1]
       Position		      [-50, 279, -5, 311]
       ZOrder		      279
-      LibraryVersion	      "1.1"
+      LibraryVersion	      "2.0"
       SourceBlock	      "nesl_utility/Solver\nConfiguration"
       SourceType	      "Solver\nConfiguration"
       SourceProductName	      "Simscape"
       SourceProductBaseCode   "SS"
       ContentPreviewEnabled   off
-      PhysicalDomain	      network_engine_domain
-      SubClassName	      solver
-      LeftPortType	      input
-      RightPortType	      generic
+      PhysicalDomain	      "network_engine_domain"
+      SubClassName	      "solver"
+      LeftPortType	      "input"
+      RightPortType	      "generic"
       Accelerate	      off
-      Tones		      []
-      Harmonics		      []
+      Tones		      "[]"
+      Harmonics		      "[]"
       SimulateNoise	      off
       Profile		      off
       UseLocalSampling	      off
       EnableSwitchedLinearOptims on
       FrequencyDomain	      off
       UseCCode		      off
-      RelTol		      0.001
-      AbsTol		      1e-06
-      MinStep		      1e-09
+      RelTol		      "0.001"
+      AbsTol		      "1e-06"
+      MinStep		      "1e-09"
       ToWorkspace	      off
       RevertToSquareIcSolve   off
-      NumHomotopyIterations   100
+      NumHomotopyIterations   "100"
       PhasorMode	      off
-      PhasorModeNumHarmonics  1
-      OverrideAbsTol	      off
+      PhasorModeNumHarmonics  "1"
       DoDC		      off
-      ResidualTolerance	      1e-09
+      ResidualTolerance	      "1e-09"
       UseLocalSolver	      on
-      LocalSolverChoice	      NE_BACKWARD_EULER_ADVANCER
-      LocalSolverSampleTime   0.1
+      LocalSolverChoice	      "NE_BACKWARD_EULER_ADVANCER"
+      LocalSolverSampleTime   "0.1"
       DoFixedCost	      on
-      MaxNonlinIter	      3
-      MaxModeIter	      2
-      LinearAlgebra	      Sparse
-      DelaysMemoryBudget      1024
+      MaxNonlinIter	      "3"
+      MaxModeIter	      "2"
+      LinearAlgebra	      "Sparse"
+      DelaysMemoryBudget      "1024"
       AutomaticFiltering      on
-      FilteringTimeConstant   0.001
+      FilteringTimeConstant   "0.001"
     }
     Block {
       BlockType		      SubSystem
@@ -2163,26 +2198,26 @@ Model {
 	  BlockRotation		  270
 	  BlockMirror		  on
 	  NamePlacement		  "alternate"
-	  LibraryVersion	  "1.1"
+	  LibraryVersion	  "2.0"
 	  SourceBlock		  "nesl_utility/Simulink-PS\nConverter"
 	  SourceType		  "Simulink-PS\nConverter"
 	  SourceProductName	  "Simscape"
 	  SourceProductBaseCode	  "SS"
 	  ContentPreviewEnabled	  off
-	  PhysicalDomain	  network_engine_domain
-	  SubClassName		  ps_input
-	  LeftPortType		  input
-	  RightPortType		  output
+	  PhysicalDomain	  "network_engine_domain"
+	  SubClassName		  "ps_input"
+	  LeftPortType		  "input"
+	  RightPortType		  "output"
 	  PseudoPeriodic	  off
-	  Frequencies		  []
-	  NoiseDistribution	  none
-	  NoiseParameters	  []
-	  Unit			  1
+	  Frequencies		  "[]"
+	  NoiseDistribution	  "none"
+	  NoiseParameters	  "[]"
+	  Unit			  "1"
 	  AffineConversion	  off
-	  InputFiltering	  off
-	  SimscapeFilterOrder	  1
-	  InputFilterTimeConstant 0.001
-	  UdotUserProvided	  1
+	  FilteringAndDerivatives "zero"
+	  SimscapeFilterOrder	  "1"
+	  InputFilterTimeConstant "0.001"
+	  UdotUserProvided	  "1"
 	}
 	Block {
 	  BlockType		  Reference
@@ -2193,7 +2228,7 @@ Model {
 	  ZOrder		  280
 	  BlockRotation		  90
 	  NamePlacement		  "alternate"
-	  LibraryVersion	  "8008000.1"
+	  LibraryVersion	  "9000000.1"
 	  SourceBlock		  "fl_lib/Electrical/Electrical Elements/Variable Resistor"
 	  SourceType		  "Variable Resistor"
 	  SourceProductName	  "Simscape"
@@ -2202,20 +2237,26 @@ Model {
 	  SourceFile		  "foundation.electrical.elements.variable_resistor"
 	  ComponentPath		  "foundation.electrical.elements.variable_resistor"
 	  ComponentVariants	  "foundation.electrical.elements.variable_resistor"
-	  ComponentVariantNames	  variable_resistor
-	  ClassName		  variable_resistor
-	  SchemaVersion		  1
-	  Rmin			  0
-	  Rmin_unit		  Ohm
-	  Rmin_conf		  compiletime
+	  ComponentVariantNames	  "variable_resistor"
+	  ClassName		  "variable_resistor"
+	  SchemaVersion		  "1"
+	  Rmin			  "0"
+	  Rmin_unit		  "Ohm"
+	  Rmin_conf		  "compiletime"
 	  i_specify		  off
-	  i_priority		  High
-	  i			  0
-	  i_unit		  A
+	  i_priority		  "High"
+	  i			  "0"
+	  i_unit		  "A"
+	  i_nominal_specify	  off
+	  i_nominal_unit	  "A"
+	  i_nominal_value	  "1"
 	  v_specify		  off
-	  v_priority		  High
-	  v			  0
-	  v_unit		  V
+	  v_priority		  "High"
+	  v			  "0"
+	  v_unit		  "V"
+	  v_nominal_specify	  off
+	  v_nominal_unit	  "V"
+	  v_nominal_value	  "1"
 	}
 	Block {
 	  BlockType		  PMIOPort
@@ -2344,26 +2385,26 @@ Model {
 	  BlockRotation		  270
 	  BlockMirror		  on
 	  NamePlacement		  "alternate"
-	  LibraryVersion	  "1.1"
+	  LibraryVersion	  "2.0"
 	  SourceBlock		  "nesl_utility/Simulink-PS\nConverter"
 	  SourceType		  "Simulink-PS\nConverter"
 	  SourceProductName	  "Simscape"
 	  SourceProductBaseCode	  "SS"
 	  ContentPreviewEnabled	  off
-	  PhysicalDomain	  network_engine_domain
-	  SubClassName		  ps_input
-	  LeftPortType		  input
-	  RightPortType		  output
+	  PhysicalDomain	  "network_engine_domain"
+	  SubClassName		  "ps_input"
+	  LeftPortType		  "input"
+	  RightPortType		  "output"
 	  PseudoPeriodic	  off
-	  Frequencies		  []
-	  NoiseDistribution	  none
-	  NoiseParameters	  []
-	  Unit			  1
+	  Frequencies		  "[]"
+	  NoiseDistribution	  "none"
+	  NoiseParameters	  "[]"
+	  Unit			  "1"
 	  AffineConversion	  off
-	  InputFiltering	  off
-	  SimscapeFilterOrder	  1
-	  InputFilterTimeConstant 0.001
-	  UdotUserProvided	  1
+	  FilteringAndDerivatives "zero"
+	  SimscapeFilterOrder	  "1"
+	  InputFilterTimeConstant "0.001"
+	  UdotUserProvided	  "1"
 	}
 	Block {
 	  BlockType		  Reference
@@ -2374,7 +2415,7 @@ Model {
 	  ZOrder		  280
 	  BlockRotation		  90
 	  NamePlacement		  "alternate"
-	  LibraryVersion	  "8008000.1"
+	  LibraryVersion	  "9000000.1"
 	  SourceBlock		  "fl_lib/Electrical/Electrical Elements/Variable Resistor"
 	  SourceType		  "Variable Resistor"
 	  SourceProductName	  "Simscape"
@@ -2383,20 +2424,26 @@ Model {
 	  SourceFile		  "foundation.electrical.elements.variable_resistor"
 	  ComponentPath		  "foundation.electrical.elements.variable_resistor"
 	  ComponentVariants	  "foundation.electrical.elements.variable_resistor"
-	  ComponentVariantNames	  variable_resistor
-	  ClassName		  variable_resistor
-	  SchemaVersion		  1
-	  Rmin			  0
-	  Rmin_unit		  Ohm
-	  Rmin_conf		  compiletime
+	  ComponentVariantNames	  "variable_resistor"
+	  ClassName		  "variable_resistor"
+	  SchemaVersion		  "1"
+	  Rmin			  "0"
+	  Rmin_unit		  "Ohm"
+	  Rmin_conf		  "compiletime"
 	  i_specify		  off
-	  i_priority		  High
-	  i			  0
-	  i_unit		  A
+	  i_priority		  "High"
+	  i			  "0"
+	  i_unit		  "A"
+	  i_nominal_specify	  off
+	  i_nominal_unit	  "A"
+	  i_nominal_value	  "1"
 	  v_specify		  off
-	  v_priority		  High
-	  v			  0
-	  v_unit		  V
+	  v_priority		  "High"
+	  v			  "0"
+	  v_unit		  "V"
+	  v_nominal_specify	  off
+	  v_nominal_unit	  "V"
+	  v_nominal_value	  "1"
 	}
 	Block {
 	  BlockType		  PMIOPort
@@ -2525,26 +2572,26 @@ Model {
 	  BlockRotation		  270
 	  BlockMirror		  on
 	  NamePlacement		  "alternate"
-	  LibraryVersion	  "1.1"
+	  LibraryVersion	  "2.0"
 	  SourceBlock		  "nesl_utility/Simulink-PS\nConverter"
 	  SourceType		  "Simulink-PS\nConverter"
 	  SourceProductName	  "Simscape"
 	  SourceProductBaseCode	  "SS"
 	  ContentPreviewEnabled	  off
-	  PhysicalDomain	  network_engine_domain
-	  SubClassName		  ps_input
-	  LeftPortType		  input
-	  RightPortType		  output
+	  PhysicalDomain	  "network_engine_domain"
+	  SubClassName		  "ps_input"
+	  LeftPortType		  "input"
+	  RightPortType		  "output"
 	  PseudoPeriodic	  off
-	  Frequencies		  []
-	  NoiseDistribution	  none
-	  NoiseParameters	  []
-	  Unit			  1
+	  Frequencies		  "[]"
+	  NoiseDistribution	  "none"
+	  NoiseParameters	  "[]"
+	  Unit			  "1"
 	  AffineConversion	  off
-	  InputFiltering	  off
-	  SimscapeFilterOrder	  1
-	  InputFilterTimeConstant 0.001
-	  UdotUserProvided	  1
+	  FilteringAndDerivatives "zero"
+	  SimscapeFilterOrder	  "1"
+	  InputFilterTimeConstant "0.001"
+	  UdotUserProvided	  "1"
 	}
 	Block {
 	  BlockType		  Reference
@@ -2555,7 +2602,7 @@ Model {
 	  ZOrder		  280
 	  BlockRotation		  90
 	  NamePlacement		  "alternate"
-	  LibraryVersion	  "8008000.1"
+	  LibraryVersion	  "9000000.1"
 	  SourceBlock		  "fl_lib/Electrical/Electrical Elements/Variable Resistor"
 	  SourceType		  "Variable Resistor"
 	  SourceProductName	  "Simscape"
@@ -2564,20 +2611,26 @@ Model {
 	  SourceFile		  "foundation.electrical.elements.variable_resistor"
 	  ComponentPath		  "foundation.electrical.elements.variable_resistor"
 	  ComponentVariants	  "foundation.electrical.elements.variable_resistor"
-	  ComponentVariantNames	  variable_resistor
-	  ClassName		  variable_resistor
-	  SchemaVersion		  1
-	  Rmin			  0
-	  Rmin_unit		  Ohm
-	  Rmin_conf		  compiletime
+	  ComponentVariantNames	  "variable_resistor"
+	  ClassName		  "variable_resistor"
+	  SchemaVersion		  "1"
+	  Rmin			  "0"
+	  Rmin_unit		  "Ohm"
+	  Rmin_conf		  "compiletime"
 	  i_specify		  off
-	  i_priority		  High
-	  i			  0
-	  i_unit		  A
+	  i_priority		  "High"
+	  i			  "0"
+	  i_unit		  "A"
+	  i_nominal_specify	  off
+	  i_nominal_unit	  "A"
+	  i_nominal_value	  "1"
 	  v_specify		  off
-	  v_priority		  High
-	  v			  0
-	  v_unit		  V
+	  v_priority		  "High"
+	  v			  "0"
+	  v_unit		  "V"
+	  v_nominal_specify	  off
+	  v_nominal_unit	  "V"
+	  v_nominal_value	  "1"
 	}
 	Block {
 	  BlockType		  PMIOPort
@@ -2666,7 +2719,7 @@ Model {
       Variant		      off
       System {
 	Name			"Vasca1"
-	Location		[0, 0, 1920, 1050]
+	Location		[1920, 0, 3600, 1020]
 	Open			off
 	PortBlocksUseCompactNotation off
 	ModelBrowserVisibility	off
@@ -2679,7 +2732,7 @@ Model {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"125"
+	ZoomFactor		"100"
 	Block {
 	  BlockType		  SubSystem
 	  Name			  "Amperometer1"
@@ -2713,7 +2766,7 @@ Model {
 	      Ports		      [0, 0, 0, 0, 0, 1, 2]
 	      Position		      [105, 190, 145, 230]
 	      ZOrder		      272
-	      LibraryVersion	      "8008000.1"
+	      LibraryVersion	      "9000000.1"
 	      SourceBlock	      "fl_lib/Electrical/Electrical Sensors/Current Sensor"
 	      SourceType	      "Current Sensor"
 	      SourceProductName	      "Simscape"
@@ -2722,9 +2775,9 @@ Model {
 	      SourceFile	      "foundation.electrical.sensors.current"
 	      ComponentPath	      "foundation.electrical.sensors.current"
 	      ComponentVariants	      "foundation.electrical.sensors.current"
-	      ComponentVariantNames   current
-	      ClassName		      current
-	      SchemaVersion	      1
+	      ComponentVariantNames   "current"
+	      ClassName		      "current"
+	      SchemaVersion	      "1"
 	    }
 	    Block {
 	      BlockType		      Reference
@@ -2734,19 +2787,19 @@ Model {
 	      Position		      [140, 85, 170, 115]
 	      ZOrder		      277
 	      BlockRotation	      270
-	      LibraryVersion	      "1.1"
+	      LibraryVersion	      "2.0"
 	      SourceBlock	      "nesl_utility/PS-Simulink\nConverter"
 	      SourceType	      "PS-Simulink\nConverter"
 	      SourceProductName	      "Simscape"
 	      SourceProductBaseCode   "SS"
 	      ContentPreviewEnabled   off
-	      PhysicalDomain	      network_engine_domain
-	      SubClassName	      ps_output
-	      LeftPortType	      input
-	      RightPortType	      output
+	      PhysicalDomain	      "network_engine_domain"
+	      SubClassName	      "ps_output"
+	      LeftPortType	      "input"
+	      RightPortType	      "output"
 	      PseudoPeriodic	      off
-	      Frequencies	      []
-	      Unit		      A
+	      Frequencies	      "[]"
+	      Unit		      "A"
 	      AffineConversion	      off
 	    }
 	    Block {
@@ -2845,7 +2898,7 @@ Model {
 	      Ports		      [0, 0, 0, 0, 0, 1, 2]
 	      Position		      [105, 190, 145, 230]
 	      ZOrder		      272
-	      LibraryVersion	      "8008000.1"
+	      LibraryVersion	      "9000000.1"
 	      SourceBlock	      "fl_lib/Electrical/Electrical Sensors/Current Sensor"
 	      SourceType	      "Current Sensor"
 	      SourceProductName	      "Simscape"
@@ -2854,9 +2907,9 @@ Model {
 	      SourceFile	      "foundation.electrical.sensors.current"
 	      ComponentPath	      "foundation.electrical.sensors.current"
 	      ComponentVariants	      "foundation.electrical.sensors.current"
-	      ComponentVariantNames   current
-	      ClassName		      current
-	      SchemaVersion	      1
+	      ComponentVariantNames   "current"
+	      ClassName		      "current"
+	      SchemaVersion	      "1"
 	    }
 	    Block {
 	      BlockType		      Reference
@@ -2866,19 +2919,19 @@ Model {
 	      Position		      [140, 85, 170, 115]
 	      ZOrder		      277
 	      BlockRotation	      270
-	      LibraryVersion	      "1.1"
+	      LibraryVersion	      "2.0"
 	      SourceBlock	      "nesl_utility/PS-Simulink\nConverter"
 	      SourceType	      "PS-Simulink\nConverter"
 	      SourceProductName	      "Simscape"
 	      SourceProductBaseCode   "SS"
 	      ContentPreviewEnabled   off
-	      PhysicalDomain	      network_engine_domain
-	      SubClassName	      ps_output
-	      LeftPortType	      input
-	      RightPortType	      output
+	      PhysicalDomain	      "network_engine_domain"
+	      SubClassName	      "ps_output"
+	      LeftPortType	      "input"
+	      RightPortType	      "output"
 	      PseudoPeriodic	      off
-	      Frequencies	      []
-	      Unit		      A
+	      Frequencies	      "[]"
+	      Unit		      "A"
 	      AffineConversion	      off
 	    }
 	    Block {
@@ -2949,12 +3002,24 @@ Model {
 	  BlockType		  Constant
 	  Name			  "Constant"
 	  SID			  "204"
-	  Position		  [67, 0, 93, 30]
+	  Position		  [67, -85, 93, -55]
 	  ZOrder		  308
 	  BlockRotation		  270
 	  BlockMirror		  on
 	  NamePlacement		  "alternate"
 	  Value			  "vasca_1_r_in"
+	}
+	Block {
+	  BlockType		  DataTypeConversion
+	  Name			  "Data Type Conversion"
+	  SID			  "319"
+	  Position		  [65, -25, 95, 25]
+	  ZOrder		  343
+	  BlockRotation		  270
+	  BlockMirror		  on
+	  NamePlacement		  "alternate"
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
 	}
 	Block {
 	  BlockType		  Reference
@@ -2965,7 +3030,7 @@ Model {
 	  ZOrder		  264
 	  BlockRotation		  90
 	  NamePlacement		  "alternate"
-	  LibraryVersion	  "8008000.1"
+	  LibraryVersion	  "9000000.1"
 	  SourceBlock		  "elec_lib/Passive Devices/Capacitor"
 	  SourceType		  "Capacitor"
 	  SourceProductName	  "Simscape Electronics"
@@ -2974,90 +3039,108 @@ Model {
 	  SourceFile		  "elec.passive.capacitor"
 	  ComponentPath		  "elec.passive.capacitor"
 	  ComponentVariants	  "elec.passive.capacitor"
-	  ComponentVariantNames	  capacitor
-	  ClassName		  capacitor
-	  SchemaVersion		  1
-	  enable_table		  0
-	  enable_table_unit	  1
-	  enable_table_conf	  compiletime
-	  c			  vasca_1_c
-	  c_unit		  F
-	  c_conf		  compiletime
+	  ComponentVariantNames	  "capacitor"
+	  ClassName		  "capacitor"
+	  SchemaVersion		  "1"
+	  enable_table		  "0"
+	  enable_table_unit	  "1"
+	  enable_table_conf	  "compiletime"
+	  c			  "vasca_1_c"
+	  c_unit		  "F"
+	  c_conf		  "compiletime"
 	  Cvec			  "[ 1e-5 1e-6 ]"
-	  Cvec_unit		  F
-	  Cvec_conf		  compiletime
-	  Vvec			  [ 0 10 ]
-	  Vvec_unit		  V
-	  Vvec_conf		  compiletime
-	  CV_table_symmetry	  1
-	  CV_table_symmetry_unit  1
-	  CV_table_symmetry_conf  compiletime
-	  C_tol			  5
-	  C_tol_unit		  1
-	  C_tol_conf		  compiletime
-	  enable_C_tol		  0
-	  enable_C_tol_unit	  1
-	  enable_C_tol_conf	  compiletime
-	  tol_distribution	  1
-	  tol_distribution_unit	  1
-	  tol_distribution_conf	  compiletime
-	  nSigma		  4
-	  nSigma_unit		  1
-	  nSigma_conf		  compiletime
-	  r			  1e-6
-	  r_unit		  Ohm
-	  r_conf		  compiletime
-	  g			  0
+	  Cvec_unit		  "F"
+	  Cvec_conf		  "compiletime"
+	  Vvec			  "[ 0 10 ]"
+	  Vvec_unit		  "V"
+	  Vvec_conf		  "compiletime"
+	  CV_table_symmetry	  "1"
+	  CV_table_symmetry_unit  "1"
+	  CV_table_symmetry_conf  "compiletime"
+	  C_tol			  "5"
+	  C_tol_unit		  "1"
+	  C_tol_conf		  "compiletime"
+	  enable_C_tol		  "0"
+	  enable_C_tol_unit	  "1"
+	  enable_C_tol_conf	  "compiletime"
+	  tol_distribution	  "1"
+	  tol_distribution_unit	  "1"
+	  tol_distribution_conf	  "compiletime"
+	  nSigma		  "4"
+	  nSigma_unit		  "1"
+	  nSigma_conf		  "compiletime"
+	  r			  "1e-6"
+	  r_unit		  "Ohm"
+	  r_conf		  "compiletime"
+	  g			  "0"
 	  g_unit		  "1/Ohm"
-	  g_conf		  compiletime
-	  initV			  500
-	  initV_unit		  V
-	  initV_conf		  compiletime
-	  enable_operating_limits 0
-	  enable_operating_limits_unit 1
-	  enable_operating_limits_conf compiletime
-	  operating_limit_action  2
-	  operating_limit_action_unit 1
-	  operating_limit_action_conf compiletime
-	  max_working_voltage_range [ -25 25 ]
-	  max_working_voltage_range_unit V
-	  max_working_voltage_range_conf compiletime
-	  power_rating		  1
-	  power_rating_unit	  W
-	  power_rating_conf	  compiletime
-	  enable_faults		  0
-	  enable_faults_unit	  1
-	  enable_faults_conf	  compiletime
-	  fault_action		  1
-	  fault_action_unit	  1
-	  fault_action_conf	  compiletime
-	  Cscale_faulted	  100
-	  Cscale_faulted_unit	  1
-	  Cscale_faulted_conf	  compiletime
-	  R_faulted		  0.001
-	  R_faulted_unit	  Ohm
-	  R_faulted_conf	  compiletime
-	  G_faulted		  0
+	  g_conf		  "compiletime"
+	  enable_operating_limits "0"
+	  enable_operating_limits_unit "1"
+	  enable_operating_limits_conf "compiletime"
+	  operating_limit_action  "2"
+	  operating_limit_action_unit "1"
+	  operating_limit_action_conf "compiletime"
+	  max_working_voltage_range "[ -25 25 ]"
+	  max_working_voltage_range_unit "V"
+	  max_working_voltage_range_conf "compiletime"
+	  power_rating		  "1"
+	  power_rating_unit	  "W"
+	  power_rating_conf	  "compiletime"
+	  enable_faults		  "0"
+	  enable_faults_unit	  "1"
+	  enable_faults_conf	  "compiletime"
+	  fault_action		  "1"
+	  fault_action_unit	  "1"
+	  fault_action_conf	  "compiletime"
+	  Cscale_faulted	  "100"
+	  Cscale_faulted_unit	  "1"
+	  Cscale_faulted_conf	  "compiletime"
+	  R_faulted		  "0.001"
+	  R_faulted_unit	  "Ohm"
+	  R_faulted_conf	  "compiletime"
+	  G_faulted		  "0"
 	  G_faulted_unit	  "1/Ohm"
-	  G_faulted_conf	  compiletime
-	  tau_fault		  0.001
-	  tau_fault_unit	  s
-	  tau_fault_conf	  compiletime
-	  enable_temporal_fault	  0
-	  enable_temporal_fault_unit 1
-	  enable_temporal_fault_conf compiletime
-	  t_fault		  1
-	  t_fault_unit		  s
-	  t_fault_conf		  compiletime
-	  enable_behavioral_fault 0
-	  enable_behavioral_fault_unit 1
-	  enable_behavioral_fault_conf compiletime
-	  max_permissible_voltage_range	[ -100 100 ]
-	  max_permissible_voltage_range_unit V
-	  max_permissible_voltage_range_conf compiletime
-	  t_fail_on_voltage	  1
-	  t_fail_on_voltage_unit  s
-	  t_fail_on_voltage_conf  compiletime
+	  G_faulted_conf	  "compiletime"
+	  tau_fault		  "0.001"
+	  tau_fault_unit	  "s"
+	  tau_fault_conf	  "compiletime"
+	  enable_temporal_fault	  "0"
+	  enable_temporal_fault_unit "1"
+	  enable_temporal_fault_conf "compiletime"
+	  t_fault		  "1"
+	  t_fault_unit		  "s"
+	  t_fault_conf		  "compiletime"
+	  enable_behavioral_fault "0"
+	  enable_behavioral_fault_unit "1"
+	  enable_behavioral_fault_conf "compiletime"
+	  max_permissible_voltage_range	"[ -100 100 ]"
+	  max_permissible_voltage_range_unit "V"
+	  max_permissible_voltage_range_conf "compiletime"
+	  t_fail_on_voltage	  "1"
+	  t_fail_on_voltage_unit  "s"
+	  t_fail_on_voltage_conf  "compiletime"
+	  i_specify		  off
+	  i_priority		  "None"
+	  i			  "0"
+	  i_unit		  "A"
+	  i_nominal_specify	  off
+	  i_nominal_unit	  "A"
+	  i_nominal_value	  "1"
+	  v_specify		  off
+	  v_priority		  "None"
+	  v			  "0"
+	  v_unit		  "V"
+	  v_nominal_specify	  off
+	  v_nominal_unit	  "V"
+	  v_nominal_value	  "1"
+	  vc_specify		  on
+	  vc_priority		  "High"
+	  vc			  "500"
+	  vc_unit		  "V"
+	  vc_nominal_specify	  off
+	  vc_nominal_unit	  "V"
+	  vc_nominal_value	  "1"
 	}
 	Block {
 	  BlockType		  Reference
@@ -3066,7 +3149,7 @@ Model {
 	  Ports			  [0, 0, 0, 0, 0, 1, 1]
 	  Position		  [385, 131, 425, 159]
 	  ZOrder		  266
-	  LibraryVersion	  "8008000.1"
+	  LibraryVersion	  "9000000.1"
 	  SourceBlock		  "elec_lib/Passive Devices/Resistor"
 	  SourceType		  "Resistor"
 	  SourceProductName	  "Simscape Electronics"
@@ -3077,97 +3160,101 @@ Model {
 	  ComponentVariants	  "elec.passive.resistor, elec.passive.resistor_thermal"
 	  ComponentVariantNames	  "No thermal port, Show thermal port"
 	  ClassName		  "Simscape variant"
-	  SchemaVersion		  1
-	  R			  vasca_1_r
-	  R_unit		  Ohm
-	  R_conf		  compiletime
-	  R_tol			  5
-	  R_tol_unit		  1
-	  R_tol_conf		  compiletime
-	  enable_R_tol		  0
-	  enable_R_tol_unit	  1
-	  enable_R_tol_conf	  compiletime
-	  tol_distribution	  1
-	  tol_distribution_unit	  1
-	  tol_distribution_conf	  compiletime
-	  nSigma		  4
-	  nSigma_unit		  1
-	  nSigma_conf		  compiletime
-	  enable_operating_limits 0
-	  enable_operating_limits_unit 1
-	  enable_operating_limits_conf compiletime
-	  operating_limit_action  2
-	  operating_limit_action_unit 1
-	  operating_limit_action_conf compiletime
-	  max_working_voltage	  100
-	  max_working_voltage_unit V
-	  max_working_voltage_conf compiletime
-	  power_rating		  1
-	  power_rating_unit	  W
-	  power_rating_conf	  compiletime
-	  enable_faults		  0
-	  enable_faults_unit	  1
-	  enable_faults_conf	  compiletime
-	  fault_action		  1
-	  fault_action_unit	  1
-	  fault_action_conf	  compiletime
-	  R_faulted		  Inf
-	  R_faulted_unit	  Ohm
-	  R_faulted_conf	  compiletime
-	  enable_temporal_fault	  0
-	  enable_temporal_fault_unit 1
-	  enable_temporal_fault_conf compiletime
-	  t_fault		  1
-	  t_fault_unit		  s
-	  t_fault_conf		  compiletime
-	  enable_behavioral_fault 0
-	  enable_behavioral_fault_unit 1
-	  enable_behavioral_fault_conf compiletime
-	  max_permissible_current 1
-	  max_permissible_current_unit A
-	  max_permissible_current_conf compiletime
-	  t_fail_on_current	  1
-	  t_fail_on_current_unit  s
-	  t_fail_on_current_conf  compiletime
-	  noise_mode		  0
-	  noise_mode_unit	  1
-	  noise_mode_conf	  compiletime
-	  sample_time		  0.001
-	  sample_time_unit	  s
-	  sample_time_conf	  compiletime
-	  repeatability		  1
-	  repeatability_unit	  1
-	  repeatability_conf	  compiletime
-	  auto_seed		  2536105935
-	  auto_seed_unit	  1
-	  auto_seed_conf	  compiletime
-	  user_seed		  0
-	  user_seed_unit	  1
-	  user_seed_conf	  compiletime
-	  Tdevice		  25
-	  Tdevice_unit		  degC
-	  Tdevice_conf		  compiletime
-	  alpha			  0.00393
+	  SchemaVersion		  "1"
+	  R			  "vasca_1_r"
+	  R_unit		  "Ohm"
+	  R_conf		  "compiletime"
+	  R_tol			  "5"
+	  R_tol_unit		  "1"
+	  R_tol_conf		  "compiletime"
+	  enable_R_tol		  "0"
+	  enable_R_tol_unit	  "1"
+	  enable_R_tol_conf	  "compiletime"
+	  tol_distribution	  "1"
+	  tol_distribution_unit	  "1"
+	  tol_distribution_conf	  "compiletime"
+	  nSigma		  "4"
+	  nSigma_unit		  "1"
+	  nSigma_conf		  "compiletime"
+	  enable_operating_limits "0"
+	  enable_operating_limits_unit "1"
+	  enable_operating_limits_conf "compiletime"
+	  operating_limit_action  "2"
+	  operating_limit_action_unit "1"
+	  operating_limit_action_conf "compiletime"
+	  max_working_voltage	  "100"
+	  max_working_voltage_unit "V"
+	  max_working_voltage_conf "compiletime"
+	  power_rating		  "1"
+	  power_rating_unit	  "W"
+	  power_rating_conf	  "compiletime"
+	  enable_faults		  "0"
+	  enable_faults_unit	  "1"
+	  enable_faults_conf	  "compiletime"
+	  fault_action		  "1"
+	  fault_action_unit	  "1"
+	  fault_action_conf	  "compiletime"
+	  R_faulted		  "Inf"
+	  R_faulted_unit	  "Ohm"
+	  R_faulted_conf	  "compiletime"
+	  enable_temporal_fault	  "0"
+	  enable_temporal_fault_unit "1"
+	  enable_temporal_fault_conf "compiletime"
+	  t_fault		  "1"
+	  t_fault_unit		  "s"
+	  t_fault_conf		  "compiletime"
+	  enable_behavioral_fault "0"
+	  enable_behavioral_fault_unit "1"
+	  enable_behavioral_fault_conf "compiletime"
+	  max_permissible_current "1"
+	  max_permissible_current_unit "A"
+	  max_permissible_current_conf "compiletime"
+	  t_fail_on_current	  "1"
+	  t_fail_on_current_unit  "s"
+	  t_fail_on_current_conf  "compiletime"
+	  noise_mode		  "0"
+	  noise_mode_unit	  "1"
+	  noise_mode_conf	  "compiletime"
+	  sample_time		  "0.001"
+	  sample_time_unit	  "s"
+	  sample_time_conf	  "compiletime"
+	  repeatability		  "1"
+	  repeatability_unit	  "1"
+	  repeatability_conf	  "compiletime"
+	  auto_seed		  "2536105935"
+	  auto_seed_unit	  "1"
+	  auto_seed_conf	  "compiletime"
+	  user_seed		  "0"
+	  user_seed_unit	  "1"
+	  user_seed_conf	  "compiletime"
+	  Tdevice		  "25"
+	  Tdevice_unit		  "degC"
+	  Tdevice_conf		  "compiletime"
+	  alpha			  "3.93e-3"
 	  alpha_unit		  "1/K"
-	  alpha_conf		  compiletime
-	  Tmeas			  25
-	  Tmeas_unit		  degC
-	  Tmeas_conf		  compiletime
-	  thermal_mass		  100
+	  alpha_conf		  "compiletime"
+	  Tmeas			  "25"
+	  Tmeas_unit		  "degC"
+	  Tmeas_conf		  "compiletime"
+	  thermal_mass		  "100"
 	  thermal_mass_unit	  "J/K"
-	  thermal_mass_conf	  compiletime
-	  initial_temperature	  25
-	  initial_temperature_unit degC
-	  initial_temperature_conf compiletime
-	  power_derating_T1	  70
-	  power_derating_T1_unit  degC
-	  power_derating_T1_conf  compiletime
-	  power_derating_T2	  155
-	  power_derating_T2_unit  degC
-	  power_derating_T2_conf  compiletime
-	  operating_temperature_range_vec [ -50 150 ]
-	  operating_temperature_range_vec_unit degC
-	  operating_temperature_range_vec_conf compiletime
+	  thermal_mass_conf	  "compiletime"
+	  power_derating_T1	  "70"
+	  power_derating_T1_unit  "degC"
+	  power_derating_T1_conf  "compiletime"
+	  power_derating_T2	  "155"
+	  power_derating_T2_unit  "degC"
+	  power_derating_T2_conf  "compiletime"
+	  operating_temperature_range_vec "[-50, 150]"
+	  operating_temperature_range_vec_unit "degC"
+	  operating_temperature_range_vec_conf "compiletime"
+	  temperature_specify	  off
+	  temperature_priority	  "High"
+	  temperature		  "298.15"
+	  temperature_unit	  "K"
+	  temperature_nominal_specify off
+	  temperature_nominal_unit "K"
+	  temperature_nominal_value "1"
 	}
 	Block {
 	  BlockType		  Reference
@@ -3179,26 +3266,26 @@ Model {
 	  BlockRotation		  270
 	  BlockMirror		  on
 	  NamePlacement		  "alternate"
-	  LibraryVersion	  "1.1"
+	  LibraryVersion	  "2.0"
 	  SourceBlock		  "nesl_utility/Simulink-PS\nConverter"
 	  SourceType		  "Simulink-PS\nConverter"
 	  SourceProductName	  "Simscape"
 	  SourceProductBaseCode	  "SS"
 	  ContentPreviewEnabled	  off
-	  PhysicalDomain	  network_engine_domain
-	  SubClassName		  ps_input
-	  LeftPortType		  input
-	  RightPortType		  output
+	  PhysicalDomain	  "network_engine_domain"
+	  SubClassName		  "ps_input"
+	  LeftPortType		  "input"
+	  RightPortType		  "output"
 	  PseudoPeriodic	  off
-	  Frequencies		  []
-	  NoiseDistribution	  none
-	  NoiseParameters	  []
-	  Unit			  1
+	  Frequencies		  "[]"
+	  NoiseDistribution	  "none"
+	  NoiseParameters	  "[]"
+	  Unit			  "1"
 	  AffineConversion	  off
-	  InputFiltering	  off
-	  SimscapeFilterOrder	  1
-	  InputFilterTimeConstant 0.001
-	  UdotUserProvided	  1
+	  FilteringAndDerivatives "zero"
+	  SimscapeFilterOrder	  "1"
+	  InputFilterTimeConstant "0.001"
+	  UdotUserProvided	  "1"
 	}
 	Block {
 	  BlockType		  SubSystem
@@ -3213,7 +3300,7 @@ Model {
 	  Variant		  off
 	  System {
 	    Name		    "Subsystem"
-	    Location		    [0, 0, 1920, 1050]
+	    Location		    [1920, 0, 3600, 1020]
 	    Open		    off
 	    PortBlocksUseCompactNotation off
 	    ModelBrowserVisibility  off
@@ -3226,7 +3313,17 @@ Model {
 	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "100"
+	    ZoomFactor		    "250"
+	    Block {
+	      BlockType		      DataTypeConversion
+	      Name		      "Data Type Conversion"
+	      SID		      "317"
+	      Position		      [245, 78, 290, 102]
+	      ZOrder		      185
+	      OutDataTypeStr	      "double"
+	      RndMeth		      "Floor"
+	      SaturateOnIntegerOverflow	off
+	    }
 	    Block {
 	      BlockType		      Reference
 	      Name		      "Simulink-PS\nConverter"
@@ -3234,26 +3331,26 @@ Model {
 	      Ports		      [1, 0, 0, 0, 0, 0, 1]
 	      Position		      [350, 72, 380, 108]
 	      ZOrder		      167
-	      LibraryVersion	      "1.1"
+	      LibraryVersion	      "2.0"
 	      SourceBlock	      "nesl_utility/Simulink-PS\nConverter"
 	      SourceType	      "Simulink-PS\nConverter"
 	      SourceProductName	      "Simscape"
 	      SourceProductBaseCode   "SS"
 	      ContentPreviewEnabled   off
-	      PhysicalDomain	      network_engine_domain
-	      SubClassName	      ps_input
-	      LeftPortType	      input
-	      RightPortType	      output
+	      PhysicalDomain	      "network_engine_domain"
+	      SubClassName	      "ps_input"
+	      LeftPortType	      "input"
+	      RightPortType	      "output"
 	      PseudoPeriodic	      off
-	      Frequencies	      []
-	      NoiseDistribution	      none
-	      NoiseParameters	      []
-	      Unit		      1
+	      Frequencies	      "[]"
+	      NoiseDistribution	      "none"
+	      NoiseParameters	      "[]"
+	      Unit		      "1"
 	      AffineConversion	      off
-	      InputFiltering	      off
-	      SimscapeFilterOrder     1
-	      InputFilterTimeConstant 0.001
-	      UdotUserProvided	      1
+	      FilteringAndDerivatives "zero"
+	      SimscapeFilterOrder     "1"
+	      InputFilterTimeConstant "0.001"
+	      UdotUserProvided	      "1"
 	    }
 	    Block {
 	      BlockType		      Reference
@@ -3263,7 +3360,7 @@ Model {
 	      Position		      [425, 110, 465, 150]
 	      ZOrder		      166
 	      BlockMirror	      on
-	      LibraryVersion	      "8008000.1"
+	      LibraryVersion	      "9000000.1"
 	      SourceBlock	      "fl_lib/Electrical/Electrical Elements/Switch"
 	      SourceType	      "Switch"
 	      SourceProductName	      "Simscape"
@@ -3272,34 +3369,41 @@ Model {
 	      SourceFile	      "foundation.electrical.elements.controlled_switch"
 	      ComponentPath	      "foundation.electrical.elements.controlled_switch"
 	      ComponentVariants	      "foundation.electrical.elements.controlled_switch"
-	      ComponentVariantNames   controlled_switch
-	      ClassName		      controlled_switch
-	      SchemaVersion	      1
-	      R_closed		      0.01
-	      R_closed_unit	      Ohm
-	      R_closed_conf	      compiletime
-	      G_open		      1e-8
+	      ComponentVariantNames   "controlled_switch"
+	      ClassName		      "controlled_switch"
+	      SchemaVersion	      "1"
+	      R_closed		      "0.01"
+	      R_closed_unit	      "Ohm"
+	      R_closed_conf	      "compiletime"
+	      G_open		      "1e-8"
 	      G_open_unit	      "1/Ohm"
-	      G_open_conf	      compiletime
-	      Threshold		      0.5
-	      Threshold_unit	      1
-	      Threshold_conf	      compiletime
+	      G_open_conf	      "compiletime"
+	      Threshold		      "0.5"
+	      Threshold_unit	      "1"
+	      Threshold_conf	      "compiletime"
 	      i_specify		      off
-	      i_priority	      High
-	      i			      0
-	      i_unit		      A
+	      i_priority	      "High"
+	      i			      "0"
+	      i_unit		      "A"
+	      i_nominal_specify	      off
+	      i_nominal_unit	      "A"
+	      i_nominal_value	      "1"
 	      v_specify		      off
-	      v_priority	      High
-	      v			      0
-	      v_unit		      V
+	      v_priority	      "High"
+	      v			      "0"
+	      v_unit		      "V"
+	      v_nominal_specify	      off
+	      v_nominal_unit	      "V"
+	      v_nominal_value	      "1"
 	    }
 	    Block {
 	      BlockType		      Constant
 	      Name		      "sw_vasca_1"
 	      SID		      "209"
-	      Position		      [265, 75, 295, 105]
+	      Position		      [170, 40, 200, 70]
 	      ZOrder		      181
 	      Value		      "vasca_1_sw"
+	      OutDataTypeStr	      "uint8"
 	    }
 	    Block {
 	      BlockType		      PMIOPort
@@ -3355,21 +3459,29 @@ Model {
 	      DstPort		      RConn1
 	    }
 	    Line {
-	      ZOrder		      4
-	      SrcBlock		      "sw_vasca_1"
+	      ZOrder		      9
+	      SrcBlock		      "Data Type Conversion"
 	      SrcPort		      1
-	      Points		      [16, 0]
+	      Points		      [20, 0]
 	      Branch {
-		ZOrder			5
+		ZOrder			15
 		Points			[0, -70]
 		DstBlock		"Signal"
 		DstPort			1
 	      }
 	      Branch {
-		ZOrder			6
+		ZOrder			14
 		DstBlock		"Simulink-PS\nConverter"
 		DstPort			1
 	      }
+	    }
+	    Line {
+	      ZOrder		      11
+	      SrcBlock		      "sw_vasca_1"
+	      SrcPort		      1
+	      Points		      [29, 0; 0, 35]
+	      DstBlock		      "Data Type Conversion"
+	      DstPort		      1
 	    }
 	  }
 	}
@@ -3380,7 +3492,7 @@ Model {
 	  Ports			  [0, 0, 0, 0, 0, 2, 1]
 	  Position		  [95, 125, 155, 165]
 	  ZOrder		  307
-	  LibraryVersion	  "8008000.1"
+	  LibraryVersion	  "9000000.1"
 	  SourceBlock		  "fl_lib/Electrical/Electrical Elements/Variable Resistor"
 	  SourceType		  "Variable Resistor"
 	  SourceProductName	  "Simscape"
@@ -3389,20 +3501,26 @@ Model {
 	  SourceFile		  "foundation.electrical.elements.variable_resistor"
 	  ComponentPath		  "foundation.electrical.elements.variable_resistor"
 	  ComponentVariants	  "foundation.electrical.elements.variable_resistor"
-	  ComponentVariantNames	  variable_resistor
-	  ClassName		  variable_resistor
-	  SchemaVersion		  1
-	  Rmin			  0
-	  Rmin_unit		  Ohm
-	  Rmin_conf		  compiletime
+	  ComponentVariantNames	  "variable_resistor"
+	  ClassName		  "variable_resistor"
+	  SchemaVersion		  "1"
+	  Rmin			  "0"
+	  Rmin_unit		  "Ohm"
+	  Rmin_conf		  "compiletime"
 	  i_specify		  off
-	  i_priority		  None
-	  i			  0
-	  i_unit		  A
+	  i_priority		  "None"
+	  i			  "0"
+	  i_unit		  "A"
+	  i_nominal_specify	  off
+	  i_nominal_unit	  "A"
+	  i_nominal_value	  "1"
 	  v_specify		  off
-	  v_priority		  None
-	  v			  0
-	  v_unit		  V
+	  v_priority		  "None"
+	  v			  "0"
+	  v_unit		  "V"
+	  v_nominal_specify	  off
+	  v_nominal_unit	  "V"
+	  v_nominal_value	  "1"
 	}
 	Block {
 	  BlockType		  SubSystem
@@ -3439,19 +3557,19 @@ Model {
 	      BlockRotation	      270
 	      BlockMirror	      on
 	      NamePlacement	      "alternate"
-	      LibraryVersion	      "1.1"
+	      LibraryVersion	      "2.0"
 	      SourceBlock	      "nesl_utility/PS-Simulink\nConverter"
 	      SourceType	      "PS-Simulink\nConverter"
 	      SourceProductName	      "Simscape"
 	      SourceProductBaseCode   "SS"
 	      ContentPreviewEnabled   off
-	      PhysicalDomain	      network_engine_domain
-	      SubClassName	      ps_output
-	      LeftPortType	      input
-	      RightPortType	      output
+	      PhysicalDomain	      "network_engine_domain"
+	      SubClassName	      "ps_output"
+	      LeftPortType	      "input"
+	      RightPortType	      "output"
 	      PseudoPeriodic	      off
-	      Frequencies	      []
-	      Unit		      V
+	      Frequencies	      "[]"
+	      Unit		      "V"
 	      AffineConversion	      off
 	    }
 	    Block {
@@ -3462,7 +3580,7 @@ Model {
 	      Position		      [205, 80, 245, 120]
 	      ZOrder		      284
 	      BlockRotation	      90
-	      LibraryVersion	      "8008000.1"
+	      LibraryVersion	      "9000000.1"
 	      SourceBlock	      "fl_lib/Electrical/Electrical Sensors/Voltage Sensor"
 	      SourceType	      "Voltage Sensor"
 	      SourceProductName	      "Simscape"
@@ -3471,9 +3589,9 @@ Model {
 	      SourceFile	      "foundation.electrical.sensors.voltage"
 	      ComponentPath	      "foundation.electrical.sensors.voltage"
 	      ComponentVariants	      "foundation.electrical.sensors.voltage"
-	      ComponentVariantNames   voltage
-	      ClassName		      voltage
-	      SchemaVersion	      1
+	      ComponentVariantNames   "voltage"
+	      ClassName		      "voltage"
+	      SchemaVersion	      "1"
 	    }
 	    Block {
 	      BlockType		      PMIOPort
@@ -3724,18 +3842,10 @@ Model {
 	  DstPort		  LConn2
 	}
 	Line {
-	  ZOrder		  24
-	  SrcBlock		  "Constant"
-	  SrcPort		  1
-	  DstBlock		  "Simulink-PS\nConverter"
-	  DstPort		  1
-	}
-	Line {
 	  LineType		  "Connection"
 	  ZOrder		  25
 	  SrcBlock		  "Simulink-PS\nConverter"
 	  SrcPort		  RConn1
-	  Points		  [0, 0]
 	  DstBlock		  "Variable Resistor"
 	  DstPort		  LConn1
 	}
@@ -3763,6 +3873,20 @@ Model {
 	  DstBlock		  "switch"
 	  DstPort		  1
 	}
+	Line {
+	  ZOrder		  29
+	  SrcBlock		  "Data Type Conversion"
+	  SrcPort		  1
+	  DstBlock		  "Simulink-PS\nConverter"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  30
+	  SrcBlock		  "Constant"
+	  SrcPort		  1
+	  DstBlock		  "Data Type Conversion"
+	  DstPort		  1
+	}
       }
     }
     Block {
@@ -3777,7 +3901,7 @@ Model {
       Variant		      off
       System {
 	Name			"Vasca2"
-	Location		[0, 0, 1920, 1050]
+	Location		[1920, 0, 3600, 1020]
 	Open			off
 	PortBlocksUseCompactNotation off
 	ModelBrowserVisibility	off
@@ -3790,7 +3914,7 @@ Model {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"60"
+	ZoomFactor		"125"
 	Block {
 	  BlockType		  SubSystem
 	  Name			  "Amperometer1"
@@ -3824,7 +3948,7 @@ Model {
 	      Ports		      [0, 0, 0, 0, 0, 1, 2]
 	      Position		      [105, 190, 145, 230]
 	      ZOrder		      272
-	      LibraryVersion	      "8008000.1"
+	      LibraryVersion	      "9000000.1"
 	      SourceBlock	      "fl_lib/Electrical/Electrical Sensors/Current Sensor"
 	      SourceType	      "Current Sensor"
 	      SourceProductName	      "Simscape"
@@ -3833,9 +3957,9 @@ Model {
 	      SourceFile	      "foundation.electrical.sensors.current"
 	      ComponentPath	      "foundation.electrical.sensors.current"
 	      ComponentVariants	      "foundation.electrical.sensors.current"
-	      ComponentVariantNames   current
-	      ClassName		      current
-	      SchemaVersion	      1
+	      ComponentVariantNames   "current"
+	      ClassName		      "current"
+	      SchemaVersion	      "1"
 	    }
 	    Block {
 	      BlockType		      Reference
@@ -3845,19 +3969,19 @@ Model {
 	      Position		      [140, 85, 170, 115]
 	      ZOrder		      277
 	      BlockRotation	      270
-	      LibraryVersion	      "1.1"
+	      LibraryVersion	      "2.0"
 	      SourceBlock	      "nesl_utility/PS-Simulink\nConverter"
 	      SourceType	      "PS-Simulink\nConverter"
 	      SourceProductName	      "Simscape"
 	      SourceProductBaseCode   "SS"
 	      ContentPreviewEnabled   off
-	      PhysicalDomain	      network_engine_domain
-	      SubClassName	      ps_output
-	      LeftPortType	      input
-	      RightPortType	      output
+	      PhysicalDomain	      "network_engine_domain"
+	      SubClassName	      "ps_output"
+	      LeftPortType	      "input"
+	      RightPortType	      "output"
 	      PseudoPeriodic	      off
-	      Frequencies	      []
-	      Unit		      A
+	      Frequencies	      "[]"
+	      Unit		      "A"
 	      AffineConversion	      off
 	    }
 	    Block {
@@ -3956,7 +4080,7 @@ Model {
 	      Ports		      [0, 0, 0, 0, 0, 1, 2]
 	      Position		      [105, 190, 145, 230]
 	      ZOrder		      272
-	      LibraryVersion	      "8008000.1"
+	      LibraryVersion	      "9000000.1"
 	      SourceBlock	      "fl_lib/Electrical/Electrical Sensors/Current Sensor"
 	      SourceType	      "Current Sensor"
 	      SourceProductName	      "Simscape"
@@ -3965,9 +4089,9 @@ Model {
 	      SourceFile	      "foundation.electrical.sensors.current"
 	      ComponentPath	      "foundation.electrical.sensors.current"
 	      ComponentVariants	      "foundation.electrical.sensors.current"
-	      ComponentVariantNames   current
-	      ClassName		      current
-	      SchemaVersion	      1
+	      ComponentVariantNames   "current"
+	      ClassName		      "current"
+	      SchemaVersion	      "1"
 	    }
 	    Block {
 	      BlockType		      Reference
@@ -3977,19 +4101,19 @@ Model {
 	      Position		      [140, 85, 170, 115]
 	      ZOrder		      277
 	      BlockRotation	      270
-	      LibraryVersion	      "1.1"
+	      LibraryVersion	      "2.0"
 	      SourceBlock	      "nesl_utility/PS-Simulink\nConverter"
 	      SourceType	      "PS-Simulink\nConverter"
 	      SourceProductName	      "Simscape"
 	      SourceProductBaseCode   "SS"
 	      ContentPreviewEnabled   off
-	      PhysicalDomain	      network_engine_domain
-	      SubClassName	      ps_output
-	      LeftPortType	      input
-	      RightPortType	      output
+	      PhysicalDomain	      "network_engine_domain"
+	      SubClassName	      "ps_output"
+	      LeftPortType	      "input"
+	      RightPortType	      "output"
 	      PseudoPeriodic	      off
-	      Frequencies	      []
-	      Unit		      A
+	      Frequencies	      "[]"
+	      Unit		      "A"
 	      AffineConversion	      off
 	    }
 	    Block {
@@ -4060,12 +4184,24 @@ Model {
 	  BlockType		  Constant
 	  Name			  "Constant"
 	  SID			  "239"
-	  Position		  [67, 0, 93, 30]
+	  Position		  [67, -85, 93, -55]
 	  ZOrder		  308
 	  BlockRotation		  270
 	  BlockMirror		  on
 	  NamePlacement		  "alternate"
 	  Value			  "vasca_2_r_in"
+	}
+	Block {
+	  BlockType		  DataTypeConversion
+	  Name			  "Data Type Conversion"
+	  SID			  "320"
+	  Position		  [65, -25, 95, 25]
+	  ZOrder		  344
+	  BlockRotation		  270
+	  BlockMirror		  on
+	  NamePlacement		  "alternate"
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
 	}
 	Block {
 	  BlockType		  Reference
@@ -4076,7 +4212,7 @@ Model {
 	  ZOrder		  264
 	  BlockRotation		  90
 	  NamePlacement		  "alternate"
-	  LibraryVersion	  "8008000.1"
+	  LibraryVersion	  "9000000.1"
 	  SourceBlock		  "elec_lib/Passive Devices/Capacitor"
 	  SourceType		  "Capacitor"
 	  SourceProductName	  "Simscape Electronics"
@@ -4085,90 +4221,108 @@ Model {
 	  SourceFile		  "elec.passive.capacitor"
 	  ComponentPath		  "elec.passive.capacitor"
 	  ComponentVariants	  "elec.passive.capacitor"
-	  ComponentVariantNames	  capacitor
-	  ClassName		  capacitor
-	  SchemaVersion		  1
-	  enable_table		  0
-	  enable_table_unit	  1
-	  enable_table_conf	  compiletime
-	  c			  vasca_2_c
-	  c_unit		  F
-	  c_conf		  compiletime
+	  ComponentVariantNames	  "capacitor"
+	  ClassName		  "capacitor"
+	  SchemaVersion		  "1"
+	  enable_table		  "0"
+	  enable_table_unit	  "1"
+	  enable_table_conf	  "compiletime"
+	  c			  "vasca_2_c"
+	  c_unit		  "F"
+	  c_conf		  "compiletime"
 	  Cvec			  "[ 1e-5 1e-6 ]"
-	  Cvec_unit		  F
-	  Cvec_conf		  compiletime
-	  Vvec			  [ 0 10 ]
-	  Vvec_unit		  V
-	  Vvec_conf		  compiletime
-	  CV_table_symmetry	  1
-	  CV_table_symmetry_unit  1
-	  CV_table_symmetry_conf  compiletime
-	  C_tol			  5
-	  C_tol_unit		  1
-	  C_tol_conf		  compiletime
-	  enable_C_tol		  0
-	  enable_C_tol_unit	  1
-	  enable_C_tol_conf	  compiletime
-	  tol_distribution	  1
-	  tol_distribution_unit	  1
-	  tol_distribution_conf	  compiletime
-	  nSigma		  4
-	  nSigma_unit		  1
-	  nSigma_conf		  compiletime
-	  r			  1e-6
-	  r_unit		  Ohm
-	  r_conf		  compiletime
-	  g			  0
+	  Cvec_unit		  "F"
+	  Cvec_conf		  "compiletime"
+	  Vvec			  "[ 0 10 ]"
+	  Vvec_unit		  "V"
+	  Vvec_conf		  "compiletime"
+	  CV_table_symmetry	  "1"
+	  CV_table_symmetry_unit  "1"
+	  CV_table_symmetry_conf  "compiletime"
+	  C_tol			  "5"
+	  C_tol_unit		  "1"
+	  C_tol_conf		  "compiletime"
+	  enable_C_tol		  "0"
+	  enable_C_tol_unit	  "1"
+	  enable_C_tol_conf	  "compiletime"
+	  tol_distribution	  "1"
+	  tol_distribution_unit	  "1"
+	  tol_distribution_conf	  "compiletime"
+	  nSigma		  "4"
+	  nSigma_unit		  "1"
+	  nSigma_conf		  "compiletime"
+	  r			  "1e-6"
+	  r_unit		  "Ohm"
+	  r_conf		  "compiletime"
+	  g			  "0"
 	  g_unit		  "1/Ohm"
-	  g_conf		  compiletime
-	  initV			  500
-	  initV_unit		  V
-	  initV_conf		  compiletime
-	  enable_operating_limits 0
-	  enable_operating_limits_unit 1
-	  enable_operating_limits_conf compiletime
-	  operating_limit_action  2
-	  operating_limit_action_unit 1
-	  operating_limit_action_conf compiletime
-	  max_working_voltage_range [ -25 25 ]
-	  max_working_voltage_range_unit V
-	  max_working_voltage_range_conf compiletime
-	  power_rating		  1
-	  power_rating_unit	  W
-	  power_rating_conf	  compiletime
-	  enable_faults		  0
-	  enable_faults_unit	  1
-	  enable_faults_conf	  compiletime
-	  fault_action		  1
-	  fault_action_unit	  1
-	  fault_action_conf	  compiletime
-	  Cscale_faulted	  100
-	  Cscale_faulted_unit	  1
-	  Cscale_faulted_conf	  compiletime
-	  R_faulted		  0.001
-	  R_faulted_unit	  Ohm
-	  R_faulted_conf	  compiletime
-	  G_faulted		  0
+	  g_conf		  "compiletime"
+	  enable_operating_limits "0"
+	  enable_operating_limits_unit "1"
+	  enable_operating_limits_conf "compiletime"
+	  operating_limit_action  "2"
+	  operating_limit_action_unit "1"
+	  operating_limit_action_conf "compiletime"
+	  max_working_voltage_range "[ -25 25 ]"
+	  max_working_voltage_range_unit "V"
+	  max_working_voltage_range_conf "compiletime"
+	  power_rating		  "1"
+	  power_rating_unit	  "W"
+	  power_rating_conf	  "compiletime"
+	  enable_faults		  "0"
+	  enable_faults_unit	  "1"
+	  enable_faults_conf	  "compiletime"
+	  fault_action		  "1"
+	  fault_action_unit	  "1"
+	  fault_action_conf	  "compiletime"
+	  Cscale_faulted	  "100"
+	  Cscale_faulted_unit	  "1"
+	  Cscale_faulted_conf	  "compiletime"
+	  R_faulted		  "0.001"
+	  R_faulted_unit	  "Ohm"
+	  R_faulted_conf	  "compiletime"
+	  G_faulted		  "0"
 	  G_faulted_unit	  "1/Ohm"
-	  G_faulted_conf	  compiletime
-	  tau_fault		  0.001
-	  tau_fault_unit	  s
-	  tau_fault_conf	  compiletime
-	  enable_temporal_fault	  0
-	  enable_temporal_fault_unit 1
-	  enable_temporal_fault_conf compiletime
-	  t_fault		  1
-	  t_fault_unit		  s
-	  t_fault_conf		  compiletime
-	  enable_behavioral_fault 0
-	  enable_behavioral_fault_unit 1
-	  enable_behavioral_fault_conf compiletime
-	  max_permissible_voltage_range	[ -100 100 ]
-	  max_permissible_voltage_range_unit V
-	  max_permissible_voltage_range_conf compiletime
-	  t_fail_on_voltage	  1
-	  t_fail_on_voltage_unit  s
-	  t_fail_on_voltage_conf  compiletime
+	  G_faulted_conf	  "compiletime"
+	  tau_fault		  "0.001"
+	  tau_fault_unit	  "s"
+	  tau_fault_conf	  "compiletime"
+	  enable_temporal_fault	  "0"
+	  enable_temporal_fault_unit "1"
+	  enable_temporal_fault_conf "compiletime"
+	  t_fault		  "1"
+	  t_fault_unit		  "s"
+	  t_fault_conf		  "compiletime"
+	  enable_behavioral_fault "0"
+	  enable_behavioral_fault_unit "1"
+	  enable_behavioral_fault_conf "compiletime"
+	  max_permissible_voltage_range	"[ -100 100 ]"
+	  max_permissible_voltage_range_unit "V"
+	  max_permissible_voltage_range_conf "compiletime"
+	  t_fail_on_voltage	  "1"
+	  t_fail_on_voltage_unit  "s"
+	  t_fail_on_voltage_conf  "compiletime"
+	  i_specify		  off
+	  i_priority		  "None"
+	  i			  "0"
+	  i_unit		  "A"
+	  i_nominal_specify	  off
+	  i_nominal_unit	  "A"
+	  i_nominal_value	  "1"
+	  v_specify		  off
+	  v_priority		  "None"
+	  v			  "0"
+	  v_unit		  "V"
+	  v_nominal_specify	  off
+	  v_nominal_unit	  "V"
+	  v_nominal_value	  "1"
+	  vc_specify		  on
+	  vc_priority		  "High"
+	  vc			  "500"
+	  vc_unit		  "V"
+	  vc_nominal_specify	  off
+	  vc_nominal_unit	  "V"
+	  vc_nominal_value	  "1"
 	}
 	Block {
 	  BlockType		  Reference
@@ -4177,7 +4331,7 @@ Model {
 	  Ports			  [0, 0, 0, 0, 0, 1, 1]
 	  Position		  [385, 131, 425, 159]
 	  ZOrder		  266
-	  LibraryVersion	  "8008000.1"
+	  LibraryVersion	  "9000000.1"
 	  SourceBlock		  "elec_lib/Passive Devices/Resistor"
 	  SourceType		  "Resistor"
 	  SourceProductName	  "Simscape Electronics"
@@ -4188,97 +4342,101 @@ Model {
 	  ComponentVariants	  "elec.passive.resistor, elec.passive.resistor_thermal"
 	  ComponentVariantNames	  "No thermal port, Show thermal port"
 	  ClassName		  "Simscape variant"
-	  SchemaVersion		  1
-	  R			  vasca_2_r
-	  R_unit		  Ohm
-	  R_conf		  compiletime
-	  R_tol			  5
-	  R_tol_unit		  1
-	  R_tol_conf		  compiletime
-	  enable_R_tol		  0
-	  enable_R_tol_unit	  1
-	  enable_R_tol_conf	  compiletime
-	  tol_distribution	  1
-	  tol_distribution_unit	  1
-	  tol_distribution_conf	  compiletime
-	  nSigma		  4
-	  nSigma_unit		  1
-	  nSigma_conf		  compiletime
-	  enable_operating_limits 0
-	  enable_operating_limits_unit 1
-	  enable_operating_limits_conf compiletime
-	  operating_limit_action  2
-	  operating_limit_action_unit 1
-	  operating_limit_action_conf compiletime
-	  max_working_voltage	  100
-	  max_working_voltage_unit V
-	  max_working_voltage_conf compiletime
-	  power_rating		  1
-	  power_rating_unit	  W
-	  power_rating_conf	  compiletime
-	  enable_faults		  0
-	  enable_faults_unit	  1
-	  enable_faults_conf	  compiletime
-	  fault_action		  1
-	  fault_action_unit	  1
-	  fault_action_conf	  compiletime
-	  R_faulted		  Inf
-	  R_faulted_unit	  Ohm
-	  R_faulted_conf	  compiletime
-	  enable_temporal_fault	  0
-	  enable_temporal_fault_unit 1
-	  enable_temporal_fault_conf compiletime
-	  t_fault		  1
-	  t_fault_unit		  s
-	  t_fault_conf		  compiletime
-	  enable_behavioral_fault 0
-	  enable_behavioral_fault_unit 1
-	  enable_behavioral_fault_conf compiletime
-	  max_permissible_current 1
-	  max_permissible_current_unit A
-	  max_permissible_current_conf compiletime
-	  t_fail_on_current	  1
-	  t_fail_on_current_unit  s
-	  t_fail_on_current_conf  compiletime
-	  noise_mode		  0
-	  noise_mode_unit	  1
-	  noise_mode_conf	  compiletime
-	  sample_time		  0.001
-	  sample_time_unit	  s
-	  sample_time_conf	  compiletime
-	  repeatability		  1
-	  repeatability_unit	  1
-	  repeatability_conf	  compiletime
-	  auto_seed		  983346730
-	  auto_seed_unit	  1
-	  auto_seed_conf	  compiletime
-	  user_seed		  0
-	  user_seed_unit	  1
-	  user_seed_conf	  compiletime
-	  Tdevice		  25
-	  Tdevice_unit		  degC
-	  Tdevice_conf		  compiletime
-	  alpha			  0.00393
+	  SchemaVersion		  "1"
+	  R			  "vasca_2_r"
+	  R_unit		  "Ohm"
+	  R_conf		  "compiletime"
+	  R_tol			  "5"
+	  R_tol_unit		  "1"
+	  R_tol_conf		  "compiletime"
+	  enable_R_tol		  "0"
+	  enable_R_tol_unit	  "1"
+	  enable_R_tol_conf	  "compiletime"
+	  tol_distribution	  "1"
+	  tol_distribution_unit	  "1"
+	  tol_distribution_conf	  "compiletime"
+	  nSigma		  "4"
+	  nSigma_unit		  "1"
+	  nSigma_conf		  "compiletime"
+	  enable_operating_limits "0"
+	  enable_operating_limits_unit "1"
+	  enable_operating_limits_conf "compiletime"
+	  operating_limit_action  "2"
+	  operating_limit_action_unit "1"
+	  operating_limit_action_conf "compiletime"
+	  max_working_voltage	  "100"
+	  max_working_voltage_unit "V"
+	  max_working_voltage_conf "compiletime"
+	  power_rating		  "1"
+	  power_rating_unit	  "W"
+	  power_rating_conf	  "compiletime"
+	  enable_faults		  "0"
+	  enable_faults_unit	  "1"
+	  enable_faults_conf	  "compiletime"
+	  fault_action		  "1"
+	  fault_action_unit	  "1"
+	  fault_action_conf	  "compiletime"
+	  R_faulted		  "Inf"
+	  R_faulted_unit	  "Ohm"
+	  R_faulted_conf	  "compiletime"
+	  enable_temporal_fault	  "0"
+	  enable_temporal_fault_unit "1"
+	  enable_temporal_fault_conf "compiletime"
+	  t_fault		  "1"
+	  t_fault_unit		  "s"
+	  t_fault_conf		  "compiletime"
+	  enable_behavioral_fault "0"
+	  enable_behavioral_fault_unit "1"
+	  enable_behavioral_fault_conf "compiletime"
+	  max_permissible_current "1"
+	  max_permissible_current_unit "A"
+	  max_permissible_current_conf "compiletime"
+	  t_fail_on_current	  "1"
+	  t_fail_on_current_unit  "s"
+	  t_fail_on_current_conf  "compiletime"
+	  noise_mode		  "0"
+	  noise_mode_unit	  "1"
+	  noise_mode_conf	  "compiletime"
+	  sample_time		  "0.001"
+	  sample_time_unit	  "s"
+	  sample_time_conf	  "compiletime"
+	  repeatability		  "1"
+	  repeatability_unit	  "1"
+	  repeatability_conf	  "compiletime"
+	  auto_seed		  "983346730"
+	  auto_seed_unit	  "1"
+	  auto_seed_conf	  "compiletime"
+	  user_seed		  "0"
+	  user_seed_unit	  "1"
+	  user_seed_conf	  "compiletime"
+	  Tdevice		  "25"
+	  Tdevice_unit		  "degC"
+	  Tdevice_conf		  "compiletime"
+	  alpha			  "3.93e-3"
 	  alpha_unit		  "1/K"
-	  alpha_conf		  compiletime
-	  Tmeas			  25
-	  Tmeas_unit		  degC
-	  Tmeas_conf		  compiletime
-	  thermal_mass		  100
+	  alpha_conf		  "compiletime"
+	  Tmeas			  "25"
+	  Tmeas_unit		  "degC"
+	  Tmeas_conf		  "compiletime"
+	  thermal_mass		  "100"
 	  thermal_mass_unit	  "J/K"
-	  thermal_mass_conf	  compiletime
-	  initial_temperature	  25
-	  initial_temperature_unit degC
-	  initial_temperature_conf compiletime
-	  power_derating_T1	  70
-	  power_derating_T1_unit  degC
-	  power_derating_T1_conf  compiletime
-	  power_derating_T2	  155
-	  power_derating_T2_unit  degC
-	  power_derating_T2_conf  compiletime
-	  operating_temperature_range_vec [ -50 150 ]
-	  operating_temperature_range_vec_unit degC
-	  operating_temperature_range_vec_conf compiletime
+	  thermal_mass_conf	  "compiletime"
+	  power_derating_T1	  "70"
+	  power_derating_T1_unit  "degC"
+	  power_derating_T1_conf  "compiletime"
+	  power_derating_T2	  "155"
+	  power_derating_T2_unit  "degC"
+	  power_derating_T2_conf  "compiletime"
+	  operating_temperature_range_vec "[-50, 150]"
+	  operating_temperature_range_vec_unit "degC"
+	  operating_temperature_range_vec_conf "compiletime"
+	  temperature_specify	  off
+	  temperature_priority	  "High"
+	  temperature		  "298.15"
+	  temperature_unit	  "K"
+	  temperature_nominal_specify off
+	  temperature_nominal_unit "K"
+	  temperature_nominal_value "1"
 	}
 	Block {
 	  BlockType		  Reference
@@ -4290,26 +4448,26 @@ Model {
 	  BlockRotation		  270
 	  BlockMirror		  on
 	  NamePlacement		  "alternate"
-	  LibraryVersion	  "1.1"
+	  LibraryVersion	  "2.0"
 	  SourceBlock		  "nesl_utility/Simulink-PS\nConverter"
 	  SourceType		  "Simulink-PS\nConverter"
 	  SourceProductName	  "Simscape"
 	  SourceProductBaseCode	  "SS"
 	  ContentPreviewEnabled	  off
-	  PhysicalDomain	  network_engine_domain
-	  SubClassName		  ps_input
-	  LeftPortType		  input
-	  RightPortType		  output
+	  PhysicalDomain	  "network_engine_domain"
+	  SubClassName		  "ps_input"
+	  LeftPortType		  "input"
+	  RightPortType		  "output"
 	  PseudoPeriodic	  off
-	  Frequencies		  []
-	  NoiseDistribution	  none
-	  NoiseParameters	  []
-	  Unit			  1
+	  Frequencies		  "[]"
+	  NoiseDistribution	  "none"
+	  NoiseParameters	  "[]"
+	  Unit			  "1"
 	  AffineConversion	  off
-	  InputFiltering	  off
-	  SimscapeFilterOrder	  1
-	  InputFilterTimeConstant 0.001
-	  UdotUserProvided	  1
+	  FilteringAndDerivatives "zero"
+	  SimscapeFilterOrder	  "1"
+	  InputFilterTimeConstant "0.001"
+	  UdotUserProvided	  "1"
 	}
 	Block {
 	  BlockType		  SubSystem
@@ -4324,7 +4482,7 @@ Model {
 	  Variant		  off
 	  System {
 	    Name		    "Subsystem"
-	    Location		    [0, 0, 1920, 1050]
+	    Location		    [1920, 0, 3600, 1020]
 	    Open		    off
 	    PortBlocksUseCompactNotation off
 	    ModelBrowserVisibility  off
@@ -4337,7 +4495,16 @@ Model {
 	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "100"
+	    ZoomFactor		    "250"
+	    Block {
+	      BlockType		      DataTypeConversion
+	      Name		      "Data Type Conversion"
+	      SID		      "321"
+	      Position		      [250, 75, 300, 105]
+	      ZOrder		      344
+	      RndMeth		      "Floor"
+	      SaturateOnIntegerOverflow	off
+	    }
 	    Block {
 	      BlockType		      Reference
 	      Name		      "Simulink-PS\nConverter"
@@ -4345,26 +4512,26 @@ Model {
 	      Ports		      [1, 0, 0, 0, 0, 0, 1]
 	      Position		      [350, 72, 380, 108]
 	      ZOrder		      167
-	      LibraryVersion	      "1.1"
+	      LibraryVersion	      "2.0"
 	      SourceBlock	      "nesl_utility/Simulink-PS\nConverter"
 	      SourceType	      "Simulink-PS\nConverter"
 	      SourceProductName	      "Simscape"
 	      SourceProductBaseCode   "SS"
 	      ContentPreviewEnabled   off
-	      PhysicalDomain	      network_engine_domain
-	      SubClassName	      ps_input
-	      LeftPortType	      input
-	      RightPortType	      output
+	      PhysicalDomain	      "network_engine_domain"
+	      SubClassName	      "ps_input"
+	      LeftPortType	      "input"
+	      RightPortType	      "output"
 	      PseudoPeriodic	      off
-	      Frequencies	      []
-	      NoiseDistribution	      none
-	      NoiseParameters	      []
-	      Unit		      1
+	      Frequencies	      "[]"
+	      NoiseDistribution	      "none"
+	      NoiseParameters	      "[]"
+	      Unit		      "1"
 	      AffineConversion	      off
-	      InputFiltering	      off
-	      SimscapeFilterOrder     1
-	      InputFilterTimeConstant 0.001
-	      UdotUserProvided	      1
+	      FilteringAndDerivatives "zero"
+	      SimscapeFilterOrder     "1"
+	      InputFilterTimeConstant "0.001"
+	      UdotUserProvided	      "1"
 	    }
 	    Block {
 	      BlockType		      Reference
@@ -4374,7 +4541,7 @@ Model {
 	      Position		      [425, 110, 465, 150]
 	      ZOrder		      166
 	      BlockMirror	      on
-	      LibraryVersion	      "8008000.1"
+	      LibraryVersion	      "9000000.1"
 	      SourceBlock	      "fl_lib/Electrical/Electrical Elements/Switch"
 	      SourceType	      "Switch"
 	      SourceProductName	      "Simscape"
@@ -4383,32 +4550,38 @@ Model {
 	      SourceFile	      "foundation.electrical.elements.controlled_switch"
 	      ComponentPath	      "foundation.electrical.elements.controlled_switch"
 	      ComponentVariants	      "foundation.electrical.elements.controlled_switch"
-	      ComponentVariantNames   controlled_switch
-	      ClassName		      controlled_switch
-	      SchemaVersion	      1
-	      R_closed		      0.01
-	      R_closed_unit	      Ohm
-	      R_closed_conf	      compiletime
-	      G_open		      1e-8
+	      ComponentVariantNames   "controlled_switch"
+	      ClassName		      "controlled_switch"
+	      SchemaVersion	      "1"
+	      R_closed		      "0.01"
+	      R_closed_unit	      "Ohm"
+	      R_closed_conf	      "compiletime"
+	      G_open		      "1e-8"
 	      G_open_unit	      "1/Ohm"
-	      G_open_conf	      compiletime
-	      Threshold		      0.5
-	      Threshold_unit	      1
-	      Threshold_conf	      compiletime
+	      G_open_conf	      "compiletime"
+	      Threshold		      "0.5"
+	      Threshold_unit	      "1"
+	      Threshold_conf	      "compiletime"
 	      i_specify		      off
-	      i_priority	      High
-	      i			      0
-	      i_unit		      A
+	      i_priority	      "High"
+	      i			      "0"
+	      i_unit		      "A"
+	      i_nominal_specify	      off
+	      i_nominal_unit	      "A"
+	      i_nominal_value	      "1"
 	      v_specify		      off
-	      v_priority	      High
-	      v			      0
-	      v_unit		      V
+	      v_priority	      "High"
+	      v			      "0"
+	      v_unit		      "V"
+	      v_nominal_specify	      off
+	      v_nominal_unit	      "V"
+	      v_nominal_value	      "1"
 	    }
 	    Block {
 	      BlockType		      Constant
 	      Name		      "sw_vasca_1"
 	      SID		      "246"
-	      Position		      [265, 75, 295, 105]
+	      Position		      [155, 75, 185, 105]
 	      ZOrder		      181
 	      Value		      "vasca_2_sw"
 	    }
@@ -4466,21 +4639,28 @@ Model {
 	      DstPort		      RConn1
 	    }
 	    Line {
-	      ZOrder		      4
-	      SrcBlock		      "sw_vasca_1"
+	      ZOrder		      7
+	      SrcBlock		      "Data Type Conversion"
 	      SrcPort		      1
-	      Points		      [16, 0]
+	      Points		      [21, 0]
 	      Branch {
-		ZOrder			5
+		ZOrder			10
 		Points			[0, -70]
 		DstBlock		"Signal"
 		DstPort			1
 	      }
 	      Branch {
-		ZOrder			6
+		ZOrder			9
 		DstBlock		"Simulink-PS\nConverter"
 		DstPort			1
 	      }
+	    }
+	    Line {
+	      ZOrder		      8
+	      SrcBlock		      "sw_vasca_1"
+	      SrcPort		      1
+	      DstBlock		      "Data Type Conversion"
+	      DstPort		      1
 	    }
 	  }
 	}
@@ -4491,7 +4671,7 @@ Model {
 	  Ports			  [0, 0, 0, 0, 0, 2, 1]
 	  Position		  [95, 125, 155, 165]
 	  ZOrder		  307
-	  LibraryVersion	  "8008000.1"
+	  LibraryVersion	  "9000000.1"
 	  SourceBlock		  "fl_lib/Electrical/Electrical Elements/Variable Resistor"
 	  SourceType		  "Variable Resistor"
 	  SourceProductName	  "Simscape"
@@ -4500,20 +4680,26 @@ Model {
 	  SourceFile		  "foundation.electrical.elements.variable_resistor"
 	  ComponentPath		  "foundation.electrical.elements.variable_resistor"
 	  ComponentVariants	  "foundation.electrical.elements.variable_resistor"
-	  ComponentVariantNames	  variable_resistor
-	  ClassName		  variable_resistor
-	  SchemaVersion		  1
-	  Rmin			  0
-	  Rmin_unit		  Ohm
-	  Rmin_conf		  compiletime
+	  ComponentVariantNames	  "variable_resistor"
+	  ClassName		  "variable_resistor"
+	  SchemaVersion		  "1"
+	  Rmin			  "0"
+	  Rmin_unit		  "Ohm"
+	  Rmin_conf		  "compiletime"
 	  i_specify		  off
-	  i_priority		  None
-	  i			  0
-	  i_unit		  A
+	  i_priority		  "None"
+	  i			  "0"
+	  i_unit		  "A"
+	  i_nominal_specify	  off
+	  i_nominal_unit	  "A"
+	  i_nominal_value	  "1"
 	  v_specify		  off
-	  v_priority		  None
-	  v			  0
-	  v_unit		  V
+	  v_priority		  "None"
+	  v			  "0"
+	  v_unit		  "V"
+	  v_nominal_specify	  off
+	  v_nominal_unit	  "V"
+	  v_nominal_value	  "1"
 	}
 	Block {
 	  BlockType		  SubSystem
@@ -4550,19 +4736,19 @@ Model {
 	      BlockRotation	      270
 	      BlockMirror	      on
 	      NamePlacement	      "alternate"
-	      LibraryVersion	      "1.1"
+	      LibraryVersion	      "2.0"
 	      SourceBlock	      "nesl_utility/PS-Simulink\nConverter"
 	      SourceType	      "PS-Simulink\nConverter"
 	      SourceProductName	      "Simscape"
 	      SourceProductBaseCode   "SS"
 	      ContentPreviewEnabled   off
-	      PhysicalDomain	      network_engine_domain
-	      SubClassName	      ps_output
-	      LeftPortType	      input
-	      RightPortType	      output
+	      PhysicalDomain	      "network_engine_domain"
+	      SubClassName	      "ps_output"
+	      LeftPortType	      "input"
+	      RightPortType	      "output"
 	      PseudoPeriodic	      off
-	      Frequencies	      []
-	      Unit		      V
+	      Frequencies	      "[]"
+	      Unit		      "V"
 	      AffineConversion	      off
 	    }
 	    Block {
@@ -4573,7 +4759,7 @@ Model {
 	      Position		      [205, 80, 245, 120]
 	      ZOrder		      284
 	      BlockRotation	      90
-	      LibraryVersion	      "8008000.1"
+	      LibraryVersion	      "9000000.1"
 	      SourceBlock	      "fl_lib/Electrical/Electrical Sensors/Voltage Sensor"
 	      SourceType	      "Voltage Sensor"
 	      SourceProductName	      "Simscape"
@@ -4582,9 +4768,9 @@ Model {
 	      SourceFile	      "foundation.electrical.sensors.voltage"
 	      ComponentPath	      "foundation.electrical.sensors.voltage"
 	      ComponentVariants	      "foundation.electrical.sensors.voltage"
-	      ComponentVariantNames   voltage
-	      ClassName		      voltage
-	      SchemaVersion	      1
+	      ComponentVariantNames   "voltage"
+	      ClassName		      "voltage"
+	      SchemaVersion	      "1"
 	    }
 	    Block {
 	      BlockType		      PMIOPort
@@ -4835,13 +5021,6 @@ Model {
 	  DstPort		  LConn2
 	}
 	Line {
-	  ZOrder		  17
-	  SrcBlock		  "Constant"
-	  SrcPort		  1
-	  DstBlock		  "Simulink-PS\nConverter"
-	  DstPort		  1
-	}
-	Line {
 	  LineType		  "Connection"
 	  ZOrder		  18
 	  SrcBlock		  "Simulink-PS\nConverter"
@@ -4873,6 +5052,20 @@ Model {
 	  DstBlock		  "switch"
 	  DstPort		  1
 	}
+	Line {
+	  ZOrder		  22
+	  SrcBlock		  "Data Type Conversion"
+	  SrcPort		  1
+	  DstBlock		  "Simulink-PS\nConverter"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  23
+	  SrcBlock		  "Constant"
+	  SrcPort		  1
+	  DstBlock		  "Data Type Conversion"
+	  DstPort		  1
+	}
       }
     }
     Block {
@@ -4887,7 +5080,7 @@ Model {
       Variant		      off
       System {
 	Name			"Vasca3"
-	Location		[0, 0, 1920, 1050]
+	Location		[1920, 0, 3600, 1020]
 	Open			off
 	PortBlocksUseCompactNotation off
 	ModelBrowserVisibility	off
@@ -4900,7 +5093,7 @@ Model {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"100"
+	ZoomFactor		"175"
 	Block {
 	  BlockType		  SubSystem
 	  Name			  "Amperometer1"
@@ -4934,7 +5127,7 @@ Model {
 	      Ports		      [0, 0, 0, 0, 0, 1, 2]
 	      Position		      [105, 190, 145, 230]
 	      ZOrder		      272
-	      LibraryVersion	      "8008000.1"
+	      LibraryVersion	      "9000000.1"
 	      SourceBlock	      "fl_lib/Electrical/Electrical Sensors/Current Sensor"
 	      SourceType	      "Current Sensor"
 	      SourceProductName	      "Simscape"
@@ -4943,9 +5136,9 @@ Model {
 	      SourceFile	      "foundation.electrical.sensors.current"
 	      ComponentPath	      "foundation.electrical.sensors.current"
 	      ComponentVariants	      "foundation.electrical.sensors.current"
-	      ComponentVariantNames   current
-	      ClassName		      current
-	      SchemaVersion	      1
+	      ComponentVariantNames   "current"
+	      ClassName		      "current"
+	      SchemaVersion	      "1"
 	    }
 	    Block {
 	      BlockType		      Reference
@@ -4955,19 +5148,19 @@ Model {
 	      Position		      [140, 85, 170, 115]
 	      ZOrder		      277
 	      BlockRotation	      270
-	      LibraryVersion	      "1.1"
+	      LibraryVersion	      "2.0"
 	      SourceBlock	      "nesl_utility/PS-Simulink\nConverter"
 	      SourceType	      "PS-Simulink\nConverter"
 	      SourceProductName	      "Simscape"
 	      SourceProductBaseCode   "SS"
 	      ContentPreviewEnabled   off
-	      PhysicalDomain	      network_engine_domain
-	      SubClassName	      ps_output
-	      LeftPortType	      input
-	      RightPortType	      output
+	      PhysicalDomain	      "network_engine_domain"
+	      SubClassName	      "ps_output"
+	      LeftPortType	      "input"
+	      RightPortType	      "output"
 	      PseudoPeriodic	      off
-	      Frequencies	      []
-	      Unit		      A
+	      Frequencies	      "[]"
+	      Unit		      "A"
 	      AffineConversion	      off
 	    }
 	    Block {
@@ -5066,7 +5259,7 @@ Model {
 	      Ports		      [0, 0, 0, 0, 0, 1, 2]
 	      Position		      [105, 190, 145, 230]
 	      ZOrder		      272
-	      LibraryVersion	      "8008000.1"
+	      LibraryVersion	      "9000000.1"
 	      SourceBlock	      "fl_lib/Electrical/Electrical Sensors/Current Sensor"
 	      SourceType	      "Current Sensor"
 	      SourceProductName	      "Simscape"
@@ -5075,9 +5268,9 @@ Model {
 	      SourceFile	      "foundation.electrical.sensors.current"
 	      ComponentPath	      "foundation.electrical.sensors.current"
 	      ComponentVariants	      "foundation.electrical.sensors.current"
-	      ComponentVariantNames   current
-	      ClassName		      current
-	      SchemaVersion	      1
+	      ComponentVariantNames   "current"
+	      ClassName		      "current"
+	      SchemaVersion	      "1"
 	    }
 	    Block {
 	      BlockType		      Reference
@@ -5087,19 +5280,19 @@ Model {
 	      Position		      [140, 85, 170, 115]
 	      ZOrder		      277
 	      BlockRotation	      270
-	      LibraryVersion	      "1.1"
+	      LibraryVersion	      "2.0"
 	      SourceBlock	      "nesl_utility/PS-Simulink\nConverter"
 	      SourceType	      "PS-Simulink\nConverter"
 	      SourceProductName	      "Simscape"
 	      SourceProductBaseCode   "SS"
 	      ContentPreviewEnabled   off
-	      PhysicalDomain	      network_engine_domain
-	      SubClassName	      ps_output
-	      LeftPortType	      input
-	      RightPortType	      output
+	      PhysicalDomain	      "network_engine_domain"
+	      SubClassName	      "ps_output"
+	      LeftPortType	      "input"
+	      RightPortType	      "output"
 	      PseudoPeriodic	      off
-	      Frequencies	      []
-	      Unit		      A
+	      Frequencies	      "[]"
+	      Unit		      "A"
 	      AffineConversion	      off
 	    }
 	    Block {
@@ -5170,12 +5363,24 @@ Model {
 	  BlockType		  Constant
 	  Name			  "Constant"
 	  SID			  "288"
-	  Position		  [67, 0, 93, 30]
+	  Position		  [67, -80, 93, -50]
 	  ZOrder		  308
 	  BlockRotation		  270
 	  BlockMirror		  on
 	  NamePlacement		  "alternate"
 	  Value			  "vasca_3_r_in"
+	}
+	Block {
+	  BlockType		  DataTypeConversion
+	  Name			  "Data Type Conversion"
+	  SID			  "322"
+	  Position		  [65, -25, 95, 25]
+	  ZOrder		  344
+	  BlockRotation		  270
+	  BlockMirror		  on
+	  NamePlacement		  "alternate"
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
 	}
 	Block {
 	  BlockType		  Reference
@@ -5186,7 +5391,7 @@ Model {
 	  ZOrder		  264
 	  BlockRotation		  90
 	  NamePlacement		  "alternate"
-	  LibraryVersion	  "8008000.1"
+	  LibraryVersion	  "9000000.1"
 	  SourceBlock		  "elec_lib/Passive Devices/Capacitor"
 	  SourceType		  "Capacitor"
 	  SourceProductName	  "Simscape Electronics"
@@ -5195,90 +5400,108 @@ Model {
 	  SourceFile		  "elec.passive.capacitor"
 	  ComponentPath		  "elec.passive.capacitor"
 	  ComponentVariants	  "elec.passive.capacitor"
-	  ComponentVariantNames	  capacitor
-	  ClassName		  capacitor
-	  SchemaVersion		  1
-	  enable_table		  0
-	  enable_table_unit	  1
-	  enable_table_conf	  compiletime
-	  c			  vasca_3_c
-	  c_unit		  F
-	  c_conf		  compiletime
+	  ComponentVariantNames	  "capacitor"
+	  ClassName		  "capacitor"
+	  SchemaVersion		  "1"
+	  enable_table		  "0"
+	  enable_table_unit	  "1"
+	  enable_table_conf	  "compiletime"
+	  c			  "vasca_3_c"
+	  c_unit		  "F"
+	  c_conf		  "compiletime"
 	  Cvec			  "[ 1e-5 1e-6 ]"
-	  Cvec_unit		  F
-	  Cvec_conf		  compiletime
-	  Vvec			  [ 0 10 ]
-	  Vvec_unit		  V
-	  Vvec_conf		  compiletime
-	  CV_table_symmetry	  1
-	  CV_table_symmetry_unit  1
-	  CV_table_symmetry_conf  compiletime
-	  C_tol			  5
-	  C_tol_unit		  1
-	  C_tol_conf		  compiletime
-	  enable_C_tol		  0
-	  enable_C_tol_unit	  1
-	  enable_C_tol_conf	  compiletime
-	  tol_distribution	  1
-	  tol_distribution_unit	  1
-	  tol_distribution_conf	  compiletime
-	  nSigma		  4
-	  nSigma_unit		  1
-	  nSigma_conf		  compiletime
-	  r			  1e-6
-	  r_unit		  Ohm
-	  r_conf		  compiletime
-	  g			  0
+	  Cvec_unit		  "F"
+	  Cvec_conf		  "compiletime"
+	  Vvec			  "[ 0 10 ]"
+	  Vvec_unit		  "V"
+	  Vvec_conf		  "compiletime"
+	  CV_table_symmetry	  "1"
+	  CV_table_symmetry_unit  "1"
+	  CV_table_symmetry_conf  "compiletime"
+	  C_tol			  "5"
+	  C_tol_unit		  "1"
+	  C_tol_conf		  "compiletime"
+	  enable_C_tol		  "0"
+	  enable_C_tol_unit	  "1"
+	  enable_C_tol_conf	  "compiletime"
+	  tol_distribution	  "1"
+	  tol_distribution_unit	  "1"
+	  tol_distribution_conf	  "compiletime"
+	  nSigma		  "4"
+	  nSigma_unit		  "1"
+	  nSigma_conf		  "compiletime"
+	  r			  "1e-6"
+	  r_unit		  "Ohm"
+	  r_conf		  "compiletime"
+	  g			  "0"
 	  g_unit		  "1/Ohm"
-	  g_conf		  compiletime
-	  initV			  500
-	  initV_unit		  V
-	  initV_conf		  compiletime
-	  enable_operating_limits 0
-	  enable_operating_limits_unit 1
-	  enable_operating_limits_conf compiletime
-	  operating_limit_action  2
-	  operating_limit_action_unit 1
-	  operating_limit_action_conf compiletime
-	  max_working_voltage_range [ -25 25 ]
-	  max_working_voltage_range_unit V
-	  max_working_voltage_range_conf compiletime
-	  power_rating		  1
-	  power_rating_unit	  W
-	  power_rating_conf	  compiletime
-	  enable_faults		  0
-	  enable_faults_unit	  1
-	  enable_faults_conf	  compiletime
-	  fault_action		  1
-	  fault_action_unit	  1
-	  fault_action_conf	  compiletime
-	  Cscale_faulted	  100
-	  Cscale_faulted_unit	  1
-	  Cscale_faulted_conf	  compiletime
-	  R_faulted		  0.001
-	  R_faulted_unit	  Ohm
-	  R_faulted_conf	  compiletime
-	  G_faulted		  0
+	  g_conf		  "compiletime"
+	  enable_operating_limits "0"
+	  enable_operating_limits_unit "1"
+	  enable_operating_limits_conf "compiletime"
+	  operating_limit_action  "2"
+	  operating_limit_action_unit "1"
+	  operating_limit_action_conf "compiletime"
+	  max_working_voltage_range "[ -25 25 ]"
+	  max_working_voltage_range_unit "V"
+	  max_working_voltage_range_conf "compiletime"
+	  power_rating		  "1"
+	  power_rating_unit	  "W"
+	  power_rating_conf	  "compiletime"
+	  enable_faults		  "0"
+	  enable_faults_unit	  "1"
+	  enable_faults_conf	  "compiletime"
+	  fault_action		  "1"
+	  fault_action_unit	  "1"
+	  fault_action_conf	  "compiletime"
+	  Cscale_faulted	  "100"
+	  Cscale_faulted_unit	  "1"
+	  Cscale_faulted_conf	  "compiletime"
+	  R_faulted		  "0.001"
+	  R_faulted_unit	  "Ohm"
+	  R_faulted_conf	  "compiletime"
+	  G_faulted		  "0"
 	  G_faulted_unit	  "1/Ohm"
-	  G_faulted_conf	  compiletime
-	  tau_fault		  0.001
-	  tau_fault_unit	  s
-	  tau_fault_conf	  compiletime
-	  enable_temporal_fault	  0
-	  enable_temporal_fault_unit 1
-	  enable_temporal_fault_conf compiletime
-	  t_fault		  1
-	  t_fault_unit		  s
-	  t_fault_conf		  compiletime
-	  enable_behavioral_fault 0
-	  enable_behavioral_fault_unit 1
-	  enable_behavioral_fault_conf compiletime
-	  max_permissible_voltage_range	[ -100 100 ]
-	  max_permissible_voltage_range_unit V
-	  max_permissible_voltage_range_conf compiletime
-	  t_fail_on_voltage	  1
-	  t_fail_on_voltage_unit  s
-	  t_fail_on_voltage_conf  compiletime
+	  G_faulted_conf	  "compiletime"
+	  tau_fault		  "0.001"
+	  tau_fault_unit	  "s"
+	  tau_fault_conf	  "compiletime"
+	  enable_temporal_fault	  "0"
+	  enable_temporal_fault_unit "1"
+	  enable_temporal_fault_conf "compiletime"
+	  t_fault		  "1"
+	  t_fault_unit		  "s"
+	  t_fault_conf		  "compiletime"
+	  enable_behavioral_fault "0"
+	  enable_behavioral_fault_unit "1"
+	  enable_behavioral_fault_conf "compiletime"
+	  max_permissible_voltage_range	"[ -100 100 ]"
+	  max_permissible_voltage_range_unit "V"
+	  max_permissible_voltage_range_conf "compiletime"
+	  t_fail_on_voltage	  "1"
+	  t_fail_on_voltage_unit  "s"
+	  t_fail_on_voltage_conf  "compiletime"
+	  i_specify		  off
+	  i_priority		  "None"
+	  i			  "0"
+	  i_unit		  "A"
+	  i_nominal_specify	  off
+	  i_nominal_unit	  "A"
+	  i_nominal_value	  "1"
+	  v_specify		  off
+	  v_priority		  "None"
+	  v			  "0"
+	  v_unit		  "V"
+	  v_nominal_specify	  off
+	  v_nominal_unit	  "V"
+	  v_nominal_value	  "1"
+	  vc_specify		  on
+	  vc_priority		  "High"
+	  vc			  "500"
+	  vc_unit		  "V"
+	  vc_nominal_specify	  off
+	  vc_nominal_unit	  "V"
+	  vc_nominal_value	  "1"
 	}
 	Block {
 	  BlockType		  Reference
@@ -5287,7 +5510,7 @@ Model {
 	  Ports			  [0, 0, 0, 0, 0, 1, 1]
 	  Position		  [385, 131, 425, 159]
 	  ZOrder		  266
-	  LibraryVersion	  "8008000.1"
+	  LibraryVersion	  "9000000.1"
 	  SourceBlock		  "elec_lib/Passive Devices/Resistor"
 	  SourceType		  "Resistor"
 	  SourceProductName	  "Simscape Electronics"
@@ -5298,97 +5521,101 @@ Model {
 	  ComponentVariants	  "elec.passive.resistor, elec.passive.resistor_thermal"
 	  ComponentVariantNames	  "No thermal port, Show thermal port"
 	  ClassName		  "Simscape variant"
-	  SchemaVersion		  1
-	  R			  vasca_3_r
-	  R_unit		  Ohm
-	  R_conf		  compiletime
-	  R_tol			  5
-	  R_tol_unit		  1
-	  R_tol_conf		  compiletime
-	  enable_R_tol		  0
-	  enable_R_tol_unit	  1
-	  enable_R_tol_conf	  compiletime
-	  tol_distribution	  1
-	  tol_distribution_unit	  1
-	  tol_distribution_conf	  compiletime
-	  nSigma		  4
-	  nSigma_unit		  1
-	  nSigma_conf		  compiletime
-	  enable_operating_limits 0
-	  enable_operating_limits_unit 1
-	  enable_operating_limits_conf compiletime
-	  operating_limit_action  2
-	  operating_limit_action_unit 1
-	  operating_limit_action_conf compiletime
-	  max_working_voltage	  100
-	  max_working_voltage_unit V
-	  max_working_voltage_conf compiletime
-	  power_rating		  1
-	  power_rating_unit	  W
-	  power_rating_conf	  compiletime
-	  enable_faults		  0
-	  enable_faults_unit	  1
-	  enable_faults_conf	  compiletime
-	  fault_action		  1
-	  fault_action_unit	  1
-	  fault_action_conf	  compiletime
-	  R_faulted		  Inf
-	  R_faulted_unit	  Ohm
-	  R_faulted_conf	  compiletime
-	  enable_temporal_fault	  0
-	  enable_temporal_fault_unit 1
-	  enable_temporal_fault_conf compiletime
-	  t_fault		  1
-	  t_fault_unit		  s
-	  t_fault_conf		  compiletime
-	  enable_behavioral_fault 0
-	  enable_behavioral_fault_unit 1
-	  enable_behavioral_fault_conf compiletime
-	  max_permissible_current 1
-	  max_permissible_current_unit A
-	  max_permissible_current_conf compiletime
-	  t_fail_on_current	  1
-	  t_fail_on_current_unit  s
-	  t_fail_on_current_conf  compiletime
-	  noise_mode		  0
-	  noise_mode_unit	  1
-	  noise_mode_conf	  compiletime
-	  sample_time		  0.001
-	  sample_time_unit	  s
-	  sample_time_conf	  compiletime
-	  repeatability		  1
-	  repeatability_unit	  1
-	  repeatability_conf	  compiletime
-	  auto_seed		  2757113970
-	  auto_seed_unit	  1
-	  auto_seed_conf	  compiletime
-	  user_seed		  0
-	  user_seed_unit	  1
-	  user_seed_conf	  compiletime
-	  Tdevice		  25
-	  Tdevice_unit		  degC
-	  Tdevice_conf		  compiletime
-	  alpha			  0.00393
+	  SchemaVersion		  "1"
+	  R			  "vasca_3_r"
+	  R_unit		  "Ohm"
+	  R_conf		  "compiletime"
+	  R_tol			  "5"
+	  R_tol_unit		  "1"
+	  R_tol_conf		  "compiletime"
+	  enable_R_tol		  "0"
+	  enable_R_tol_unit	  "1"
+	  enable_R_tol_conf	  "compiletime"
+	  tol_distribution	  "1"
+	  tol_distribution_unit	  "1"
+	  tol_distribution_conf	  "compiletime"
+	  nSigma		  "4"
+	  nSigma_unit		  "1"
+	  nSigma_conf		  "compiletime"
+	  enable_operating_limits "0"
+	  enable_operating_limits_unit "1"
+	  enable_operating_limits_conf "compiletime"
+	  operating_limit_action  "2"
+	  operating_limit_action_unit "1"
+	  operating_limit_action_conf "compiletime"
+	  max_working_voltage	  "100"
+	  max_working_voltage_unit "V"
+	  max_working_voltage_conf "compiletime"
+	  power_rating		  "1"
+	  power_rating_unit	  "W"
+	  power_rating_conf	  "compiletime"
+	  enable_faults		  "0"
+	  enable_faults_unit	  "1"
+	  enable_faults_conf	  "compiletime"
+	  fault_action		  "1"
+	  fault_action_unit	  "1"
+	  fault_action_conf	  "compiletime"
+	  R_faulted		  "Inf"
+	  R_faulted_unit	  "Ohm"
+	  R_faulted_conf	  "compiletime"
+	  enable_temporal_fault	  "0"
+	  enable_temporal_fault_unit "1"
+	  enable_temporal_fault_conf "compiletime"
+	  t_fault		  "1"
+	  t_fault_unit		  "s"
+	  t_fault_conf		  "compiletime"
+	  enable_behavioral_fault "0"
+	  enable_behavioral_fault_unit "1"
+	  enable_behavioral_fault_conf "compiletime"
+	  max_permissible_current "1"
+	  max_permissible_current_unit "A"
+	  max_permissible_current_conf "compiletime"
+	  t_fail_on_current	  "1"
+	  t_fail_on_current_unit  "s"
+	  t_fail_on_current_conf  "compiletime"
+	  noise_mode		  "0"
+	  noise_mode_unit	  "1"
+	  noise_mode_conf	  "compiletime"
+	  sample_time		  "0.001"
+	  sample_time_unit	  "s"
+	  sample_time_conf	  "compiletime"
+	  repeatability		  "1"
+	  repeatability_unit	  "1"
+	  repeatability_conf	  "compiletime"
+	  auto_seed		  "2757113970"
+	  auto_seed_unit	  "1"
+	  auto_seed_conf	  "compiletime"
+	  user_seed		  "0"
+	  user_seed_unit	  "1"
+	  user_seed_conf	  "compiletime"
+	  Tdevice		  "25"
+	  Tdevice_unit		  "degC"
+	  Tdevice_conf		  "compiletime"
+	  alpha			  "3.93e-3"
 	  alpha_unit		  "1/K"
-	  alpha_conf		  compiletime
-	  Tmeas			  25
-	  Tmeas_unit		  degC
-	  Tmeas_conf		  compiletime
-	  thermal_mass		  100
+	  alpha_conf		  "compiletime"
+	  Tmeas			  "25"
+	  Tmeas_unit		  "degC"
+	  Tmeas_conf		  "compiletime"
+	  thermal_mass		  "100"
 	  thermal_mass_unit	  "J/K"
-	  thermal_mass_conf	  compiletime
-	  initial_temperature	  25
-	  initial_temperature_unit degC
-	  initial_temperature_conf compiletime
-	  power_derating_T1	  70
-	  power_derating_T1_unit  degC
-	  power_derating_T1_conf  compiletime
-	  power_derating_T2	  155
-	  power_derating_T2_unit  degC
-	  power_derating_T2_conf  compiletime
-	  operating_temperature_range_vec [ -50 150 ]
-	  operating_temperature_range_vec_unit degC
-	  operating_temperature_range_vec_conf compiletime
+	  thermal_mass_conf	  "compiletime"
+	  power_derating_T1	  "70"
+	  power_derating_T1_unit  "degC"
+	  power_derating_T1_conf  "compiletime"
+	  power_derating_T2	  "155"
+	  power_derating_T2_unit  "degC"
+	  power_derating_T2_conf  "compiletime"
+	  operating_temperature_range_vec "[-50, 150]"
+	  operating_temperature_range_vec_unit "degC"
+	  operating_temperature_range_vec_conf "compiletime"
+	  temperature_specify	  off
+	  temperature_priority	  "High"
+	  temperature		  "298.15"
+	  temperature_unit	  "K"
+	  temperature_nominal_specify off
+	  temperature_nominal_unit "K"
+	  temperature_nominal_value "1"
 	}
 	Block {
 	  BlockType		  Reference
@@ -5400,26 +5627,26 @@ Model {
 	  BlockRotation		  270
 	  BlockMirror		  on
 	  NamePlacement		  "alternate"
-	  LibraryVersion	  "1.1"
+	  LibraryVersion	  "2.0"
 	  SourceBlock		  "nesl_utility/Simulink-PS\nConverter"
 	  SourceType		  "Simulink-PS\nConverter"
 	  SourceProductName	  "Simscape"
 	  SourceProductBaseCode	  "SS"
 	  ContentPreviewEnabled	  off
-	  PhysicalDomain	  network_engine_domain
-	  SubClassName		  ps_input
-	  LeftPortType		  input
-	  RightPortType		  output
+	  PhysicalDomain	  "network_engine_domain"
+	  SubClassName		  "ps_input"
+	  LeftPortType		  "input"
+	  RightPortType		  "output"
 	  PseudoPeriodic	  off
-	  Frequencies		  []
-	  NoiseDistribution	  none
-	  NoiseParameters	  []
-	  Unit			  1
+	  Frequencies		  "[]"
+	  NoiseDistribution	  "none"
+	  NoiseParameters	  "[]"
+	  Unit			  "1"
 	  AffineConversion	  off
-	  InputFiltering	  off
-	  SimscapeFilterOrder	  1
-	  InputFilterTimeConstant 0.001
-	  UdotUserProvided	  1
+	  FilteringAndDerivatives "zero"
+	  SimscapeFilterOrder	  "1"
+	  InputFilterTimeConstant "0.001"
+	  UdotUserProvided	  "1"
 	}
 	Block {
 	  BlockType		  SubSystem
@@ -5434,7 +5661,7 @@ Model {
 	  Variant		  off
 	  System {
 	    Name		    "Subsystem"
-	    Location		    [0, 0, 1920, 1050]
+	    Location		    [1920, 0, 3600, 1020]
 	    Open		    off
 	    PortBlocksUseCompactNotation off
 	    ModelBrowserVisibility  off
@@ -5447,7 +5674,16 @@ Model {
 	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "100"
+	    ZoomFactor		    "200"
+	    Block {
+	      BlockType		      DataTypeConversion
+	      Name		      "Data Type Conversion"
+	      SID		      "323"
+	      Position		      [235, 75, 285, 105]
+	      ZOrder		      344
+	      RndMeth		      "Floor"
+	      SaturateOnIntegerOverflow	off
+	    }
 	    Block {
 	      BlockType		      Reference
 	      Name		      "Simulink-PS\nConverter"
@@ -5455,26 +5691,26 @@ Model {
 	      Ports		      [1, 0, 0, 0, 0, 0, 1]
 	      Position		      [350, 72, 380, 108]
 	      ZOrder		      167
-	      LibraryVersion	      "1.1"
+	      LibraryVersion	      "2.0"
 	      SourceBlock	      "nesl_utility/Simulink-PS\nConverter"
 	      SourceType	      "Simulink-PS\nConverter"
 	      SourceProductName	      "Simscape"
 	      SourceProductBaseCode   "SS"
 	      ContentPreviewEnabled   off
-	      PhysicalDomain	      network_engine_domain
-	      SubClassName	      ps_input
-	      LeftPortType	      input
-	      RightPortType	      output
+	      PhysicalDomain	      "network_engine_domain"
+	      SubClassName	      "ps_input"
+	      LeftPortType	      "input"
+	      RightPortType	      "output"
 	      PseudoPeriodic	      off
-	      Frequencies	      []
-	      NoiseDistribution	      none
-	      NoiseParameters	      []
-	      Unit		      1
+	      Frequencies	      "[]"
+	      NoiseDistribution	      "none"
+	      NoiseParameters	      "[]"
+	      Unit		      "1"
 	      AffineConversion	      off
-	      InputFiltering	      off
-	      SimscapeFilterOrder     1
-	      InputFilterTimeConstant 0.001
-	      UdotUserProvided	      1
+	      FilteringAndDerivatives "zero"
+	      SimscapeFilterOrder     "1"
+	      InputFilterTimeConstant "0.001"
+	      UdotUserProvided	      "1"
 	    }
 	    Block {
 	      BlockType		      Reference
@@ -5484,7 +5720,7 @@ Model {
 	      Position		      [425, 110, 465, 150]
 	      ZOrder		      166
 	      BlockMirror	      on
-	      LibraryVersion	      "8008000.1"
+	      LibraryVersion	      "9000000.1"
 	      SourceBlock	      "fl_lib/Electrical/Electrical Elements/Switch"
 	      SourceType	      "Switch"
 	      SourceProductName	      "Simscape"
@@ -5493,32 +5729,38 @@ Model {
 	      SourceFile	      "foundation.electrical.elements.controlled_switch"
 	      ComponentPath	      "foundation.electrical.elements.controlled_switch"
 	      ComponentVariants	      "foundation.electrical.elements.controlled_switch"
-	      ComponentVariantNames   controlled_switch
-	      ClassName		      controlled_switch
-	      SchemaVersion	      1
-	      R_closed		      0.01
-	      R_closed_unit	      Ohm
-	      R_closed_conf	      compiletime
-	      G_open		      1e-8
+	      ComponentVariantNames   "controlled_switch"
+	      ClassName		      "controlled_switch"
+	      SchemaVersion	      "1"
+	      R_closed		      "0.01"
+	      R_closed_unit	      "Ohm"
+	      R_closed_conf	      "compiletime"
+	      G_open		      "1e-8"
 	      G_open_unit	      "1/Ohm"
-	      G_open_conf	      compiletime
-	      Threshold		      0.5
-	      Threshold_unit	      1
-	      Threshold_conf	      compiletime
+	      G_open_conf	      "compiletime"
+	      Threshold		      "0.5"
+	      Threshold_unit	      "1"
+	      Threshold_conf	      "compiletime"
 	      i_specify		      off
-	      i_priority	      High
-	      i			      0
-	      i_unit		      A
+	      i_priority	      "High"
+	      i			      "0"
+	      i_unit		      "A"
+	      i_nominal_specify	      off
+	      i_nominal_unit	      "A"
+	      i_nominal_value	      "1"
 	      v_specify		      off
-	      v_priority	      High
-	      v			      0
-	      v_unit		      V
+	      v_priority	      "High"
+	      v			      "0"
+	      v_unit		      "V"
+	      v_nominal_specify	      off
+	      v_nominal_unit	      "V"
+	      v_nominal_value	      "1"
 	    }
 	    Block {
 	      BlockType		      Constant
 	      Name		      "sw_vasca_3"
 	      SID		      "295"
-	      Position		      [265, 75, 295, 105]
+	      Position		      [155, 75, 185, 105]
 	      ZOrder		      181
 	      Value		      "vasca_3_sw"
 	    }
@@ -5576,18 +5818,25 @@ Model {
 	      DstPort		      RConn1
 	    }
 	    Line {
-	      ZOrder		      4
+	      ZOrder		      7
 	      SrcBlock		      "sw_vasca_3"
+	      SrcPort		      1
+	      DstBlock		      "Data Type Conversion"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      10
+	      SrcBlock		      "Data Type Conversion"
 	      SrcPort		      1
 	      Points		      [16, 0]
 	      Branch {
-		ZOrder			5
+		ZOrder			12
 		Points			[0, -70]
 		DstBlock		"Signal"
 		DstPort			1
 	      }
 	      Branch {
-		ZOrder			6
+		ZOrder			11
 		DstBlock		"Simulink-PS\nConverter"
 		DstPort			1
 	      }
@@ -5601,7 +5850,7 @@ Model {
 	  Ports			  [0, 0, 0, 0, 0, 2, 1]
 	  Position		  [95, 125, 155, 165]
 	  ZOrder		  307
-	  LibraryVersion	  "8008000.1"
+	  LibraryVersion	  "9000000.1"
 	  SourceBlock		  "fl_lib/Electrical/Electrical Elements/Variable Resistor"
 	  SourceType		  "Variable Resistor"
 	  SourceProductName	  "Simscape"
@@ -5610,20 +5859,26 @@ Model {
 	  SourceFile		  "foundation.electrical.elements.variable_resistor"
 	  ComponentPath		  "foundation.electrical.elements.variable_resistor"
 	  ComponentVariants	  "foundation.electrical.elements.variable_resistor"
-	  ComponentVariantNames	  variable_resistor
-	  ClassName		  variable_resistor
-	  SchemaVersion		  1
-	  Rmin			  0
-	  Rmin_unit		  Ohm
-	  Rmin_conf		  compiletime
+	  ComponentVariantNames	  "variable_resistor"
+	  ClassName		  "variable_resistor"
+	  SchemaVersion		  "1"
+	  Rmin			  "0"
+	  Rmin_unit		  "Ohm"
+	  Rmin_conf		  "compiletime"
 	  i_specify		  off
-	  i_priority		  None
-	  i			  0
-	  i_unit		  A
+	  i_priority		  "None"
+	  i			  "0"
+	  i_unit		  "A"
+	  i_nominal_specify	  off
+	  i_nominal_unit	  "A"
+	  i_nominal_value	  "1"
 	  v_specify		  off
-	  v_priority		  None
-	  v			  0
-	  v_unit		  V
+	  v_priority		  "None"
+	  v			  "0"
+	  v_unit		  "V"
+	  v_nominal_specify	  off
+	  v_nominal_unit	  "V"
+	  v_nominal_value	  "1"
 	}
 	Block {
 	  BlockType		  SubSystem
@@ -5660,19 +5915,19 @@ Model {
 	      BlockRotation	      270
 	      BlockMirror	      on
 	      NamePlacement	      "alternate"
-	      LibraryVersion	      "1.1"
+	      LibraryVersion	      "2.0"
 	      SourceBlock	      "nesl_utility/PS-Simulink\nConverter"
 	      SourceType	      "PS-Simulink\nConverter"
 	      SourceProductName	      "Simscape"
 	      SourceProductBaseCode   "SS"
 	      ContentPreviewEnabled   off
-	      PhysicalDomain	      network_engine_domain
-	      SubClassName	      ps_output
-	      LeftPortType	      input
-	      RightPortType	      output
+	      PhysicalDomain	      "network_engine_domain"
+	      SubClassName	      "ps_output"
+	      LeftPortType	      "input"
+	      RightPortType	      "output"
 	      PseudoPeriodic	      off
-	      Frequencies	      []
-	      Unit		      V
+	      Frequencies	      "[]"
+	      Unit		      "V"
 	      AffineConversion	      off
 	    }
 	    Block {
@@ -5683,7 +5938,7 @@ Model {
 	      Position		      [205, 80, 245, 120]
 	      ZOrder		      284
 	      BlockRotation	      90
-	      LibraryVersion	      "8008000.1"
+	      LibraryVersion	      "9000000.1"
 	      SourceBlock	      "fl_lib/Electrical/Electrical Sensors/Voltage Sensor"
 	      SourceType	      "Voltage Sensor"
 	      SourceProductName	      "Simscape"
@@ -5692,9 +5947,9 @@ Model {
 	      SourceFile	      "foundation.electrical.sensors.voltage"
 	      ComponentPath	      "foundation.electrical.sensors.voltage"
 	      ComponentVariants	      "foundation.electrical.sensors.voltage"
-	      ComponentVariantNames   voltage
-	      ClassName		      voltage
-	      SchemaVersion	      1
+	      ComponentVariantNames   "voltage"
+	      ClassName		      "voltage"
+	      SchemaVersion	      "1"
 	    }
 	    Block {
 	      BlockType		      PMIOPort
@@ -5945,13 +6200,6 @@ Model {
 	  DstPort		  LConn2
 	}
 	Line {
-	  ZOrder		  17
-	  SrcBlock		  "Constant"
-	  SrcPort		  1
-	  DstBlock		  "Simulink-PS\nConverter"
-	  DstPort		  1
-	}
-	Line {
 	  LineType		  "Connection"
 	  ZOrder		  18
 	  SrcBlock		  "Simulink-PS\nConverter"
@@ -5981,6 +6229,20 @@ Model {
 	  SrcBlock		  "Subsystem"
 	  SrcPort		  1
 	  DstBlock		  "switch"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  22
+	  SrcBlock		  "Constant"
+	  SrcPort		  1
+	  DstBlock		  "Data Type Conversion"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  23
+	  SrcBlock		  "Data Type Conversion"
+	  SrcPort		  1
+	  DstBlock		  "Simulink-PS\nConverter"
 	  DstPort		  1
 	}
       }
@@ -6024,22 +6286,22 @@ Model {
       "gr.Configuration('Core','General UI',true),extmgr.Configuration('Core','Source UI',true),extmgr.Configuration('S"
       "ources','WiredSimulink',true,'DataLoggingVariableName','ScopeData4','DataLoggingSaveFormat','Array','DataLogging"
       "Decimation','1','DataLoggingDecimateData',true),extmgr.Configuration('Visuals','Time Domain',true,'SerializedDis"
-      "plays',{struct('MinYLimReal','-6.53761','MaxYLimReal','8.73541','YLabelReal','','MinYLimMag','0.00000','MaxYLimM"
-      "ag','8.73541','LegendVisibility','Off','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesT"
+      "plays',{struct('MinYLimReal','-3.15563','MaxYLimReal','5.90563','YLabelReal','','MinYLimMag','0.00000','MaxYLimM"
+      "ag','5.90563','LegendVisibility','Off','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesT"
       "ickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[1 1 0.0666666666666667;0.0745098"
       "039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098"
       "039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'"
-      "Title','%<SignalLabel>','LinePropertiesCache',{{}},'UserDefinedChannelNames',{{}},'NumLines',0,'LineNames',{{[]}"
-      "},'ShowContent',true,'Placement',1)},'DisplayPropertyDefaults',struct('MinYLimReal','-6.53761','MaxYLimReal','8."
-      "73541','YLabelReal','','MinYLimMag','0.00000','MaxYLimMag','8.73541','LegendVisibility','Off','XGrid',true,'YGri"
-      "d',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.68627450"
-      "9803922],'ColorOrder',[0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;1 1 0.0666666"
-      "666666667;0.717647058823529 0.274509803921569 1;0.392156862745098 0.831372549019608 0.0745098039215686;0.0588235"
-      "294117647 1 1;1 0.0745098039215686 0.650980392156863])),extmgr.Configuration('Tools','Plot Navigation',true),ext"
-      "mgr.Configuration('Tools','Measurements',true,'Measurements',struct('tcursors',struct('XCoordinates',[1800 5400]"
-      ",'YCoordinates',[NaN NaN],'CursorChannels',[1 1],'WaveformCursors',true,'ShowHorizontal',false,'ShowVertical',tr"
-      "ue,'LockCursorSpacing',false,'SnapToData',false,'SettingsPanelOpen',0,'MeasurementsPanelOpen',1)),'Version','201"
-      "7b')),'Version','2017b','Position',[5 46 1366 260],'VisibleAtModelOpen','on')"
+      "Title','%<SignalLabel>','LinePropertiesCache',{{}},'UserDefinedChannelNames',{{}},'NumLines',2,'LineNames',{{'Va"
+      "sca1/1','Vasca1/3'}},'ShowContent',true,'Placement',1)},'DisplayPropertyDefaults',struct('MinYLimReal','-3.15563"
+      "','MaxYLimReal','5.90563','YLabelReal','','MinYLimMag','0.00000','MaxYLimMag','5.90563','LegendVisibility','Off'"
+      ",'XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[0.686274509803922 0.6862745"
+      "09803922 0.686274509803922],'ColorOrder',[0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.160784313"
+      "72549;1 1 0.0666666666666667;0.717647058823529 0.274509803921569 1;0.392156862745098 0.831372549019608 0.0745098"
+      "039215686;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863])),extmgr.Configuration('Tools','Plot Na"
+      "vigation',true),extmgr.Configuration('Tools','Measurements',true,'Measurements',struct('traceselector',struct('L"
+      "ine',1),'tcursors',struct('XCoordinates',[1800 5400],'YCoordinates',[NaN NaN],'CursorChannels',[1 1],'WaveformCu"
+      "rsors',true,'ShowHorizontal',false,'ShowVertical',true,'LockCursorSpacing',false,'SnapToData',false,'SettingsPan"
+      "elOpen',0,'MeasurementsPanelOpen',1)),'Version','2017b')),'Version','2017b','Position',[108 46 1672 260])"
       NumInputPorts	      "2"
     }
     Block {
@@ -6053,20 +6315,20 @@ Model {
       ScopeSpecificationString "Simulink.scopes.TimeScopeBlockCfg('CurrentConfiguration', extmgr.ConfigurationSet(extm"
       "gr.Configuration('Core','General UI',true),extmgr.Configuration('Core','Source UI',true),extmgr.Configuration('S"
       "ources','WiredSimulink',true,'DataLoggingVariableName','ScopeData1'),extmgr.Configuration('Visuals','Time Domain"
-      "',true,'SerializedDisplays',{struct('MinYLimReal','-6.53761','MaxYLimReal','8.73541','YLabelReal','','MinYLimMag"
-      "','0.00000','MaxYLimMag','8.73541','LegendVisibility','off','XGrid',true,'YGrid',true,'PlotMagPhase',false,'Axes"
+      "',true,'SerializedDisplays',{struct('MinYLimReal','-3.15563','MaxYLimReal','5.90563','YLabelReal','','MinYLimMag"
+      "','0.00000','MaxYLimMag','5.90563','LegendVisibility','off','XGrid',true,'YGrid',true,'PlotMagPhase',false,'Axes"
       "Color',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[1 1 0.06666"
       "66666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.8313"
       "72549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686"
       " 0.650980392156863],'Title','%<SignalLabel>','LinePropertiesCache',{{}},'UserDefinedChannelNames',{{}},'NumLines"
-      "',0,'LineNames',{{[]}},'ShowContent',true,'Placement',1)},'DisplayPropertyDefaults',struct('MinYLimReal','-6.537"
-      "61','MaxYLimReal','8.73541','YLabelReal','','MinYLimMag','0.00000','MaxYLimMag','8.73541','LegendVisibility','of"
-      "f','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[0.686274509803922 0.68627"
-      "4509803922 0.686274509803922],'ColorOrder',[0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.1607843"
-      "1372549;1 1 0.0666666666666667;0.717647058823529 0.274509803921569 1;0.392156862745098 0.831372549019608 0.07450"
-      "98039215686;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863])),extmgr.Configuration('Tools','Plot "
-      "Navigation',true),extmgr.Configuration('Tools','Measurements',true,'Version','2017b')),'Version','2017b','Positi"
-      "on',[399 172 568 424])"
+      "',2,'LineNames',{{'Vasca2/1','Vasca2/3'}},'ShowContent',true,'Placement',1)},'DisplayPropertyDefaults',struct('M"
+      "inYLimReal','-3.15563','MaxYLimReal','5.90563','YLabelReal','','MinYLimMag','0.00000','MaxYLimMag','5.90563','Le"
+      "gendVisibility','off','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[0.6862"
+      "74509803922 0.686274509803922 0.686274509803922],'ColorOrder',[0.0745098039215686 0.623529411764706 1;1 0.411764"
+      "705882353 0.16078431372549;1 1 0.0666666666666667;0.717647058823529 0.274509803921569 1;0.392156862745098 0.8313"
+      "72549019608 0.0745098039215686;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863])),extmgr.Configura"
+      "tion('Tools','Plot Navigation',true),extmgr.Configuration('Tools','Measurements',true,'Version','2017b')),'Versi"
+      "on','2017b','Position',[275 452 568 424])"
       NumInputPorts	      "2"
     }
     Block {
@@ -6134,20 +6396,20 @@ Model {
       ScopeSpecificationString "Simulink.scopes.TimeScopeBlockCfg('CurrentConfiguration', extmgr.ConfigurationSet(extm"
       "gr.Configuration('Core','General UI',true),extmgr.Configuration('Core','Source UI',true),extmgr.Configuration('S"
       "ources','WiredSimulink',true,'DataLoggingVariableName','ScopeData5'),extmgr.Configuration('Visuals','Time Domain"
-      "',true,'SerializedDisplays',{struct('MinYLimReal','425.48492','MaxYLimReal','1170.6357','YLabelReal','','MinYLim"
-      "Mag','425.48492','MaxYLimMag','1170.6357','LegendVisibility','off','XGrid',true,'YGrid',true,'PlotMagPhase',fals"
-      "e,'AxesColor',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[1 1 "
-      "0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098"
-      " 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.074509803"
-      "9215686 0.650980392156863],'Title','%<SignalLabel>','LinePropertiesCache',{{}},'UserDefinedChannelNames',{{}},'N"
-      "umLines',1,'LineNames',{{'Vasca1/2'}},'ShowContent',true,'Placement',1)},'DisplayPropertyDefaults',struct('MinYL"
-      "imReal','425.48492','MaxYLimReal','1170.6357','YLabelReal','','MinYLimMag','425.48492','MaxYLimMag','1170.6357',"
-      "'LegendVisibility','off','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[0.6"
-      "86274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[0.0745098039215686 0.623529411764706 1;1 0.411"
-      "764705882353 0.16078431372549;1 1 0.0666666666666667;0.717647058823529 0.274509803921569 1;0.392156862745098 0.8"
-      "31372549019608 0.0745098039215686;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863])),extmgr.Config"
-      "uration('Tools','Plot Navigation',true),extmgr.Configuration('Tools','Measurements',true,'Version','2016b')),'Ve"
-      "rsion','2016b','Position',[1 700 1912 219])"
+      "',true,'SerializedDisplays',{struct('MinYLimReal','270.9756','MaxYLimReal','770.92803','YLabelReal','','MinYLimM"
+      "ag','270.9756','MaxYLimMag','770.92803','LegendVisibility','off','XGrid',true,'YGrid',true,'PlotMagPhase',false,"
+      "'AxesColor',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[1 1 0."
+      "0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0"
+      ".831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.07450980392"
+      "15686 0.650980392156863],'Title','%<SignalLabel>','LinePropertiesCache',{{}},'UserDefinedChannelNames',{{}},'Num"
+      "Lines',1,'LineNames',{{'Vasca1/2'}},'ShowContent',true,'Placement',1)},'DisplayPropertyDefaults',struct('MinYLim"
+      "Real','270.9756','MaxYLimReal','770.92803','YLabelReal','','MinYLimMag','270.9756','MaxYLimMag','770.92803','Leg"
+      "endVisibility','off','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[0.68627"
+      "4509803922 0.686274509803922 0.686274509803922],'ColorOrder',[0.0745098039215686 0.623529411764706 1;1 0.4117647"
+      "05882353 0.16078431372549;1 1 0.0666666666666667;0.717647058823529 0.274509803921569 1;0.392156862745098 0.83137"
+      "2549019608 0.0745098039215686;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863])),extmgr.Configurat"
+      "ion('Tools','Plot Navigation',true),extmgr.Configuration('Tools','Measurements',true,'Version','2017b')),'Versio"
+      "n','2017b','Position',[1 700 1920 219])"
       NumInputPorts	      "1"
     }
     Block {
@@ -6158,8 +6420,24 @@ Model {
       Position		      [609, -340, 641, -310]
       ZOrder		      337
       BlockRotation	      270
-      ScopeSpecificationString "C++SS(StrPVP('SaveName','ScopeData2'),StrPVP('LimitDataPoints','on'),StrPVP('DataForma"
-      "t','Array'),StrPVP('Decimation','1'),StrPVP('BlockParamSampleInput','off'))"
+      ScopeSpecificationString "Simulink.scopes.TimeScopeBlockCfg('CurrentConfiguration', extmgr.ConfigurationSet(extm"
+      "gr.Configuration('Core','General UI',true),extmgr.Configuration('Core','Source UI',true),extmgr.Configuration('S"
+      "ources','WiredSimulink',true,'DataLoggingVariableName','ScopeData2','DataLoggingSaveFormat','Array','DataLogging"
+      "Decimation','1','DataLoggingDecimateData',true),extmgr.Configuration('Visuals','Time Domain',true,'SerializedDis"
+      "plays',{struct('MinYLimReal','498.43713','MaxYLimReal','500.17365','YLabelReal','','MinYLimMag','498.43713','Max"
+      "YLimMag','500.17365','LegendVisibility','Off','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0]"
+      ",'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[1 1 0.0666666666666667;0."
+      "0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0."
+      "0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.65098039215"
+      "6863],'Title','%<SignalLabel>','LinePropertiesCache',{{}},'UserDefinedChannelNames',{{}},'NumLines',1,'LineNames"
+      "',{{'Vasca2/2'}},'ShowContent',true,'Placement',1)},'DisplayPropertyDefaults',struct('MinYLimReal','498.43713','"
+      "MaxYLimReal','500.17365','YLabelReal','','MinYLimMag','498.43713','MaxYLimMag','500.17365','LegendVisibility','O"
+      "ff','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[0.686274509803922 0.6862"
+      "74509803922 0.686274509803922],'ColorOrder',[0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.160784"
+      "31372549;1 1 0.0666666666666667;0.717647058823529 0.274509803921569 1;0.392156862745098 0.831372549019608 0.0745"
+      "098039215686;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863])),extmgr.Configuration('Tools','Plot"
+      " Navigation',true),extmgr.Configuration('Tools','Measurements',true,'Version','2017b')),'Version','2017b','Posit"
+      "ion',[1 31 1920 966])"
       NumInputPorts	      "1"
     }
     Block {
