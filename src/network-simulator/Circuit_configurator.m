@@ -57,24 +57,31 @@ while 1
     % PUBLISH
     for i=1:zones_num
       readings = {};
+      myVar = "";
       for k=1:length(read_elements)
 
         element = sprintf('%s/%s', model_name, sprintf(read_elements(k).Name, i));
-
+        
         tmp = get_param(element, 'RuntimeObject');
         tmp = tmp.InputPort(read_elements(k).Port).Data;
+        
+        myVar   = sprintf('%s%s|', myVar, num2str(tmp));
         % Get type index
         tmp_index = find(strcmp(classes, read_elements(k).Type));
 
         % Retrieve serialization function
         f = handles2b(tmp_index);
         f = cell2mat(f);
-
+        display(read_elements(k).Name);
+        display(tmp);
+        display(f(tmp));
         % Append the binary data
         readings{k} = f(tmp);
       end
       %try
-        publish(myMQTT, publish_urls(i), char(cell2mat(readings)));
+      display(cell2mat(readings))
+      display(myVar)
+        publish(myMQTT, publish_urls(i), myVar);
       %catch
 
       %end
@@ -82,32 +89,32 @@ while 1
       % PUBLISH end
       % READ
 
-      % try
-        bytes = uint8(read(subscriptions(i).Sub));
-      % catch
-      % end
-
-      start_byte = 0;
-      for k=length(write_elements):-1:1
-        % Get type index
-        tmp_index = find(strcmp(classes, read_elements(k).Type));
-
-        % Calculate end bit on size basis
-        end_byte = start_byte + sizes(tmp_index) - 1;
-        tmp = bytes(start_byte:end_byte);
-
-        % Retrieve deserilization function
-        f = handles2v(tmp_index);
-        f = cell2mat(f);
-
-        % Convert to value
-        tmp = f(tmp);
-
-        element = sprintf('%s/%s', model_name, sprintf(write_elements(k).Name, i));
-        set_param(element, 'value', tmp);
-
-        start_byte = end_bit + 1;
-      end
+%       % try
+%         bytes = uint8(read(subscriptions(i).Sub));
+%       % catch
+%       % end
+% 
+%       start_byte = 0;
+%       for k=length(write_elements):-1:1
+%         % Get type index
+%         tmp_index = find(strcmp(classes, read_elements(k).Type));
+% 
+%         % Calculate end bit on size basis
+%         end_byte = start_byte + sizes(tmp_index) - 1;
+%         tmp = bytes(start_byte:end_byte);
+% 
+%         % Retrieve deserilization function
+%         f = handles2v(tmp_index);
+%         f = cell2mat(f);
+% 
+%         % Convert to value
+%         tmp = f(tmp);
+% 
+%         element = sprintf('%s/%s', model_name, sprintf(write_elements(k).Name, i));
+%         set_param(element, 'value', tmp);
+% 
+%         start_byte = end_bit + 1;
+%       end
 
       %READ END
     end
@@ -120,11 +127,11 @@ function y = concatb(varargin)
 end
 
 function y = single2b(x)
-   y = typecast(single(x), 'uint8');
+   y = typecast(single(x), 'uint16');
 end
 
 function y = boolean2b(x)
-   y = typecast(uint8(x), 'uint8');
+   y = uint16(x);
 end
 
 function y = b2single(x)

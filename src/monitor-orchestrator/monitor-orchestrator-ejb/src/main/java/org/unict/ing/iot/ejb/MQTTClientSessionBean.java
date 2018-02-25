@@ -44,6 +44,7 @@ public class MQTTClientSessionBean implements MQTTClientSessionBeanLocal, MqttCa
     private void init() {
         System.out.println("[MQTT] Creating connection...");
         createConnection();
+         System.out.println("[MQTT] Created connection...");
     }
     
     @Override
@@ -84,9 +85,11 @@ public class MQTTClientSessionBean implements MQTTClientSessionBeanLocal, MqttCa
                 System.out.println("Client on");
                 client.connect(connOpts);
                 client.setCallback(this);
-                client.subscribe("/sensors/zones/", qos);
+                System.err.println("Subscribing....");
+                client.subscribe("/sensors/zones/+/", qos);
+                System.err.println("Subscribed?");
                 //client.subscribe("/actuators/zones/example/", qos);
-                publish("1/", new Tank(4, 5, 6, 1, new Electrovalve(5), new SchmidtTrigger(true)));
+                //publish("1/", new Tank(4, 5, 6, 1, new Electrovalve(5), new SchmidtTrigger(true)));
             }
         } catch (MqttException ex) {
             Logger.getLogger(MQTTClientSessionBean.class.getName()).log(Level.SEVERE, null, ex);
@@ -104,14 +107,25 @@ public class MQTTClientSessionBean implements MQTTClientSessionBeanLocal, MqttCa
     @Lock(LockType.READ)
     public void messageArrived(String topic, MqttMessage message) throws Exception {
         System.out.println("Entered in arrived");
+        System.out.println(message.getPayload().length);
         String[] split = topic.split("[/]");
-        ByteBuffer bbuf = ByteBuffer.wrap(message.getPayload());
-        Tank t = new Tank(bbuf.getFloat(), bbuf.getFloat(), bbuf.getFloat(), Integer.parseInt(split[3]));
+        //ByteBuffer bbuf = ByteBuffer.wrap(message.getPayload());
+        String allTheMessage = new String(message.getPayload(), 0);
+        
+        System.out.println();
+        /*Tank t = new Tank(bbuf.getFloat(), bbuf.getFloat(), bbuf.getFloat(), Integer.parseInt(split[3]));
         t.getValve().setFlowRateResistance(bbuf.getFloat());
-        if(bbuf.get() == (byte)0) t.getTrigger().setOpened(false);
-        else t.getTrigger().setOpened(true);
+        byte m = bbuf.get();
+        System.out.println(Integer.valueOf(m));
+        if(m == (byte)0) {
+            t.getTrigger().setOpened(false);
+        }
+        else {
+            t.getTrigger().setOpened(true);
+        }*/
+        
         //monitorSessionBean.put(t);
-        System.out.println("[MQTT] Received a message. Topic: " + topic + " Value: " + t.toString());
+        //System.out.println("[MQTT] Received a message. Topic: " + topic + " Value: " + t.toString());
     }
 
     @Override
