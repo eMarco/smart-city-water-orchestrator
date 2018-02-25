@@ -11,7 +11,6 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.ConcurrencyManagement;
 import javax.ejb.ConcurrencyManagementType;
-import javax.ejb.EJB;
 import javax.ejb.Lock;
 import javax.ejb.LockType;
 import javax.ejb.Singleton;
@@ -22,8 +21,6 @@ import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
-import org.unict.ing.iot.utils.model.Electrovalve;
-import org.unict.ing.iot.utils.model.SchmidtTrigger;
 import org.unict.ing.iot.utils.model.Tank;
 
 /**
@@ -107,13 +104,17 @@ public class MQTTClientSessionBean implements MQTTClientSessionBeanLocal, MqttCa
     @Lock(LockType.READ)
     public void messageArrived(String topic, MqttMessage message) throws Exception {
         System.out.println("Entered in arrived");
-        System.out.println(message.getPayload().length);
-        String[] split = topic.split("[/]");
-        //ByteBuffer bbuf = ByteBuffer.wrap(message.getPayload());
-        String allTheMessage = new String(message.getPayload(), 0);
+        String payload = new String(message.getPayload(), 0);
+        String[] split = payload.split("[|]");
+        String[] split2 = topic.split("[/]");
         
-        System.out.println();
-        /*Tank t = new Tank(bbuf.getFloat(), bbuf.getFloat(), bbuf.getFloat(), Integer.parseInt(split[3]));
+        Tank t = new Tank(Float.parseFloat(split[1]), Float.parseFloat(split[2]), Float.parseFloat(split[3]), Integer.parseInt(split[3]));
+        t.getValve().setFlowRateResistance(Float.parseFloat(split[4]));
+        if(Integer.parseInt(split[5]) == 0) t.getTrigger().setOpened(false);
+        else t.getTrigger().setOpened(true);
+        
+        /*ByteBuffer bbuf = ByteBuffer.wrap(message.getPayload());
+        Tank t = new Tank(bbuf.getFloat(), bbuf.getFloat(), bbuf.getFloat(), Integer.parseInt(split[3]));
         t.getValve().setFlowRateResistance(bbuf.getFloat());
         byte m = bbuf.get();
         System.out.println(Integer.valueOf(m));
@@ -125,7 +126,7 @@ public class MQTTClientSessionBean implements MQTTClientSessionBeanLocal, MqttCa
         }*/
         
         //monitorSessionBean.put(t);
-        //System.out.println("[MQTT] Received a message. Topic: " + topic + " Value: " + t.toString());
+        System.out.println("[MQTT] Received a message. Topic: " + topic + " Value: " + t.toString());
     }
 
     @Override
