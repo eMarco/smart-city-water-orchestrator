@@ -34,9 +34,6 @@ import org.unict.ing.iot.utils.model.Tank;
 @Startup
 @ConcurrencyManagement(ConcurrencyManagementType.CONTAINER)
 public class MQTTClientSessionBean implements MQTTClientSessionBeanLocal, MqttCallback {
-
-    @EJB
-    private MonitorSessionBeanRemote monitorSessionBean;
     
     private final String broker   = "tcp://iot_broker_1:1883";
     private final int qos         = 0;
@@ -62,10 +59,13 @@ public class MQTTClientSessionBean implements MQTTClientSessionBeanLocal, MqttCa
                 //MqttMessage message = new MqttMessage(ByteBuffer.allocate(4).putFloat(val).array());
                 MqttMessage message = new MqttMessage(bbuf.array());
                 message.setQos(qos);
-                client.setCallback(this);
-                client.subscribe("/sensors/zones/", qos);
                 client.publish("/sensors/zones/" + topic, message);
-            
+                /*
+                ByteBuffer bbuf = ByteBuffer.allocate(5);
+                bbuf.putFloat(tank.getValve().getFlowRateResistance());
+                if(tank.getTrigger().isOpened()== true) bbuf.put((byte)1);
+                else bbuf.put((byte)0);
+                */
             } catch(MqttException me) {
                 System.out.println("reason "+me.getReasonCode());
                 System.out.println("msg "+me.getMessage());
@@ -81,7 +81,10 @@ public class MQTTClientSessionBean implements MQTTClientSessionBeanLocal, MqttCa
             MqttConnectOptions connOpts = new MqttConnectOptions();
             connOpts.setCleanSession(true);
             if(!client.isConnected()) {
+                System.out.println("Client on");
                 client.connect(connOpts);
+                client.setCallback(this);
+                client.subscribe("/sensors/zones/", qos);
                 //client.subscribe("/actuators/zones/example/", qos);
                 publish("1/", new Tank(4, 5, 6, 1, new Electrovalve(5), new SchmidtTrigger(true)));
             }
