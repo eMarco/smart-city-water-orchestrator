@@ -47,17 +47,23 @@ public class MQTTClientSessionBean implements MQTTClientSessionBeanLocal, MqttCa
     @Override
     public void publish(String topic, Tank tank) {
         try {
-                ByteBuffer bbuf = ByteBuffer.allocate(17);
+                String payload = Float.toString(tank.getValve().getFlowRateResistance());
+                if(tank.getTrigger().isOpened() == true) payload = payload + "|1|";
+                else payload = payload + "|0|";
+                
+                /*ByteBuffer bbuf = ByteBuffer.allocate(17);
                 bbuf.putFloat(tank.getCapacity());
                 bbuf.putFloat(tank.getInputFlowRate());
                 bbuf.putFloat(tank.getOutputFlowRate());
                 bbuf.putFloat(tank.getValve().getFlowRateResistance());
                 if(tank.getTrigger().isOpened()== true) bbuf.put((byte)1);
-                else bbuf.put((byte)0);
+                else bbuf.put((byte)0);*/
                 //MqttMessage message = new MqttMessage(ByteBuffer.allocate(4).putFloat(val).array());
-                MqttMessage message = new MqttMessage(bbuf.array());
+                
+                MqttMessage message = new MqttMessage(payload.getBytes());
                 message.setQos(qos);
-                client.publish("/sensors/zones/" + topic, message);
+                client.publish("/actuators/zones/" + topic, message);
+                
                 /*
                 ByteBuffer bbuf = ByteBuffer.allocate(5);
                 bbuf.putFloat(tank.getValve().getFlowRateResistance());
@@ -108,9 +114,9 @@ public class MQTTClientSessionBean implements MQTTClientSessionBeanLocal, MqttCa
         String[] split = payload.split("[|]");
         String[] split2 = topic.split("[/]");
         
-        Tank t = new Tank(Float.parseFloat(split[1]), Float.parseFloat(split[2]), Float.parseFloat(split[3]), Integer.parseInt(split[3]));
-        t.getValve().setFlowRateResistance(Float.parseFloat(split[4]));
-        if(Integer.parseInt(split[5]) == 0) t.getTrigger().setOpened(false);
+        Tank t = new Tank(Float.parseFloat(split[0]), Float.parseFloat(split[1]), Float.parseFloat(split[2]), Integer.parseInt(split2[3]));
+        t.getValve().setFlowRateResistance(Float.parseFloat(split[3]));
+        if(Integer.parseInt(split[4]) == 0) t.getTrigger().setOpened(false);
         else t.getTrigger().setOpened(true);
         
         /*ByteBuffer bbuf = ByteBuffer.wrap(message.getPayload());
