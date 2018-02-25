@@ -1,12 +1,12 @@
 Model {
   Name			  "Rete"
   Version		  9.0
-  SavedCharacterEncoding  "windows-1252"
+  SavedCharacterEncoding  "UTF-8"
   GraphicalInterface {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.26"
+    ComputedModelVersion    "1.37"
     NumModelReferences	    0
     NumTestPointedSignals   0
     NumProvidedFunctions    0
@@ -16,7 +16,7 @@ Model {
     HasTerminateEvent	    0
     IsExportFunctionModel   0
     NumParameterArguments   0
-    NumExternalFileReferences 53
+    NumExternalFileReferences 56
     ExternalFileReference {
       Reference		      "fl_lib/Electrical/Electrical Elements/Electrical Reference"
       Path		      "Rete/Electrical Reference1"
@@ -78,6 +78,12 @@ Model {
       Type		      "LIBRARY_BLOCK"
     }
     ExternalFileReference {
+      Reference		      "realtime_pacer_lib/Real-Time Pacer"
+      Path		      "Rete/Real-Time Pacer"
+      SID		      "329"
+      Type		      "LIBRARY_BLOCK"
+    }
+    ExternalFileReference {
       Reference		      "nesl_utility/Solver\nConfiguration"
       Path		      "Rete/Solver Configuration"
       SID		      "13"
@@ -121,18 +127,6 @@ Model {
     }
     ExternalFileReference {
       Reference		      "fl_lib/Electrical/Electrical Sensors/Current Sensor"
-      Path		      "Rete/Vasca1/Amperometer1/Current"
-      SID		      "69"
-      Type		      "LIBRARY_BLOCK"
-    }
-    ExternalFileReference {
-      Reference		      "nesl_utility/PS-Simulink\nConverter"
-      Path		      "Rete/Vasca1/Amperometer1/PS-Simulink Converter3"
-      SID		      "70"
-      Type		      "LIBRARY_BLOCK"
-    }
-    ExternalFileReference {
-      Reference		      "fl_lib/Electrical/Electrical Sensors/Current Sensor"
       Path		      "Rete/Vasca1/Amperometer2/Current"
       SID		      "75"
       Type		      "LIBRARY_BLOCK"
@@ -144,39 +138,39 @@ Model {
       Type		      "LIBRARY_BLOCK"
     }
     ExternalFileReference {
+      Reference		      "fl_lib/Electrical/Electrical Sensors/Current Sensor"
+      Path		      "Rete/Vasca1/FlowRateIn/Current"
+      SID		      "336"
+      Type		      "LIBRARY_BLOCK"
+    }
+    ExternalFileReference {
+      Reference		      "nesl_utility/PS-Simulink\nConverter"
+      Path		      "Rete/Vasca1/FlowRateIn/PS-Simulink Converter3"
+      SID		      "337"
+      Type		      "LIBRARY_BLOCK"
+    }
+    ExternalFileReference {
+      Reference		      "fl_lib/Electrical/Electrical Sensors/Current Sensor"
+      Path		      "Rete/Vasca1/FlowRateOut/Current"
+      SID		      "69"
+      Type		      "LIBRARY_BLOCK"
+    }
+    ExternalFileReference {
+      Reference		      "nesl_utility/PS-Simulink\nConverter"
+      Path		      "Rete/Vasca1/FlowRateOut/Current1"
+      SID		      "70"
+      Type		      "LIBRARY_BLOCK"
+    }
+    ExternalFileReference {
       Reference		      "elec_lib/Passive Devices/Capacitor"
       Path		      "Rete/Vasca1/Serbatoio"
       SID		      "80"
       Type		      "LIBRARY_BLOCK"
     }
     ExternalFileReference {
-      Reference		      "elec_lib/Passive Devices/Resistor"
-      Path		      "Rete/Vasca1/Sezione condotture"
-      SID		      "81"
-      Type		      "LIBRARY_BLOCK"
-    }
-    ExternalFileReference {
       Reference		      "nesl_utility/Simulink-PS\nConverter"
       Path		      "Rete/Vasca1/Simulink-PS Converter"
       SID		      "205"
-      Type		      "LIBRARY_BLOCK"
-    }
-    ExternalFileReference {
-      Reference		      "nesl_utility/Simulink-PS\nConverter"
-      Path		      "Rete/Vasca1/Subsystem/Simulink-PS Converter"
-      SID		      "207"
-      Type		      "LIBRARY_BLOCK"
-    }
-    ExternalFileReference {
-      Reference		      "fl_lib/Electrical/Electrical Elements/Switch"
-      Path		      "Rete/Vasca1/Subsystem/Switch"
-      SID		      "208"
-      Type		      "LIBRARY_BLOCK"
-    }
-    ExternalFileReference {
-      Reference		      "fl_lib/Electrical/Electrical Elements/Variable Resistor"
-      Path		      "Rete/Vasca1/Variable Resistor"
-      SID		      "203"
       Type		      "LIBRARY_BLOCK"
     }
     ExternalFileReference {
@@ -189,6 +183,30 @@ Model {
       Reference		      "fl_lib/Electrical/Electrical Sensors/Voltage Sensor"
       Path		      "Rete/Vasca1/Voltimeter/v_vasca1"
       SID		      "84"
+      Type		      "LIBRARY_BLOCK"
+    }
+    ExternalFileReference {
+      Reference		      "nesl_utility/Simulink-PS\nConverter"
+      Path		      "Rete/Vasca1/trigger/Simulink-PS Converter"
+      SID		      "207"
+      Type		      "LIBRARY_BLOCK"
+    }
+    ExternalFileReference {
+      Reference		      "fl_lib/Electrical/Electrical Elements/Switch"
+      Path		      "Rete/Vasca1/trigger/vasca_switch"
+      SID		      "208"
+      Type		      "LIBRARY_BLOCK"
+    }
+    ExternalFileReference {
+      Reference		      "fl_lib/Electrical/Electrical Elements/Variable Resistor"
+      Path		      "Rete/Vasca1/vasca_resistor_in"
+      SID		      "203"
+      Type		      "LIBRARY_BLOCK"
+    }
+    ExternalFileReference {
+      Reference		      "elec_lib/Passive Devices/Resistor"
+      Path		      "Rete/Vasca1/vasca_resistor_width"
+      SID		      "81"
       Type		      "LIBRARY_BLOCK"
     }
     ExternalFileReference {
@@ -364,7 +382,7 @@ Model {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [1920.0, 0.0, 1680.0, 1020.0]
+      Location		      [0.0, 0.0, 1920.0, 1050.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -386,11 +404,11 @@ Model {
 	$ObjectID		5
 	$ClassName		"Simulink.EditorInfo"
 	IsActive		[1]
-	ViewObjType		"SimulinkTopLevel"
-	LoadSaveID		"0"
-	Extents			[1642.0, 836.0]
-	ZoomFactor		[1.0]
-	Offset			[88.999168501381973, -611.28236592250323]
+	ViewObjType		"SimulinkSubsys"
+	LoadSaveID		"67"
+	Extents			[1882.0, 866.0]
+	ZoomFactor		[1.25]
+	Offset			[-409.4095238095249, -146.54047619047623]
       }
       Object {
 	$PropName		"DockComponentsInfo"
@@ -410,7 +428,7 @@ Model {
       "AAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0Ac"
       "ABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQAAAAAAP////8AAABiAP///wAAAAEAAAAAAAAAAPwCA"
       "AAAAfsAAABUAEcATABVAEUAMgA6AFAAcgBvAHAAZQByAHQAeQBJAG4AcwBwAGUAYwB0AG8AcgAvAFAAcgBvAHAAZQByAHQAeQAgAEkAbgBzAHAAZ"
-      "QBjAHQAbwByAAAAAAD/////AAAALgD///8AAAaQAAADhAAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
+      "QBjAHQAbwByAAAAAAD/////AAAALgD///8AAAeAAAADogAAAAEAAAACAAAAAQAAAAL8AAAAAQAAAAIAAAAP/////wAAAAAA/////wAAAAAAAAAA/"
       "////wEAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/"
       "////wEAAACA/////wAAAAAAAAAA/////wEAAADo/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAFo/////wAAAAAAAAAA/"
       "////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wAAAAAA/////wAAAAAAAAAA/////wEAAAOw/////wAAAAAAAAAA/"
@@ -418,8 +436,8 @@ Model {
     }
   }
   HideAutomaticNames	  on
-  PhysicalModelingChecksum "3969218746"
-  PhysicalModelingParameterChecksum "4050542475"
+  PhysicalModelingChecksum "3387077947"
+  PhysicalModelingParameterChecksum "3402044344"
   PhysicalModelingProducts "SimElectronics|Simscape"
   Created		  "Fri Feb 23 12:38:28 2018"
   Creator		  "aleskandro"
@@ -427,9 +445,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "aleskandro"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Sun Feb 25 12:55:02 2018"
-  RTWModifiedTimeStamp	  441463955
-  ModelVersionFormat	  "1.%<AutoIncrement:26>"
+  LastModifiedDate	  "Sun Feb 25 17:18:49 2018"
+  RTWModifiedTimeStamp	  441479925
+  ModelVersionFormat	  "1.%<AutoIncrement:37>"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "disabled"
@@ -1421,8 +1439,8 @@ Model {
   }
   System {
     Name		    "Rete"
-    Location		    [1920, 0, 3600, 1020]
-    Open		    on
+    Location		    [0, 0, 1920, 1050]
+    Open		    off
     PortBlocksUseCompactNotation off
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -1436,7 +1454,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "323"
+    SIDHighWatermark	    "342"
     Block {
       BlockType		      Reference
       Name		      "Electrical Reference1"
@@ -1488,7 +1506,7 @@ Model {
       Name		      "Electrical Reference3"
       SID		      "218"
       Ports		      [0, 0, 0, 0, 0, 1]
-      Position		      [560, -30, 580, -10]
+      Position		      [680, -30, 700, -10]
       ZOrder		      335
       BlockRotation	      270
       BlockMirror	      on
@@ -1511,7 +1529,7 @@ Model {
       Name		      "Electrical Reference4"
       SID		      "267"
       Ports		      [0, 0, 0, 0, 0, 1]
-      Position		      [825, -30, 845, -10]
+      Position		      [945, -30, 965, -10]
       ZOrder		      340
       BlockRotation	      270
       BlockMirror	      on
@@ -2101,6 +2119,21 @@ Model {
     }
     Block {
       BlockType		      Reference
+      Name		      "Real-Time Pacer"
+      SID		      "329"
+      Ports		      []
+      Position		      [25, -11, 127, 46]
+      ZOrder		      343
+      BackgroundColor	      "yellow"
+      DropShadow	      on
+      ShowName		      off
+      LibraryVersion	      "1.9"
+      SourceBlock	      "realtime_pacer_lib/Real-Time Pacer"
+      SourceType	      "RealTime_Pacer"
+      simTimePerRealTime      "10000"
+    }
+    Block {
+      BlockType		      Reference
       Name		      "Solver\nConfiguration"
       SID		      "13"
       Ports		      [0, 0, 0, 0, 0, 0, 1]
@@ -2172,7 +2205,7 @@ Model {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"50"
+	ZoomFactor		"175"
 	Block {
 	  BlockType		  DiscretePulseGenerator
 	  Name			  "Pulse\nGenerator"
@@ -2338,7 +2371,7 @@ Model {
       Name		      "Utilizzatore1"
       SID		      "219"
       Ports		      [0, 1, 0, 0, 0, 1, 1]
-      Position		      [600, -135, 660, -95]
+      Position		      [720, -135, 780, -95]
       ZOrder		      333
       BlockRotation	      270
       BlockMirror	      on
@@ -2359,7 +2392,7 @@ Model {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"50"
+	ZoomFactor		"175"
 	Block {
 	  BlockType		  DiscretePulseGenerator
 	  Name			  "Pulse\nGenerator"
@@ -2525,7 +2558,7 @@ Model {
       Name		      "Utilizzatore2"
       SID		      "268"
       Ports		      [0, 1, 0, 0, 0, 1, 1]
-      Position		      [865, -135, 925, -95]
+      Position		      [985, -135, 1045, -95]
       ZOrder		      338
       BlockRotation	      270
       BlockMirror	      on
@@ -2711,7 +2744,7 @@ Model {
       BlockType		      SubSystem
       Name		      "Vasca1"
       SID		      "67"
-      Ports		      [0, 4, 0, 0, 0, 4]
+      Ports		      [0, 5, 0, 0, 0, 4]
       Position		      [279, -260, 401, -185]
       ZOrder		      299
       BlockRotation	      270
@@ -2719,8 +2752,8 @@ Model {
       Variant		      off
       System {
 	Name			"Vasca1"
-	Location		[1920, 0, 3600, 1020]
-	Open			off
+	Location		[0, 0, 1920, 1050]
+	Open			on
 	PortBlocksUseCompactNotation off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -2732,147 +2765,15 @@ Model {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"100"
-	Block {
-	  BlockType		  SubSystem
-	  Name			  "Amperometer1"
-	  SID			  "68"
-	  Ports			  [0, 1, 0, 0, 0, 2]
-	  Position		  [310, 85, 370, 125]
-	  ZOrder		  293
-	  BlockRotation		  270
-	  RequestExecContextInheritance	off
-	  Variant		  off
-	  System {
-	    Name		    "Amperometer1"
-	    Location		    [0, 0, 1920, 1050]
-	    Open		    off
-	    PortBlocksUseCompactNotation off
-	    ModelBrowserVisibility  off
-	    ModelBrowserWidth	    200
-	    ScreenColor		    "white"
-	    PaperOrientation	    "landscape"
-	    PaperPositionMode	    "auto"
-	    PaperType		    "usletter"
-	    PaperUnits		    "inches"
-	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
-	    TiledPageScale	    1
-	    ShowPageBoundaries	    off
-	    ZoomFactor		    "175"
-	    Block {
-	      BlockType		      Reference
-	      Name		      "Current"
-	      SID		      "69"
-	      Ports		      [0, 0, 0, 0, 0, 1, 2]
-	      Position		      [105, 190, 145, 230]
-	      ZOrder		      272
-	      LibraryVersion	      "9000000.1"
-	      SourceBlock	      "fl_lib/Electrical/Electrical Sensors/Current Sensor"
-	      SourceType	      "Current Sensor"
-	      SourceProductName	      "Simscape"
-	      SourceProductBaseCode   "SS"
-	      LogSimulationData	      off
-	      SourceFile	      "foundation.electrical.sensors.current"
-	      ComponentPath	      "foundation.electrical.sensors.current"
-	      ComponentVariants	      "foundation.electrical.sensors.current"
-	      ComponentVariantNames   "current"
-	      ClassName		      "current"
-	      SchemaVersion	      "1"
-	    }
-	    Block {
-	      BlockType		      Reference
-	      Name		      "PS-Simulink\nConverter3"
-	      SID		      "70"
-	      Ports		      [0, 1, 0, 0, 0, 1]
-	      Position		      [140, 85, 170, 115]
-	      ZOrder		      277
-	      BlockRotation	      270
-	      LibraryVersion	      "2.0"
-	      SourceBlock	      "nesl_utility/PS-Simulink\nConverter"
-	      SourceType	      "PS-Simulink\nConverter"
-	      SourceProductName	      "Simscape"
-	      SourceProductBaseCode   "SS"
-	      ContentPreviewEnabled   off
-	      PhysicalDomain	      "network_engine_domain"
-	      SubClassName	      "ps_output"
-	      LeftPortType	      "input"
-	      RightPortType	      "output"
-	      PseudoPeriodic	      off
-	      Frequencies	      "[]"
-	      Unit		      "A"
-	      AffineConversion	      off
-	    }
-	    Block {
-	      BlockType		      PMIOPort
-	      Name		      "+\n"
-	      SID		      "71"
-	      Position		      [25, 203, 55, 217]
-	      ZOrder		      279
-	      Port		      "1"
-	      Side		      "Left"
-	    }
-	    Block {
-	      BlockType		      PMIOPort
-	      Name		      "-"
-	      SID		      "72"
-	      Position		      [25, 265, 55, 280]
-	      ZOrder		      280
-	      BlockRotation	      270
-	      Port		      "2"
-	      Side		      "Left"
-	    }
-	    Block {
-	      BlockType		      Outport
-	      Name		      "Signal"
-	      SID		      "73"
-	      Position		      [140, 20, 170, 35]
-	      ZOrder		      278
-	      BlockRotation	      270
-	      ShowName		      off
-	      IconDisplay	      "Signal name"
-	    }
-	    Line {
-	      LineType		      "Connection"
-	      ZOrder		      1
-	      SrcBlock		      "Current"
-	      SrcPort		      RConn1
-	      Points		      [-5, 0]
-	      DstBlock		      "PS-Simulink\nConverter3"
-	      DstPort		      LConn1
-	    }
-	    Line {
-	      LineType		      "Connection"
-	      ZOrder		      2
-	      SrcBlock		      "Current"
-	      SrcPort		      RConn2
-	      Points		      [0, 31]
-	      DstBlock		      "-"
-	      DstPort		      RConn1
-	    }
-	    Line {
-	      LineType		      "Connection"
-	      ZOrder		      3
-	      SrcBlock		      "Current"
-	      SrcPort		      LConn1
-	      DstBlock		      "+\n"
-	      DstPort		      RConn1
-	    }
-	    Line {
-	      ZOrder		      4
-	      SrcBlock		      "PS-Simulink\nConverter3"
-	      SrcPort		      1
-	      DstBlock		      "Signal"
-	      DstPort		      1
-	    }
-	  }
-	}
+	ZoomFactor		"125"
 	Block {
 	  BlockType		  SubSystem
 	  Name			  "Amperometer2"
 	  SID			  "74"
 	  Ports			  [0, 1, 0, 0, 0, 2]
-	  Position		  [260, 255, 300, 315]
+	  Position		  [245, 210, 285, 270]
 	  ZOrder		  295
+	  ShowName		  off
 	  RequestExecContextInheritance	off
 	  Variant		  off
 	  System {
@@ -2999,27 +2900,286 @@ Model {
 	  }
 	}
 	Block {
-	  BlockType		  Constant
-	  Name			  "Constant"
-	  SID			  "204"
-	  Position		  [67, -85, 93, -55]
-	  ZOrder		  308
-	  BlockRotation		  270
-	  BlockMirror		  on
-	  NamePlacement		  "alternate"
-	  Value			  "vasca_1_r_in"
-	}
-	Block {
 	  BlockType		  DataTypeConversion
 	  Name			  "Data Type Conversion"
 	  SID			  "319"
-	  Position		  [65, -25, 95, 25]
+	  Position		  [100, -25, 130, 25]
 	  ZOrder		  343
 	  BlockRotation		  270
 	  BlockMirror		  on
 	  NamePlacement		  "alternate"
 	  RndMeth		  "Floor"
 	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "FlowRateIn"
+	  SID			  "335"
+	  Ports			  [0, 1, 0, 0, 0, 2]
+	  Position		  [10, 190, 70, 230]
+	  ZOrder		  344
+	  BlockRotation		  270
+	  BlockMirror		  on
+	  NamePlacement		  "alternate"
+	  ShowName		  off
+	  RequestExecContextInheritance	off
+	  Variant		  off
+	  System {
+	    Name		    "FlowRateIn"
+	    Location		    [0, 0, 1920, 1050]
+	    Open		    off
+	    PortBlocksUseCompactNotation off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "175"
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Current"
+	      SID		      "336"
+	      Ports		      [0, 0, 0, 0, 0, 1, 2]
+	      Position		      [105, 190, 145, 230]
+	      ZOrder		      272
+	      LibraryVersion	      "9000000.1"
+	      SourceBlock	      "fl_lib/Electrical/Electrical Sensors/Current Sensor"
+	      SourceType	      "Current Sensor"
+	      SourceProductName	      "Simscape"
+	      SourceProductBaseCode   "SS"
+	      LogSimulationData	      off
+	      SourceFile	      "foundation.electrical.sensors.current"
+	      ComponentPath	      "foundation.electrical.sensors.current"
+	      ComponentVariants	      "foundation.electrical.sensors.current"
+	      ComponentVariantNames   "current"
+	      ClassName		      "current"
+	      SchemaVersion	      "1"
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "PS-Simulink\nConverter3"
+	      SID		      "337"
+	      Ports		      [0, 1, 0, 0, 0, 1]
+	      Position		      [140, 85, 170, 115]
+	      ZOrder		      277
+	      BlockRotation	      270
+	      LibraryVersion	      "2.0"
+	      SourceBlock	      "nesl_utility/PS-Simulink\nConverter"
+	      SourceType	      "PS-Simulink\nConverter"
+	      SourceProductName	      "Simscape"
+	      SourceProductBaseCode   "SS"
+	      ContentPreviewEnabled   off
+	      PhysicalDomain	      "network_engine_domain"
+	      SubClassName	      "ps_output"
+	      LeftPortType	      "input"
+	      RightPortType	      "output"
+	      PseudoPeriodic	      off
+	      Frequencies	      "[]"
+	      Unit		      "A"
+	      AffineConversion	      off
+	    }
+	    Block {
+	      BlockType		      PMIOPort
+	      Name		      "+\n"
+	      SID		      "338"
+	      Position		      [25, 203, 55, 217]
+	      ZOrder		      279
+	      Port		      "1"
+	      Side		      "Left"
+	    }
+	    Block {
+	      BlockType		      PMIOPort
+	      Name		      "-"
+	      SID		      "339"
+	      Position		      [25, 265, 55, 280]
+	      ZOrder		      280
+	      BlockRotation	      270
+	      Port		      "2"
+	      Side		      "Left"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "Signal"
+	      SID		      "340"
+	      Position		      [140, 20, 170, 35]
+	      ZOrder		      278
+	      BlockRotation	      270
+	      HideAutomaticName	      off
+	      IconDisplay	      "Signal name"
+	    }
+	    Line {
+	      LineType		      "Connection"
+	      ZOrder		      1
+	      SrcBlock		      "Current"
+	      SrcPort		      RConn1
+	      Points		      [-5, 0]
+	      DstBlock		      "PS-Simulink\nConverter3"
+	      DstPort		      LConn1
+	    }
+	    Line {
+	      LineType		      "Connection"
+	      ZOrder		      2
+	      SrcBlock		      "Current"
+	      SrcPort		      RConn2
+	      Points		      [0, 31]
+	      DstBlock		      "-"
+	      DstPort		      RConn1
+	    }
+	    Line {
+	      LineType		      "Connection"
+	      ZOrder		      3
+	      SrcBlock		      "Current"
+	      SrcPort		      LConn1
+	      DstBlock		      "+\n"
+	      DstPort		      RConn1
+	    }
+	    Line {
+	      ZOrder		      4
+	      SrcBlock		      "PS-Simulink\nConverter3"
+	      SrcPort		      1
+	      DstBlock		      "Signal"
+	      DstPort		      1
+	    }
+	  }
+	}
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "FlowRateOut"
+	  SID			  "68"
+	  Ports			  [0, 1, 0, 0, 0, 2]
+	  Position		  [310, 85, 370, 125]
+	  ZOrder		  293
+	  BlockRotation		  270
+	  ShowName		  off
+	  RequestExecContextInheritance	off
+	  Variant		  off
+	  System {
+	    Name		    "FlowRateOut"
+	    Location		    [2052, 74, 3172, 754]
+	    Open		    off
+	    PortBlocksUseCompactNotation off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "125"
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Current"
+	      SID		      "69"
+	      Ports		      [0, 0, 0, 0, 0, 1, 2]
+	      Position		      [105, 190, 145, 230]
+	      ZOrder		      272
+	      LibraryVersion	      "9000000.1"
+	      SourceBlock	      "fl_lib/Electrical/Electrical Sensors/Current Sensor"
+	      SourceType	      "Current Sensor"
+	      SourceProductName	      "Simscape"
+	      SourceProductBaseCode   "SS"
+	      LogSimulationData	      off
+	      SourceFile	      "foundation.electrical.sensors.current"
+	      ComponentPath	      "foundation.electrical.sensors.current"
+	      ComponentVariants	      "foundation.electrical.sensors.current"
+	      ComponentVariantNames   "current"
+	      ClassName		      "current"
+	      SchemaVersion	      "1"
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Current1"
+	      SID		      "70"
+	      Ports		      [0, 1, 0, 0, 0, 1]
+	      Position		      [140, 85, 170, 115]
+	      ZOrder		      277
+	      BlockRotation	      270
+	      LibraryVersion	      "2.0"
+	      SourceBlock	      "nesl_utility/PS-Simulink\nConverter"
+	      SourceType	      "PS-Simulink\nConverter"
+	      SourceProductName	      "Simscape"
+	      SourceProductBaseCode   "SS"
+	      ContentPreviewEnabled   off
+	      PhysicalDomain	      "network_engine_domain"
+	      SubClassName	      "ps_output"
+	      LeftPortType	      "input"
+	      RightPortType	      "output"
+	      PseudoPeriodic	      off
+	      Frequencies	      "[]"
+	      Unit		      "A"
+	      AffineConversion	      off
+	    }
+	    Block {
+	      BlockType		      PMIOPort
+	      Name		      "+\n"
+	      SID		      "71"
+	      Position		      [25, 203, 55, 217]
+	      ZOrder		      279
+	      Port		      "1"
+	      Side		      "Left"
+	    }
+	    Block {
+	      BlockType		      PMIOPort
+	      Name		      "-"
+	      SID		      "72"
+	      Position		      [25, 265, 55, 280]
+	      ZOrder		      280
+	      BlockRotation	      270
+	      Port		      "2"
+	      Side		      "Left"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "Signal"
+	      SID		      "73"
+	      Position		      [140, 20, 170, 35]
+	      ZOrder		      278
+	      BlockRotation	      270
+	      ShowName		      off
+	      IconDisplay	      "Signal name"
+	    }
+	    Line {
+	      LineType		      "Connection"
+	      ZOrder		      1
+	      SrcBlock		      "Current"
+	      SrcPort		      RConn1
+	      Points		      [-5, 0]
+	      DstBlock		      "Current1"
+	      DstPort		      LConn1
+	    }
+	    Line {
+	      LineType		      "Connection"
+	      ZOrder		      2
+	      SrcBlock		      "Current"
+	      SrcPort		      RConn2
+	      Points		      [0, 31]
+	      DstBlock		      "-"
+	      DstPort		      RConn1
+	    }
+	    Line {
+	      LineType		      "Connection"
+	      ZOrder		      3
+	      SrcBlock		      "Current"
+	      SrcPort		      LConn1
+	      DstBlock		      "+\n"
+	      DstPort		      RConn1
+	    }
+	    Line {
+	      ZOrder		      4
+	      SrcBlock		      "Current1"
+	      SrcPort		      1
+	      DstBlock		      "Signal"
+	      DstPort		      1
+	    }
+	  }
 	}
 	Block {
 	  BlockType		  Reference
@@ -3144,124 +3304,10 @@ Model {
 	}
 	Block {
 	  BlockType		  Reference
-	  Name			  "Sezione condotture"
-	  SID			  "81"
-	  Ports			  [0, 0, 0, 0, 0, 1, 1]
-	  Position		  [385, 131, 425, 159]
-	  ZOrder		  266
-	  LibraryVersion	  "9000000.1"
-	  SourceBlock		  "elec_lib/Passive Devices/Resistor"
-	  SourceType		  "Resistor"
-	  SourceProductName	  "Simscape Electronics"
-	  SourceProductBaseCode	  "SN"
-	  LogSimulationData	  off
-	  SourceFile		  "elec.passive.resistor"
-	  ComponentPath		  "elec.passive.resistor"
-	  ComponentVariants	  "elec.passive.resistor, elec.passive.resistor_thermal"
-	  ComponentVariantNames	  "No thermal port, Show thermal port"
-	  ClassName		  "Simscape variant"
-	  SchemaVersion		  "1"
-	  R			  "vasca_1_r"
-	  R_unit		  "Ohm"
-	  R_conf		  "compiletime"
-	  R_tol			  "5"
-	  R_tol_unit		  "1"
-	  R_tol_conf		  "compiletime"
-	  enable_R_tol		  "0"
-	  enable_R_tol_unit	  "1"
-	  enable_R_tol_conf	  "compiletime"
-	  tol_distribution	  "1"
-	  tol_distribution_unit	  "1"
-	  tol_distribution_conf	  "compiletime"
-	  nSigma		  "4"
-	  nSigma_unit		  "1"
-	  nSigma_conf		  "compiletime"
-	  enable_operating_limits "0"
-	  enable_operating_limits_unit "1"
-	  enable_operating_limits_conf "compiletime"
-	  operating_limit_action  "2"
-	  operating_limit_action_unit "1"
-	  operating_limit_action_conf "compiletime"
-	  max_working_voltage	  "100"
-	  max_working_voltage_unit "V"
-	  max_working_voltage_conf "compiletime"
-	  power_rating		  "1"
-	  power_rating_unit	  "W"
-	  power_rating_conf	  "compiletime"
-	  enable_faults		  "0"
-	  enable_faults_unit	  "1"
-	  enable_faults_conf	  "compiletime"
-	  fault_action		  "1"
-	  fault_action_unit	  "1"
-	  fault_action_conf	  "compiletime"
-	  R_faulted		  "Inf"
-	  R_faulted_unit	  "Ohm"
-	  R_faulted_conf	  "compiletime"
-	  enable_temporal_fault	  "0"
-	  enable_temporal_fault_unit "1"
-	  enable_temporal_fault_conf "compiletime"
-	  t_fault		  "1"
-	  t_fault_unit		  "s"
-	  t_fault_conf		  "compiletime"
-	  enable_behavioral_fault "0"
-	  enable_behavioral_fault_unit "1"
-	  enable_behavioral_fault_conf "compiletime"
-	  max_permissible_current "1"
-	  max_permissible_current_unit "A"
-	  max_permissible_current_conf "compiletime"
-	  t_fail_on_current	  "1"
-	  t_fail_on_current_unit  "s"
-	  t_fail_on_current_conf  "compiletime"
-	  noise_mode		  "0"
-	  noise_mode_unit	  "1"
-	  noise_mode_conf	  "compiletime"
-	  sample_time		  "0.001"
-	  sample_time_unit	  "s"
-	  sample_time_conf	  "compiletime"
-	  repeatability		  "1"
-	  repeatability_unit	  "1"
-	  repeatability_conf	  "compiletime"
-	  auto_seed		  "2536105935"
-	  auto_seed_unit	  "1"
-	  auto_seed_conf	  "compiletime"
-	  user_seed		  "0"
-	  user_seed_unit	  "1"
-	  user_seed_conf	  "compiletime"
-	  Tdevice		  "25"
-	  Tdevice_unit		  "degC"
-	  Tdevice_conf		  "compiletime"
-	  alpha			  "3.93e-3"
-	  alpha_unit		  "1/K"
-	  alpha_conf		  "compiletime"
-	  Tmeas			  "25"
-	  Tmeas_unit		  "degC"
-	  Tmeas_conf		  "compiletime"
-	  thermal_mass		  "100"
-	  thermal_mass_unit	  "J/K"
-	  thermal_mass_conf	  "compiletime"
-	  power_derating_T1	  "70"
-	  power_derating_T1_unit  "degC"
-	  power_derating_T1_conf  "compiletime"
-	  power_derating_T2	  "155"
-	  power_derating_T2_unit  "degC"
-	  power_derating_T2_conf  "compiletime"
-	  operating_temperature_range_vec "[-50, 150]"
-	  operating_temperature_range_vec_unit "degC"
-	  operating_temperature_range_vec_conf "compiletime"
-	  temperature_specify	  off
-	  temperature_priority	  "High"
-	  temperature		  "298.15"
-	  temperature_unit	  "K"
-	  temperature_nominal_specify off
-	  temperature_nominal_unit "K"
-	  temperature_nominal_value "1"
-	}
-	Block {
-	  BlockType		  Reference
 	  Name			  "Simulink-PS\nConverter"
 	  SID			  "205"
 	  Ports			  [1, 0, 0, 0, 0, 0, 1]
-	  Position		  [65, 60, 95, 90]
+	  Position		  [100, 60, 130, 90]
 	  ZOrder		  309
 	  BlockRotation		  270
 	  BlockMirror		  on
@@ -3289,246 +3335,12 @@ Model {
 	}
 	Block {
 	  BlockType		  SubSystem
-	  Name			  "Subsystem"
-	  SID			  "206"
-	  Ports			  [0, 1, 0, 0, 0, 1, 1]
-	  Position		  [585, 100, 625, 160]
-	  ZOrder		  340
-	  BlockMirror		  on
-	  NamePlacement		  "alternate"
-	  RequestExecContextInheritance	off
-	  Variant		  off
-	  System {
-	    Name		    "Subsystem"
-	    Location		    [1920, 0, 3600, 1020]
-	    Open		    off
-	    PortBlocksUseCompactNotation off
-	    ModelBrowserVisibility  off
-	    ModelBrowserWidth	    200
-	    ScreenColor		    "white"
-	    PaperOrientation	    "landscape"
-	    PaperPositionMode	    "auto"
-	    PaperType		    "usletter"
-	    PaperUnits		    "inches"
-	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
-	    TiledPageScale	    1
-	    ShowPageBoundaries	    off
-	    ZoomFactor		    "250"
-	    Block {
-	      BlockType		      DataTypeConversion
-	      Name		      "Data Type Conversion"
-	      SID		      "317"
-	      Position		      [245, 78, 290, 102]
-	      ZOrder		      185
-	      OutDataTypeStr	      "double"
-	      RndMeth		      "Floor"
-	      SaturateOnIntegerOverflow	off
-	    }
-	    Block {
-	      BlockType		      Reference
-	      Name		      "Simulink-PS\nConverter"
-	      SID		      "207"
-	      Ports		      [1, 0, 0, 0, 0, 0, 1]
-	      Position		      [350, 72, 380, 108]
-	      ZOrder		      167
-	      LibraryVersion	      "2.0"
-	      SourceBlock	      "nesl_utility/Simulink-PS\nConverter"
-	      SourceType	      "Simulink-PS\nConverter"
-	      SourceProductName	      "Simscape"
-	      SourceProductBaseCode   "SS"
-	      ContentPreviewEnabled   off
-	      PhysicalDomain	      "network_engine_domain"
-	      SubClassName	      "ps_input"
-	      LeftPortType	      "input"
-	      RightPortType	      "output"
-	      PseudoPeriodic	      off
-	      Frequencies	      "[]"
-	      NoiseDistribution	      "none"
-	      NoiseParameters	      "[]"
-	      Unit		      "1"
-	      AffineConversion	      off
-	      FilteringAndDerivatives "zero"
-	      SimscapeFilterOrder     "1"
-	      InputFilterTimeConstant "0.001"
-	      UdotUserProvided	      "1"
-	    }
-	    Block {
-	      BlockType		      Reference
-	      Name		      "Switch"
-	      SID		      "208"
-	      Ports		      [0, 0, 0, 0, 0, 1, 2]
-	      Position		      [425, 110, 465, 150]
-	      ZOrder		      166
-	      BlockMirror	      on
-	      LibraryVersion	      "9000000.1"
-	      SourceBlock	      "fl_lib/Electrical/Electrical Elements/Switch"
-	      SourceType	      "Switch"
-	      SourceProductName	      "Simscape"
-	      SourceProductBaseCode   "SS"
-	      LogSimulationData	      off
-	      SourceFile	      "foundation.electrical.elements.controlled_switch"
-	      ComponentPath	      "foundation.electrical.elements.controlled_switch"
-	      ComponentVariants	      "foundation.electrical.elements.controlled_switch"
-	      ComponentVariantNames   "controlled_switch"
-	      ClassName		      "controlled_switch"
-	      SchemaVersion	      "1"
-	      R_closed		      "0.01"
-	      R_closed_unit	      "Ohm"
-	      R_closed_conf	      "compiletime"
-	      G_open		      "1e-8"
-	      G_open_unit	      "1/Ohm"
-	      G_open_conf	      "compiletime"
-	      Threshold		      "0.5"
-	      Threshold_unit	      "1"
-	      Threshold_conf	      "compiletime"
-	      i_specify		      off
-	      i_priority	      "High"
-	      i			      "0"
-	      i_unit		      "A"
-	      i_nominal_specify	      off
-	      i_nominal_unit	      "A"
-	      i_nominal_value	      "1"
-	      v_specify		      off
-	      v_priority	      "High"
-	      v			      "0"
-	      v_unit		      "V"
-	      v_nominal_specify	      off
-	      v_nominal_unit	      "V"
-	      v_nominal_value	      "1"
-	    }
-	    Block {
-	      BlockType		      Constant
-	      Name		      "sw_vasca_1"
-	      SID		      "209"
-	      Position		      [170, 40, 200, 70]
-	      ZOrder		      181
-	      Value		      "vasca_1_sw"
-	      OutDataTypeStr	      "uint8"
-	    }
-	    Block {
-	      BlockType		      PMIOPort
-	      Name		      "+"
-	      SID		      "210"
-	      Position		      [20, 133, 50, 147]
-	      ZOrder		      183
-	      Port		      "1"
-	      Side		      "Right"
-	    }
-	    Block {
-	      BlockType		      PMIOPort
-	      Name		      "-"
-	      SID		      "211"
-	      Position		      [515, 133, 545, 147]
-	      ZOrder		      184
-	      BlockMirror	      on
-	      Port		      "2"
-	      Side		      "Left"
-	    }
-	    Block {
-	      BlockType		      Outport
-	      Name		      "Signal"
-	      SID		      "212"
-	      Position		      [570, 13, 600, 27]
-	      ZOrder		      182
-	      IconDisplay	      "Port number"
-	    }
-	    Line {
-	      LineType		      "Connection"
-	      ZOrder		      1
-	      SrcBlock		      "Switch"
-	      SrcPort		      RConn2
-	      DstBlock		      "+"
-	      DstPort		      RConn1
-	    }
-	    Line {
-	      LineType		      "Connection"
-	      ZOrder		      2
-	      SrcBlock		      "-"
-	      SrcPort		      RConn1
-	      Points		      [-17, 0; 0, -10]
-	      DstBlock		      "Switch"
-	      DstPort		      LConn1
-	    }
-	    Line {
-	      LineType		      "Connection"
-	      ZOrder		      3
-	      SrcBlock		      "Simulink-PS\nConverter"
-	      SrcPort		      RConn1
-	      Points		      [5, 0; 0, 30]
-	      DstBlock		      "Switch"
-	      DstPort		      RConn1
-	    }
-	    Line {
-	      ZOrder		      9
-	      SrcBlock		      "Data Type Conversion"
-	      SrcPort		      1
-	      Points		      [20, 0]
-	      Branch {
-		ZOrder			15
-		Points			[0, -70]
-		DstBlock		"Signal"
-		DstPort			1
-	      }
-	      Branch {
-		ZOrder			14
-		DstBlock		"Simulink-PS\nConverter"
-		DstPort			1
-	      }
-	    }
-	    Line {
-	      ZOrder		      11
-	      SrcBlock		      "sw_vasca_1"
-	      SrcPort		      1
-	      Points		      [29, 0; 0, 35]
-	      DstBlock		      "Data Type Conversion"
-	      DstPort		      1
-	    }
-	  }
-	}
-	Block {
-	  BlockType		  Reference
-	  Name			  "Variable Resistor"
-	  SID			  "203"
-	  Ports			  [0, 0, 0, 0, 0, 2, 1]
-	  Position		  [95, 125, 155, 165]
-	  ZOrder		  307
-	  LibraryVersion	  "9000000.1"
-	  SourceBlock		  "fl_lib/Electrical/Electrical Elements/Variable Resistor"
-	  SourceType		  "Variable Resistor"
-	  SourceProductName	  "Simscape"
-	  SourceProductBaseCode	  "SS"
-	  LogSimulationData	  off
-	  SourceFile		  "foundation.electrical.elements.variable_resistor"
-	  ComponentPath		  "foundation.electrical.elements.variable_resistor"
-	  ComponentVariants	  "foundation.electrical.elements.variable_resistor"
-	  ComponentVariantNames	  "variable_resistor"
-	  ClassName		  "variable_resistor"
-	  SchemaVersion		  "1"
-	  Rmin			  "0"
-	  Rmin_unit		  "Ohm"
-	  Rmin_conf		  "compiletime"
-	  i_specify		  off
-	  i_priority		  "None"
-	  i			  "0"
-	  i_unit		  "A"
-	  i_nominal_specify	  off
-	  i_nominal_unit	  "A"
-	  i_nominal_value	  "1"
-	  v_specify		  off
-	  v_priority		  "None"
-	  v			  "0"
-	  v_unit		  "V"
-	  v_nominal_specify	  off
-	  v_nominal_unit	  "V"
-	  v_nominal_value	  "1"
-	}
-	Block {
-	  BlockType		  SubSystem
 	  Name			  "Voltimeter"
 	  SID			  "82"
 	  Ports			  [0, 1, 0, 0, 0, 2]
 	  Position		  [260, 335, 300, 395]
 	  ZOrder		  -4
+	  ShowName		  off
 	  RequestExecContextInheritance	off
 	  Variant		  off
 	  System {
@@ -3546,7 +3358,7 @@ Model {
 	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "100"
+	    ZoomFactor		    "200"
 	    Block {
 	      BlockType		      Reference
 	      Name		      "PS-Simulink\nConverter4"
@@ -3658,10 +3470,373 @@ Model {
 	  }
 	}
 	Block {
+	  BlockType		  SubSystem
+	  Name			  "trigger"
+	  SID			  "206"
+	  Ports			  [0, 1, 0, 0, 0, 1, 1]
+	  Position		  [490, 97, 550, 163]
+	  ZOrder		  340
+	  BlockMirror		  on
+	  NamePlacement		  "alternate"
+	  RequestExecContextInheritance	off
+	  Variant		  off
+	  System {
+	    Name		    "trigger"
+	    Location		    [0, 0, 1920, 1050]
+	    Open		    off
+	    PortBlocksUseCompactNotation off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "200"
+	    Block {
+	      BlockType		      DataTypeConversion
+	      Name		      "Data Type Conversion"
+	      SID		      "317"
+	      Position		      [245, 78, 290, 102]
+	      ZOrder		      185
+	      OutDataTypeStr	      "double"
+	      RndMeth		      "Floor"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Simulink-PS\nConverter"
+	      SID		      "207"
+	      Ports		      [1, 0, 0, 0, 0, 0, 1]
+	      Position		      [350, 72, 380, 108]
+	      ZOrder		      167
+	      LibraryVersion	      "2.0"
+	      SourceBlock	      "nesl_utility/Simulink-PS\nConverter"
+	      SourceType	      "Simulink-PS\nConverter"
+	      SourceProductName	      "Simscape"
+	      SourceProductBaseCode   "SS"
+	      ContentPreviewEnabled   off
+	      PhysicalDomain	      "network_engine_domain"
+	      SubClassName	      "ps_input"
+	      LeftPortType	      "input"
+	      RightPortType	      "output"
+	      PseudoPeriodic	      off
+	      Frequencies	      "[]"
+	      NoiseDistribution	      "none"
+	      NoiseParameters	      "[]"
+	      Unit		      "1"
+	      AffineConversion	      off
+	      FilteringAndDerivatives "zero"
+	      SimscapeFilterOrder     "1"
+	      InputFilterTimeConstant "0.001"
+	      UdotUserProvided	      "1"
+	    }
+	    Block {
+	      BlockType		      Constant
+	      Name		      "vasca_sw"
+	      SID		      "209"
+	      Position		      [170, 40, 200, 70]
+	      ZOrder		      181
+	      Value		      "vasca_sw"
+	      OutDataTypeStr	      "uint8"
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "vasca_switch"
+	      SID		      "208"
+	      Ports		      [0, 0, 0, 0, 0, 1, 2]
+	      Position		      [425, 110, 465, 150]
+	      ZOrder		      166
+	      BlockMirror	      on
+	      ShowName		      off
+	      LibraryVersion	      "9000000.1"
+	      SourceBlock	      "fl_lib/Electrical/Electrical Elements/Switch"
+	      SourceType	      "Switch"
+	      SourceProductName	      "Simscape"
+	      SourceProductBaseCode   "SS"
+	      LogSimulationData	      off
+	      SourceFile	      "foundation.electrical.elements.controlled_switch"
+	      ComponentPath	      "foundation.electrical.elements.controlled_switch"
+	      ComponentVariants	      "foundation.electrical.elements.controlled_switch"
+	      ComponentVariantNames   "controlled_switch"
+	      ClassName		      "controlled_switch"
+	      SchemaVersion	      "1"
+	      R_closed		      "0.01"
+	      R_closed_unit	      "Ohm"
+	      R_closed_conf	      "compiletime"
+	      G_open		      "1e-8"
+	      G_open_unit	      "1/Ohm"
+	      G_open_conf	      "compiletime"
+	      Threshold		      "0.5"
+	      Threshold_unit	      "1"
+	      Threshold_conf	      "compiletime"
+	      i_specify		      off
+	      i_priority	      "High"
+	      i			      "0"
+	      i_unit		      "A"
+	      i_nominal_specify	      off
+	      i_nominal_unit	      "A"
+	      i_nominal_value	      "1"
+	      v_specify		      off
+	      v_priority	      "High"
+	      v			      "0"
+	      v_unit		      "V"
+	      v_nominal_specify	      off
+	      v_nominal_unit	      "V"
+	      v_nominal_value	      "1"
+	    }
+	    Block {
+	      BlockType		      PMIOPort
+	      Name		      "+"
+	      SID		      "210"
+	      Position		      [20, 133, 50, 147]
+	      ZOrder		      183
+	      Port		      "1"
+	      Side		      "Right"
+	    }
+	    Block {
+	      BlockType		      PMIOPort
+	      Name		      "-"
+	      SID		      "211"
+	      Position		      [515, 133, 545, 147]
+	      ZOrder		      184
+	      BlockMirror	      on
+	      Port		      "2"
+	      Side		      "Left"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "vasca_sw_st"
+	      SID		      "212"
+	      Position		      [570, 13, 600, 27]
+	      ZOrder		      182
+	      IconDisplay	      "Port number"
+	    }
+	    Line {
+	      LineType		      "Connection"
+	      ZOrder		      1
+	      SrcBlock		      "vasca_switch"
+	      SrcPort		      RConn2
+	      DstBlock		      "+"
+	      DstPort		      RConn1
+	    }
+	    Line {
+	      LineType		      "Connection"
+	      ZOrder		      2
+	      SrcBlock		      "-"
+	      SrcPort		      RConn1
+	      Points		      [-17, 0; 0, -10]
+	      DstBlock		      "vasca_switch"
+	      DstPort		      LConn1
+	    }
+	    Line {
+	      LineType		      "Connection"
+	      ZOrder		      3
+	      SrcBlock		      "Simulink-PS\nConverter"
+	      SrcPort		      RConn1
+	      Points		      [5, 0; 0, 30]
+	      DstBlock		      "vasca_switch"
+	      DstPort		      RConn1
+	    }
+	    Line {
+	      ZOrder		      9
+	      SrcBlock		      "Data Type Conversion"
+	      SrcPort		      1
+	      Points		      [20, 0]
+	      Branch {
+		ZOrder			15
+		Points			[0, -70]
+		DstBlock		"vasca_sw_st"
+		DstPort			1
+	      }
+	      Branch {
+		ZOrder			14
+		DstBlock		"Simulink-PS\nConverter"
+		DstPort			1
+	      }
+	    }
+	    Line {
+	      ZOrder		      11
+	      SrcBlock		      "vasca_sw"
+	      SrcPort		      1
+	      Points		      [29, 0; 0, 35]
+	      DstBlock		      "Data Type Conversion"
+	      DstPort		      1
+	    }
+	  }
+	}
+	Block {
+	  BlockType		  Constant
+	  Name			  "vasca_r_in"
+	  SID			  "204"
+	  Position		  [102, -85, 128, -55]
+	  ZOrder		  308
+	  BlockRotation		  270
+	  BlockMirror		  on
+	  NamePlacement		  "alternate"
+	  Value			  "vasca_r_in"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "vasca_resistor_in"
+	  SID			  "203"
+	  Ports			  [0, 0, 0, 0, 0, 2, 1]
+	  Position		  [130, 125, 190, 165]
+	  ZOrder		  307
+	  ShowName		  off
+	  LibraryVersion	  "9000000.1"
+	  SourceBlock		  "fl_lib/Electrical/Electrical Elements/Variable Resistor"
+	  SourceType		  "Variable Resistor"
+	  SourceProductName	  "Simscape"
+	  SourceProductBaseCode	  "SS"
+	  LogSimulationData	  off
+	  SourceFile		  "foundation.electrical.elements.variable_resistor"
+	  ComponentPath		  "foundation.electrical.elements.variable_resistor"
+	  ComponentVariants	  "foundation.electrical.elements.variable_resistor"
+	  ComponentVariantNames	  "variable_resistor"
+	  ClassName		  "variable_resistor"
+	  SchemaVersion		  "1"
+	  Rmin			  "0"
+	  Rmin_unit		  "Ohm"
+	  Rmin_conf		  "compiletime"
+	  i_specify		  off
+	  i_priority		  "None"
+	  i			  "0"
+	  i_unit		  "A"
+	  i_nominal_specify	  off
+	  i_nominal_unit	  "A"
+	  i_nominal_value	  "1"
+	  v_specify		  off
+	  v_priority		  "None"
+	  v			  "0"
+	  v_unit		  "V"
+	  v_nominal_specify	  off
+	  v_nominal_unit	  "V"
+	  v_nominal_value	  "1"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "vasca_resistor_width"
+	  SID			  "81"
+	  Ports			  [0, 0, 0, 0, 0, 1, 1]
+	  Position		  [385, 131, 425, 159]
+	  ZOrder		  266
+	  ShowName		  off
+	  LibraryVersion	  "9000000.1"
+	  SourceBlock		  "elec_lib/Passive Devices/Resistor"
+	  SourceType		  "Resistor"
+	  SourceProductName	  "Simscape Electronics"
+	  SourceProductBaseCode	  "SN"
+	  LogSimulationData	  off
+	  SourceFile		  "elec.passive.resistor"
+	  ComponentPath		  "elec.passive.resistor"
+	  ComponentVariants	  "elec.passive.resistor, elec.passive.resistor_thermal"
+	  ComponentVariantNames	  "No thermal port, Show thermal port"
+	  ClassName		  "Simscape variant"
+	  SchemaVersion		  "1"
+	  R			  "vasca_1_r"
+	  R_unit		  "Ohm"
+	  R_conf		  "compiletime"
+	  R_tol			  "5"
+	  R_tol_unit		  "1"
+	  R_tol_conf		  "compiletime"
+	  enable_R_tol		  "0"
+	  enable_R_tol_unit	  "1"
+	  enable_R_tol_conf	  "compiletime"
+	  tol_distribution	  "1"
+	  tol_distribution_unit	  "1"
+	  tol_distribution_conf	  "compiletime"
+	  nSigma		  "4"
+	  nSigma_unit		  "1"
+	  nSigma_conf		  "compiletime"
+	  enable_operating_limits "0"
+	  enable_operating_limits_unit "1"
+	  enable_operating_limits_conf "compiletime"
+	  operating_limit_action  "2"
+	  operating_limit_action_unit "1"
+	  operating_limit_action_conf "compiletime"
+	  max_working_voltage	  "100"
+	  max_working_voltage_unit "V"
+	  max_working_voltage_conf "compiletime"
+	  power_rating		  "1"
+	  power_rating_unit	  "W"
+	  power_rating_conf	  "compiletime"
+	  enable_faults		  "0"
+	  enable_faults_unit	  "1"
+	  enable_faults_conf	  "compiletime"
+	  fault_action		  "1"
+	  fault_action_unit	  "1"
+	  fault_action_conf	  "compiletime"
+	  R_faulted		  "Inf"
+	  R_faulted_unit	  "Ohm"
+	  R_faulted_conf	  "compiletime"
+	  enable_temporal_fault	  "0"
+	  enable_temporal_fault_unit "1"
+	  enable_temporal_fault_conf "compiletime"
+	  t_fault		  "1"
+	  t_fault_unit		  "s"
+	  t_fault_conf		  "compiletime"
+	  enable_behavioral_fault "0"
+	  enable_behavioral_fault_unit "1"
+	  enable_behavioral_fault_conf "compiletime"
+	  max_permissible_current "1"
+	  max_permissible_current_unit "A"
+	  max_permissible_current_conf "compiletime"
+	  t_fail_on_current	  "1"
+	  t_fail_on_current_unit  "s"
+	  t_fail_on_current_conf  "compiletime"
+	  noise_mode		  "0"
+	  noise_mode_unit	  "1"
+	  noise_mode_conf	  "compiletime"
+	  sample_time		  "0.001"
+	  sample_time_unit	  "s"
+	  sample_time_conf	  "compiletime"
+	  repeatability		  "1"
+	  repeatability_unit	  "1"
+	  repeatability_conf	  "compiletime"
+	  auto_seed		  "2536105935"
+	  auto_seed_unit	  "1"
+	  auto_seed_conf	  "compiletime"
+	  user_seed		  "0"
+	  user_seed_unit	  "1"
+	  user_seed_conf	  "compiletime"
+	  Tdevice		  "25"
+	  Tdevice_unit		  "degC"
+	  Tdevice_conf		  "compiletime"
+	  alpha			  "3.93e-3"
+	  alpha_unit		  "1/K"
+	  alpha_conf		  "compiletime"
+	  Tmeas			  "25"
+	  Tmeas_unit		  "degC"
+	  Tmeas_conf		  "compiletime"
+	  thermal_mass		  "100"
+	  thermal_mass_unit	  "J/K"
+	  thermal_mass_conf	  "compiletime"
+	  power_derating_T1	  "70"
+	  power_derating_T1_unit  "degC"
+	  power_derating_T1_conf  "compiletime"
+	  power_derating_T2	  "155"
+	  power_derating_T2_unit  "degC"
+	  power_derating_T2_conf  "compiletime"
+	  operating_temperature_range_vec "[-50, 150]"
+	  operating_temperature_range_vec_unit "degC"
+	  operating_temperature_range_vec_conf "compiletime"
+	  temperature_specify	  off
+	  temperature_priority	  "High"
+	  temperature		  "298.15"
+	  temperature_unit	  "K"
+	  temperature_nominal_specify off
+	  temperature_nominal_unit "K"
+	  temperature_nominal_value "1"
+	}
+	Block {
 	  BlockType		  PMIOPort
 	  Name			  "In+"
 	  SID			  "88"
-	  Position		  [20, 110, 35, 140]
+	  Position		  [-65, 130, -50, 160]
 	  ZOrder		  298
 	  NamePlacement		  "alternate"
 	  Port			  "1"
@@ -3671,7 +3846,7 @@ Model {
 	  BlockType		  PMIOPort
 	  Name			  "In-"
 	  SID			  "89"
-	  Position		  [105, 425, 120, 455]
+	  Position		  [-65, 425, -50, 455]
 	  ZOrder		  299
 	  Port			  "2"
 	  Side			  "Left"
@@ -3680,7 +3855,7 @@ Model {
 	  BlockType		  PMIOPort
 	  Name			  "Out-"
 	  SID			  "91"
-	  Position		  [500, 433, 530, 447]
+	  Position		  [590, 433, 620, 447]
 	  ZOrder		  300
 	  BlockMirror		  on
 	  Port			  "3"
@@ -3690,7 +3865,7 @@ Model {
 	  BlockType		  PMIOPort
 	  Name			  "Out+"
 	  SID			  "90"
-	  Position		  [740, 138, 770, 152]
+	  Position		  [590, 138, 620, 152]
 	  ZOrder		  297
 	  BlockMirror		  on
 	  Port			  "4"
@@ -3698,50 +3873,65 @@ Model {
 	}
 	Block {
 	  BlockType		  Outport
-	  Name			  "iFlowRate"
-	  SID			  "92"
-	  Position		  [335, 165, 350, 195]
-	  ZOrder		  302
-	  ShowName		  off
-	  IconDisplay		  "Port number and signal name"
+	  Name			  "flowRateIn"
+	  SID			  "341"
+	  Position		  [33, 275, 47, 305]
+	  ZOrder		  345
+	  BlockRotation		  270
+	  BlockMirror		  on
+	  NamePlacement		  "alternate"
+	  HideAutomaticName	  off
+	  IconDisplay		  "Signal name"
 	}
 	Block {
 	  BlockType		  Outport
-	  Name			  "iPression"
-	  SID			  "93"
-	  Position		  [335, 350, 350, 380]
-	  ZOrder		  303
-	  ShowName		  off
+	  Name			  "flowRateOut"
+	  SID			  "94"
+	  Position		  [333, -15, 347, 15]
+	  ZOrder		  305
+	  BlockRotation		  270
+	  HideAutomaticName	  off
 	  Port			  "2"
 	  IconDisplay		  "Signal name"
 	}
 	Block {
 	  BlockType		  Outport
-	  Name			  "flowRate"
-	  SID			  "94"
-	  Position		  [333, -15, 347, 15]
-	  ZOrder		  305
-	  BlockRotation		  270
+	  Name			  "vFlowRate"
+	  SID			  "92"
+	  Position		  [335, 225, 350, 255]
+	  ZOrder		  302
+	  ShowName		  off
+	  HideAutomaticName	  off
 	  Port			  "3"
-	  IconDisplay		  "Port number"
+	  IconDisplay		  "Port number and signal name"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "vPression"
+	  SID			  "93"
+	  Position		  [335, 350, 350, 380]
+	  ZOrder		  303
+	  HideAutomaticName	  off
+	  Port			  "4"
+	  IconDisplay		  "Signal name"
 	}
 	Block {
 	  BlockType		  Outport
 	  Name			  "switch"
 	  SID			  "213"
-	  Position		  [510, 108, 540, 122]
+	  Position		  [435, 108, 465, 122]
 	  ZOrder		  341
 	  BlockMirror		  on
 	  NamePlacement		  "alternate"
-	  Port			  "4"
+	  ShowName		  off
+	  Port			  "5"
 	  IconDisplay		  "Port number"
 	}
 	Line {
 	  ZOrder		  1
 	  SrcBlock		  "Amperometer2"
 	  SrcPort		  1
-	  Points		  [13, 0; 0, -105]
-	  DstBlock		  "iFlowRate"
+	  DstBlock		  "vFlowRate"
 	  DstPort		  1
 	}
 	Line {
@@ -3763,7 +3953,7 @@ Model {
 	      ConnectType	      "SRC_DEST"
 	      SrcBlock		      "Out-"
 	      SrcPort		      RConn1
-	      Points		      [-275, 0]
+	      Points		      [-365, 0]
 	    }
 	    Branch {
 	      ConnectType	      "SRC_SRC"
@@ -3777,7 +3967,7 @@ Model {
 	  ZOrder		  8
 	  SrcBlock		  "Amperometer2"
 	  SrcPort		  LConn2
-	  Points		  [-35, 0; 0, 9]
+	  Points		  [-20, 0; 0, 54]
 	  Branch {
 	    ConnectType		    "DEST_DEST"
 	    SrcBlock		    "Voltimeter"
@@ -3794,14 +3984,14 @@ Model {
 	  ZOrder		  11
 	  SrcBlock		  "Voltimeter"
 	  SrcPort		  1
-	  DstBlock		  "iPression"
+	  DstBlock		  "vPression"
 	  DstPort		  1
 	}
 	Line {
 	  ZOrder		  12
-	  SrcBlock		  "Amperometer1"
+	  SrcBlock		  "FlowRateOut"
 	  SrcPort		  1
-	  DstBlock		  "flowRate"
+	  DstBlock		  "flowRateOut"
 	  DstPort		  1
 	}
 	Line {
@@ -3809,36 +3999,27 @@ Model {
 	  ZOrder		  13
 	  SrcBlock		  "Amperometer2"
 	  SrcPort		  LConn1
-	  Points		  [-45, 0; 0, -125]
+	  Points		  [-18, 0; 0, -80]
 	  Branch {
 	    ConnectType		    "DEST_DEST"
-	    SrcBlock		    "Variable Resistor"
+	    SrcBlock		    "vasca_resistor_in"
 	    SrcPort		    RConn1
-	    Points		    [30, 0]
+	    Points		    [7, 0]
 	  }
 	  Branch {
 	    ConnectType		    "DEST_SRC"
-	    Points		    [125, 0]
-	    DstBlock		    "Amperometer1"
+	    Points		    [113, 0]
+	    DstBlock		    "FlowRateOut"
 	    DstPort		    LConn1
 	  }
 	}
 	Line {
 	  LineType		  "Connection"
 	  ZOrder		  16
-	  SrcBlock		  "Sezione condotture"
+	  SrcBlock		  "vasca_resistor_width"
 	  SrcPort		  LConn1
 	  Points		  [-15, 0]
-	  DstBlock		  "Amperometer1"
-	  DstPort		  LConn2
-	}
-	Line {
-	  LineType		  "Connection"
-	  ZOrder		  22
-	  SrcBlock		  "In+"
-	  SrcPort		  RConn1
-	  Points		  [15, 0; 0, 30]
-	  DstBlock		  "Variable Resistor"
+	  DstBlock		  "FlowRateOut"
 	  DstPort		  LConn2
 	}
 	Line {
@@ -3846,29 +4027,29 @@ Model {
 	  ZOrder		  25
 	  SrcBlock		  "Simulink-PS\nConverter"
 	  SrcPort		  RConn1
-	  DstBlock		  "Variable Resistor"
+	  DstBlock		  "vasca_resistor_in"
 	  DstPort		  LConn1
 	}
 	Line {
 	  LineType		  "Connection"
 	  ZOrder		  26
-	  SrcBlock		  "Subsystem"
+	  SrcBlock		  "trigger"
 	  SrcPort		  RConn1
-	  DstBlock		  "Sezione condotture"
+	  DstBlock		  "vasca_resistor_width"
 	  DstPort		  RConn1
 	}
 	Line {
 	  LineType		  "Connection"
 	  ZOrder		  27
-	  SrcBlock		  "Subsystem"
+	  SrcBlock		  "trigger"
 	  SrcPort		  LConn1
-	  Points		  [43, 0; 0, 15]
+	  Points		  [5, 0; 0, 15]
 	  DstBlock		  "Out+"
 	  DstPort		  RConn1
 	}
 	Line {
 	  ZOrder		  28
-	  SrcBlock		  "Subsystem"
+	  SrcBlock		  "trigger"
 	  SrcPort		  1
 	  DstBlock		  "switch"
 	  DstPort		  1
@@ -3882,9 +4063,34 @@ Model {
 	}
 	Line {
 	  ZOrder		  30
-	  SrcBlock		  "Constant"
+	  SrcBlock		  "vasca_r_in"
 	  SrcPort		  1
 	  DstBlock		  "Data Type Conversion"
+	  DstPort		  1
+	}
+	Line {
+	  LineType		  "Connection"
+	  ZOrder		  31
+	  SrcBlock		  "FlowRateIn"
+	  SrcPort		  LConn1
+	  Points		  [0, -30]
+	  DstBlock		  "In+"
+	  DstPort		  RConn1
+	}
+	Line {
+	  LineType		  "Connection"
+	  ZOrder		  32
+	  SrcBlock		  "FlowRateIn"
+	  SrcPort		  LConn2
+	  Points		  [0, -20]
+	  DstBlock		  "vasca_resistor_in"
+	  DstPort		  LConn2
+	}
+	Line {
+	  ZOrder		  33
+	  SrcBlock		  "FlowRateIn"
+	  SrcPort		  1
+	  DstBlock		  "flowRateIn"
 	  DstPort		  1
 	}
       }
@@ -3894,7 +4100,7 @@ Model {
       Name		      "Vasca2"
       SID		      "226"
       Ports		      [0, 4, 0, 0, 0, 4]
-      Position		      [524, -260, 646, -185]
+      Position		      [644, -260, 766, -185]
       ZOrder		      334
       BlockRotation	      270
       RequestExecContextInheritance off
@@ -5073,7 +5279,7 @@ Model {
       Name		      "Vasca3"
       SID		      "275"
       Ports		      [0, 4, 0, 0, 0, 4]
-      Position		      [789, -260, 911, -185]
+      Position		      [909, -260, 1031, -185]
       ZOrder		      339
       BlockRotation	      270
       RequestExecContextInheritance off
@@ -6249,6 +6455,91 @@ Model {
     }
     Block {
       BlockType		      Scope
+      Name		      "flowRate_2"
+      SID		      "265"
+      Ports		      [2]
+      Position		      [696, -400, 729, -370]
+      ZOrder		      336
+      BlockRotation	      270
+      ScopeSpecificationString "Simulink.scopes.TimeScopeBlockCfg('CurrentConfiguration', extmgr.ConfigurationSet(extm"
+      "gr.Configuration('Core','General UI',true),extmgr.Configuration('Core','Source UI',true),extmgr.Configuration('S"
+      "ources','WiredSimulink',true,'DataLoggingVariableName','ScopeData1'),extmgr.Configuration('Visuals','Time Domain"
+      "',true,'SerializedDisplays',{struct('MinYLimReal','-3.15563','MaxYLimReal','5.90563','YLabelReal','','MinYLimMag"
+      "','0.00000','MaxYLimMag','5.90563','LegendVisibility','off','XGrid',true,'YGrid',true,'PlotMagPhase',false,'Axes"
+      "Color',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[1 1 0.06666"
+      "66666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.8313"
+      "72549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686"
+      " 0.650980392156863],'Title','%<SignalLabel>','LinePropertiesCache',{{}},'UserDefinedChannelNames',{{}},'NumLines"
+      "',2,'LineNames',{{'Vasca2/1','Vasca2/3'}},'ShowContent',true,'Placement',1)},'DisplayPropertyDefaults',struct('M"
+      "inYLimReal','-3.15563','MaxYLimReal','5.90563','YLabelReal','','MinYLimMag','0.00000','MaxYLimMag','5.90563','Le"
+      "gendVisibility','off','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[0.6862"
+      "74509803922 0.686274509803922 0.686274509803922],'ColorOrder',[0.0745098039215686 0.623529411764706 1;1 0.411764"
+      "705882353 0.16078431372549;1 1 0.0666666666666667;0.717647058823529 0.274509803921569 1;0.392156862745098 0.8313"
+      "72549019608 0.0745098039215686;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863])),extmgr.Configura"
+      "tion('Tools','Plot Navigation',true),extmgr.Configuration('Tools','Measurements',true,'Version','2017b')),'Versi"
+      "on','2017b','Position',[275 452 568 424])"
+      NumInputPorts	      "2"
+    }
+    Block {
+      BlockType		      Scope
+      Name		      "flowRate_3"
+      SID		      "314"
+      Ports		      [2]
+      Position		      [961, -400, 994, -370]
+      ZOrder		      341
+      BlockRotation	      270
+      ScopeSpecificationString "Simulink.scopes.TimeScopeBlockCfg('CurrentConfiguration', extmgr.ConfigurationSet(extm"
+      "gr.Configuration('Core','General UI',true),extmgr.Configuration('Core','Source UI',true),extmgr.Configuration('S"
+      "ources','WiredSimulink',true,'DataLoggingVariableName','ScopeData3'),extmgr.Configuration('Visuals','Time Domain"
+      "',true,'SerializedDisplays',{struct('MinYLimReal','-6.53761','MaxYLimReal','8.73541','YLabelReal','','MinYLimMag"
+      "','0.00000','MaxYLimMag','8.73541','LegendVisibility','off','XGrid',true,'YGrid',true,'PlotMagPhase',false,'Axes"
+      "Color',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[1 1 0.06666"
+      "66666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.8313"
+      "72549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686"
+      " 0.650980392156863],'Title','%<SignalLabel>','LinePropertiesCache',{{}},'UserDefinedChannelNames',{{}},'NumLines"
+      "',2,'LineNames',{{'Vasca3/1','Vasca3/3'}},'ShowContent',true,'Placement',1)},'DisplayPropertyDefaults',struct('M"
+      "inYLimReal','-6.53761','MaxYLimReal','8.73541','YLabelReal','','MinYLimMag','0.00000','MaxYLimMag','8.73541','Le"
+      "gendVisibility','off','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[0.6862"
+      "74509803922 0.686274509803922 0.686274509803922],'ColorOrder',[0.0745098039215686 0.623529411764706 1;1 0.411764"
+      "705882353 0.16078431372549;1 1 0.0666666666666667;0.717647058823529 0.274509803921569 1;0.392156862745098 0.8313"
+      "72549019608 0.0745098039215686;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863])),extmgr.Configura"
+      "tion('Tools','Plot Navigation',true),extmgr.Configuration('Tools','Measurements',true,'Version','2016b')),'Versi"
+      "on','2016b','Position',[684 330 560 420])"
+      NumInputPorts	      "2"
+    }
+    Block {
+      BlockType		      Scope
+      Name		      "flowRate_4"
+      SID		      "330"
+      Ports		      [2]
+      Position		      [815, -23, 845, 13]
+      ZOrder		      344
+      NamePlacement	      "alternate"
+      ScopeSpecificationString "Simulink.scopes.TimeScopeBlockCfg('CurrentConfiguration', extmgr.ConfigurationSet(extm"
+      "gr.Configuration('Core','General UI',true),extmgr.Configuration('Core','Source UI',true),extmgr.Configuration('S"
+      "ources','WiredSimulink',true,'DataLoggingVariableName','ScopeData1','DataLoggingSaveFormat','Array','DataLogging"
+      "Decimation','1','DataLoggingDecimateData',true),extmgr.Configuration('Visuals','Time Domain',true,'SerializedDis"
+      "plays',{struct('MinYLimReal','-124999999.875','MaxYLimReal','1124999998.875','YLabelReal','','MinYLimMag','     "
+      "  0.00000','MaxYLimMag','1124999998.875','LegendVisibility','Off','XGrid',true,'YGrid',true,'PlotMagPhase',false"
+      ",'AxesColor',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[1 1 0"
+      ".0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 "
+      "0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039"
+      "215686 0.650980392156863],'Title','%<SignalLabel>','LinePropertiesCache',{{}},'UserDefinedChannelNames',{{}},'Nu"
+      "mLines',2,'LineNames',{{'Utilizzatore1','Channel 2'}},'ShowContent',true,'Placement',1)},'DisplayPropertyDefault"
+      "s',struct('MinYLimReal','-124999999.875','MaxYLimReal','1124999998.875','YLabelReal','','MinYLimMag','       0.0"
+      "0000','MaxYLimMag','1124999998.875','LegendVisibility','Off','XGrid',true,'YGrid',true,'PlotMagPhase',false,'Axe"
+      "sColor',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[0.07450980"
+      "39215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;1 1 0.0666666666666667;0.717647058823529 0.274"
+      "509803921569 1;0.392156862745098 0.831372549019608 0.0745098039215686;0.0588235294117647 1 1;1 0.074509803921568"
+      "6 0.650980392156863])),extmgr.Configuration('Tools','Plot Navigation',true),extmgr.Configuration('Tools','Measur"
+      "ements',true,'Measurements',struct('traceselector',struct('Line',1),'tcursors',struct('XCoordinates',[3999.20318"
+      "725101 5414.34262948209],'YCoordinates',[NaN NaN],'CursorChannels',[1 1],'WaveformCursors',true,'ShowHorizontal'"
+      ",false,'ShowVertical',true,'LockCursorSpacing',false,'SnapToData',false,'SettingsPanelOpen',0,'MeasurementsPanel"
+      "Open',1)),'Version','2017b')),'Version','2017b','Position',[5 31 1912 966])"
+      NumInputPorts	      "2"
+    }
+    Block {
+      BlockType		      Scope
       Name		      "i_pozzo"
       SID		      "163"
       Ports		      [1]
@@ -6276,87 +6567,35 @@ Model {
     }
     Block {
       BlockType		      Scope
-      Name		      "i_vasca"
+      Name		      "i_vasca_1"
       SID		      "161"
-      Ports		      [2]
-      Position		      [291, -340, 324, -310]
+      Ports		      [3]
+      Position		      [279, -350, 351, -305]
       ZOrder		      330
       BlockRotation	      270
+      NamePlacement	      "alternate"
       ScopeSpecificationString "Simulink.scopes.TimeScopeBlockCfg('CurrentConfiguration', extmgr.ConfigurationSet(extm"
       "gr.Configuration('Core','General UI',true),extmgr.Configuration('Core','Source UI',true),extmgr.Configuration('S"
       "ources','WiredSimulink',true,'DataLoggingVariableName','ScopeData4','DataLoggingSaveFormat','Array','DataLogging"
       "Decimation','1','DataLoggingDecimateData',true),extmgr.Configuration('Visuals','Time Domain',true,'SerializedDis"
-      "plays',{struct('MinYLimReal','-3.15563','MaxYLimReal','5.90563','YLabelReal','','MinYLimMag','0.00000','MaxYLimM"
-      "ag','5.90563','LegendVisibility','Off','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesT"
+      "plays',{struct('MinYLimReal','-6.53761','MaxYLimReal','8.73541','YLabelReal','','MinYLimMag','0.00000','MaxYLimM"
+      "ag','8.73541','LegendVisibility','Off','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesT"
       "ickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[1 1 0.0666666666666667;0.0745098"
       "039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098"
       "039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],'"
-      "Title','%<SignalLabel>','LinePropertiesCache',{{}},'UserDefinedChannelNames',{{}},'NumLines',2,'LineNames',{{'Va"
-      "sca1/1','Vasca1/3'}},'ShowContent',true,'Placement',1)},'DisplayPropertyDefaults',struct('MinYLimReal','-3.15563"
-      "','MaxYLimReal','5.90563','YLabelReal','','MinYLimMag','0.00000','MaxYLimMag','5.90563','LegendVisibility','Off'"
-      ",'XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[0.686274509803922 0.6862745"
-      "09803922 0.686274509803922],'ColorOrder',[0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.160784313"
-      "72549;1 1 0.0666666666666667;0.717647058823529 0.274509803921569 1;0.392156862745098 0.831372549019608 0.0745098"
-      "039215686;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863])),extmgr.Configuration('Tools','Plot Na"
-      "vigation',true),extmgr.Configuration('Tools','Measurements',true,'Measurements',struct('traceselector',struct('L"
-      "ine',1),'tcursors',struct('XCoordinates',[1800 5400],'YCoordinates',[NaN NaN],'CursorChannels',[1 1],'WaveformCu"
-      "rsors',true,'ShowHorizontal',false,'ShowVertical',true,'LockCursorSpacing',false,'SnapToData',false,'SettingsPan"
-      "elOpen',0,'MeasurementsPanelOpen',1)),'Version','2017b')),'Version','2017b','Position',[108 46 1672 260])"
-      NumInputPorts	      "2"
-    }
-    Block {
-      BlockType		      Scope
-      Name		      "i_vasca1"
-      SID		      "265"
-      Ports		      [2]
-      Position		      [536, -340, 569, -310]
-      ZOrder		      336
-      BlockRotation	      270
-      ScopeSpecificationString "Simulink.scopes.TimeScopeBlockCfg('CurrentConfiguration', extmgr.ConfigurationSet(extm"
-      "gr.Configuration('Core','General UI',true),extmgr.Configuration('Core','Source UI',true),extmgr.Configuration('S"
-      "ources','WiredSimulink',true,'DataLoggingVariableName','ScopeData1'),extmgr.Configuration('Visuals','Time Domain"
-      "',true,'SerializedDisplays',{struct('MinYLimReal','-3.15563','MaxYLimReal','5.90563','YLabelReal','','MinYLimMag"
-      "','0.00000','MaxYLimMag','5.90563','LegendVisibility','off','XGrid',true,'YGrid',true,'PlotMagPhase',false,'Axes"
-      "Color',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[1 1 0.06666"
-      "66666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.8313"
-      "72549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686"
-      " 0.650980392156863],'Title','%<SignalLabel>','LinePropertiesCache',{{}},'UserDefinedChannelNames',{{}},'NumLines"
-      "',2,'LineNames',{{'Vasca2/1','Vasca2/3'}},'ShowContent',true,'Placement',1)},'DisplayPropertyDefaults',struct('M"
-      "inYLimReal','-3.15563','MaxYLimReal','5.90563','YLabelReal','','MinYLimMag','0.00000','MaxYLimMag','5.90563','Le"
-      "gendVisibility','off','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[0.6862"
-      "74509803922 0.686274509803922 0.686274509803922],'ColorOrder',[0.0745098039215686 0.623529411764706 1;1 0.411764"
-      "705882353 0.16078431372549;1 1 0.0666666666666667;0.717647058823529 0.274509803921569 1;0.392156862745098 0.8313"
-      "72549019608 0.0745098039215686;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863])),extmgr.Configura"
-      "tion('Tools','Plot Navigation',true),extmgr.Configuration('Tools','Measurements',true,'Version','2017b')),'Versi"
-      "on','2017b','Position',[275 452 568 424])"
-      NumInputPorts	      "2"
-    }
-    Block {
-      BlockType		      Scope
-      Name		      "i_vasca2"
-      SID		      "314"
-      Ports		      [2]
-      Position		      [796, -340, 829, -310]
-      ZOrder		      341
-      BlockRotation	      270
-      ScopeSpecificationString "Simulink.scopes.TimeScopeBlockCfg('CurrentConfiguration', extmgr.ConfigurationSet(extm"
-      "gr.Configuration('Core','General UI',true),extmgr.Configuration('Core','Source UI',true),extmgr.Configuration('S"
-      "ources','WiredSimulink',true,'DataLoggingVariableName','ScopeData3'),extmgr.Configuration('Visuals','Time Domain"
-      "',true,'SerializedDisplays',{struct('MinYLimReal','-6.53761','MaxYLimReal','8.73541','YLabelReal','','MinYLimMag"
-      "','0.00000','MaxYLimMag','8.73541','LegendVisibility','off','XGrid',true,'YGrid',true,'PlotMagPhase',false,'Axes"
-      "Color',[0 0 0],'AxesTickColor',[0.686274509803922 0.686274509803922 0.686274509803922],'ColorOrder',[1 1 0.06666"
-      "66666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.8313"
-      "72549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686"
-      " 0.650980392156863],'Title','%<SignalLabel>','LinePropertiesCache',{{}},'UserDefinedChannelNames',{{}},'NumLines"
-      "',2,'LineNames',{{'Vasca3/1','Vasca3/3'}},'ShowContent',true,'Placement',1)},'DisplayPropertyDefaults',struct('M"
-      "inYLimReal','-6.53761','MaxYLimReal','8.73541','YLabelReal','','MinYLimMag','0.00000','MaxYLimMag','8.73541','Le"
-      "gendVisibility','off','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[0.6862"
-      "74509803922 0.686274509803922 0.686274509803922],'ColorOrder',[0.0745098039215686 0.623529411764706 1;1 0.411764"
-      "705882353 0.16078431372549;1 1 0.0666666666666667;0.717647058823529 0.274509803921569 1;0.392156862745098 0.8313"
-      "72549019608 0.0745098039215686;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863])),extmgr.Configura"
-      "tion('Tools','Plot Navigation',true),extmgr.Configuration('Tools','Measurements',true,'Version','2016b')),'Versi"
-      "on','2016b','Position',[684 330 560 420])"
-      NumInputPorts	      "2"
+      "Title','%<SignalLabel>','LinePropertiesCache',{{}},'UserDefinedChannelNames',{{}},'NumLines',3,'LineNames',{{'Va"
+      "sca1/1','Vasca1/2','Vasca1/3'}},'ShowContent',true,'Placement',1)},'DisplayPropertyDefaults',struct('MinYLimReal"
+      "','-6.53761','MaxYLimReal','8.73541','YLabelReal','','MinYLimMag','0.00000','MaxYLimMag','8.73541','LegendVisibi"
+      "lity','Off','XGrid',true,'YGrid',true,'PlotMagPhase',false,'AxesColor',[0 0 0],'AxesTickColor',[0.68627450980392"
+      "2 0.686274509803922 0.686274509803922],'ColorOrder',[0.0745098039215686 0.623529411764706 1;1 0.411764705882353 "
+      "0.16078431372549;1 1 0.0666666666666667;0.717647058823529 0.274509803921569 1;0.392156862745098 0.83137254901960"
+      "8 0.0745098039215686;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863])),extmgr.Configuration('Tool"
+      "s','Plot Navigation',true),extmgr.Configuration('Tools','Measurements',true,'Measurements',struct('traceselector"
+      "',struct('Line',1),'tcursors',struct('XCoordinates',[4491.63346613547 2897.63033175356],'YCoordinates',[2.972691"
+      "67520902 -0.0601582959669621],'CursorChannels',[1 1],'WaveformCursors',true,'ShowHorizontal',false,'ShowVertical"
+      "',true,'LockCursorSpacing',false,'SnapToData',false,'SettingsPanelOpen',0,'MeasurementsPanelOpen',1)),'Version',"
+      "'2017b')),'Version','2017b','Position',[167 35 1680 936])"
+      NumInputPorts	      "3"
     }
     Block {
       BlockType		      Scope
@@ -6387,10 +6626,10 @@ Model {
     }
     Block {
       BlockType		      Scope
-      Name		      "v_vasca"
+      Name		      "v_vasca_1"
       SID		      "162"
       Ports		      [1]
-      Position		      [364, -340, 396, -310]
+      Position		      [349, -335, 381, -305]
       ZOrder		      331
       BlockRotation	      270
       ScopeSpecificationString "Simulink.scopes.TimeScopeBlockCfg('CurrentConfiguration', extmgr.ConfigurationSet(extm"
@@ -6414,10 +6653,10 @@ Model {
     }
     Block {
       BlockType		      Scope
-      Name		      "v_vasca1"
+      Name		      "v_vasca_2"
       SID		      "266"
       Ports		      [1]
-      Position		      [609, -340, 641, -310]
+      Position		      [674, -340, 706, -310]
       ZOrder		      337
       BlockRotation	      270
       ScopeSpecificationString "Simulink.scopes.TimeScopeBlockCfg('CurrentConfiguration', extmgr.ConfigurationSet(extm"
@@ -6442,10 +6681,10 @@ Model {
     }
     Block {
       BlockType		      Scope
-      Name		      "v_vasca2"
+      Name		      "v_vasca_3"
       SID		      "315"
       Ports		      [1]
-      Position		      [874, -340, 906, -310]
+      Position		      [939, -340, 971, -310]
       ZOrder		      342
       BlockRotation	      270
       ScopeSpecificationString "Simulink.scopes.TimeScopeBlockCfg('CurrentConfiguration', extmgr.ConfigurationSet(extm"
@@ -6466,34 +6705,6 @@ Model {
       "ion('Tools','Plot Navigation',true),extmgr.Configuration('Tools','Measurements',true,'Version','2016b')),'Versio"
       "n','2016b','Position',[1 31 1920 966])"
       NumInputPorts	      "1"
-    }
-    Line {
-      LineType		      "Connection"
-      ZOrder		      86
-      SrcBlock		      "Pozzo"
-      SrcPort		      LConn2
-      Points		      [190, 0; 0, -223]
-      Branch {
-	ConnectType		"DEST_DEST"
-	Points			[540, 42; -245, 0]
-	Branch {
-	  ConnectType		  "SRC_DEST"
-	  SrcBlock		  "Vasca3"
-	  SrcPort		  LConn1
-	  Points		  [0, 212; -265, 0]
-	}
-	Branch {
-	  ConnectType		  "SRC_DEST"
-	  SrcBlock		  "Vasca2"
-	  SrcPort		  LConn1
-	  Points		  [0, 212]
-	}
-      }
-      Branch {
-	ConnectType		"DEST_SRC"
-	DstBlock		"Vasca1"
-	DstPort			LConn1
-      }
     }
     Line {
       LineType		      "Connection"
@@ -6532,27 +6743,10 @@ Model {
       }
     }
     Line {
-      ZOrder		      235
-      SrcBlock		      "Vasca1"
-      SrcPort		      3
-      Points		      [0, -5; -40, 0]
-      DstBlock		      "i_vasca"
-      DstPort		      2
-    }
-    Line {
-      ZOrder		      208
-      SrcBlock		      "Vasca1"
-      SrcPort		      1
-      Points		      [5, 0]
-      DstBlock		      "i_vasca"
-      DstPort		      1
-    }
-    Line {
       ZOrder		      209
       SrcBlock		      "Vasca1"
-      SrcPort		      2
-      Points		      [0, -15; 55, 0]
-      DstBlock		      "v_vasca"
+      SrcPort		      4
+      DstBlock		      "v_vasca_1"
       DstPort		      1
     }
     Line {
@@ -6582,7 +6776,7 @@ Model {
     Line {
       LineType		      "Connection"
       ZOrder		      11
-      Points		      [570, -63; 0, -107]
+      Points		      [690, -63; 0, -107]
       DstBlock		      "Vasca2"
       DstPort		      LConn2
       Branch {
@@ -6610,30 +6804,21 @@ Model {
       ZOrder		      243
       SrcBlock		      "Vasca2"
       SrcPort		      3
-      Points		      [0, -5; -40, 0]
-      DstBlock		      "i_vasca1"
+      Points		      [0, -26; 44, 0; 0, -58; -44, 0]
+      DstBlock		      "flowRate_2"
       DstPort		      2
-    }
-    Line {
-      ZOrder		      244
-      SrcBlock		      "Vasca2"
-      SrcPort		      1
-      Points		      [5, 0]
-      DstBlock		      "i_vasca1"
-      DstPort		      1
     }
     Line {
       ZOrder		      245
       SrcBlock		      "Vasca2"
       SrcPort		      2
-      Points		      [55, 0]
-      DstBlock		      "v_vasca1"
+      DstBlock		      "v_vasca_2"
       DstPort		      1
     }
     Line {
       LineType		      "Connection"
       ZOrder		      22
-      Points		      [835, -63; 0, -107]
+      Points		      [955, -63; 0, -107]
       DstBlock		      "Vasca3"
       DstPort		      LConn2
       Branch {
@@ -6661,24 +6846,90 @@ Model {
       ZOrder		      248
       SrcBlock		      "Vasca3"
       SrcPort		      3
-      Points		      [0, -5; -45, 0]
-      DstBlock		      "i_vasca2"
+      Points		      [0, -26; 41, 0; 0, -64]
+      DstBlock		      "flowRate_3"
       DstPort		      2
-    }
-    Line {
-      ZOrder		      249
-      SrcBlock		      "Vasca3"
-      SrcPort		      1
-      DstBlock		      "i_vasca2"
-      DstPort		      1
     }
     Line {
       ZOrder		      250
       SrcBlock		      "Vasca3"
       SrcPort		      2
-      Points		      [55, 0]
-      DstBlock		      "v_vasca2"
+      DstBlock		      "v_vasca_3"
       DstPort		      1
+    }
+    Line {
+      ZOrder		      303
+      SrcBlock		      "Vasca1"
+      SrcPort		      2
+      DstBlock		      "i_vasca_1"
+      DstPort		      2
+    }
+    Line {
+      ZOrder		      258
+      SrcBlock		      "Vasca2"
+      SrcPort		      1
+      Points		      [0, -90]
+      DstBlock		      "flowRate_2"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      259
+      SrcBlock		      "Vasca3"
+      SrcPort		      1
+      Points		      [0, -90]
+      DstBlock		      "flowRate_3"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      260
+      SrcBlock		      "Utilizzatore1"
+      SrcPort		      1
+      Points		      [0, 75]
+      DstBlock		      "flowRate_4"
+      DstPort		      1
+    }
+    Line {
+      LineType		      "Connection"
+      ZOrder		      89
+      SrcBlock		      "Vasca2"
+      SrcPort		      LConn1
+      Points		      [0, 302]
+      Branch {
+	ConnectType		"DEST_SRC"
+	Points			[-355, 0]
+	Branch {
+	  ConnectType		  "DEST_DEST"
+	  SrcBlock		  "Pozzo"
+	  SrcPort		  LConn2
+	  Points		  [200, 0; 0, -133]
+	}
+	Branch {
+	  ConnectType		  "DEST_SRC"
+	  Points		  [0, -302]
+	  DstBlock		  "Vasca1"
+	  DstPort		  LConn1
+	}
+      }
+      Branch {
+	ConnectType		"DEST_SRC"
+	Points			[265, 0]
+	DstBlock		"Vasca3"
+	DstPort			LConn1
+      }
+    }
+    Line {
+      ZOrder		      302
+      SrcBlock		      "Vasca1"
+      SrcPort		      1
+      DstBlock		      "i_vasca_1"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      304
+      SrcBlock		      "Vasca1"
+      SrcPort		      3
+      DstBlock		      "i_vasca_1"
+      DstPort		      3
     }
   }
 }

@@ -4,8 +4,8 @@ period = 10; % seconds
 
 vasca_1_c    = 10;
 vasca_1_r    = 100;
-vasca_1_r_in = single(100);
-vasca_1_sw   = uint8(1);
+vasca_r_in = single(100);
+vasca_sw   = uint8(1);
 
 vasca_2_c    = 10;
 vasca_2_r    = 100;
