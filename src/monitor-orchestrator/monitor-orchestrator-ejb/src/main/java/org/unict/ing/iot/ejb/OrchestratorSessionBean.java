@@ -60,7 +60,6 @@ public class OrchestratorSessionBean implements OrchestratorSessionBeanLocal {
         TimerService timerService = context.getTimerService();
         timerService.getTimers().forEach((Timer t) -> t.cancel());
         timerService.createIntervalTimer(2020, ZONE_MULT * PERIOD * 1000, new TimerConfig("ZONE", true));
-        mQTTClientSessionBean.createConnection();
         //timerService.createIntervalTimer(4000, FIXFINGER_MULT * PERIOD * 1000, new TimerConfig("FIXFINGERS", true));
     }
 
