@@ -69,7 +69,7 @@ while 1
         % Retrieve serialization function
         f = handles2b(tmp_index);
         f = cell2mat(f);
-        
+
         % Append the binary data
         readings{k} = f(tmp);
       end
@@ -80,35 +80,36 @@ while 1
       %end
 
       % PUBLISH end
-%       % READ
-%
-%       % try
-%         % TODO : does the read return bits?
-%         bits = read(subscriptions{k}.Sub);
-%       % catch
-%       % end
-%
-%       start_bit = 0;
-%       for k=length(write_elements):-1:1
-%
-%         % Get type index
-%         tmp_index = find(strcmp(sizes, write_elements(i).Type));
-%
-%         % Calculate end bit on size basis
-%         end_bit = start_bit + sizes(tmp_index) * 8 - 1;
-%         tmp = bitsliceget(bits, start_bit, end_bit);
-%
-%         % Retrieve deserilization function
-%         f = handles2v(tmp_index);
-%         % Convert to value
-%         tmp = f(tmp);
-%
-%         set_param(sprintf('%s/%s/%s', model_name, zone, write_elements(k).Name), 'value', tmp);
-%
-%         start_bit = end_bit + 1;
-%       end
-%
-%       %READ END
+      % READ
+
+      % try
+        bytes = uint8(read(subscriptions(i).Sub));
+      % catch
+      % end
+
+      start_byte = 0;
+      for k=length(write_elements):-1:1
+        % Get type index
+        tmp_index = find(strcmp(classes, read_elements(k).Type));
+
+        % Calculate end bit on size basis
+        end_byte = start_byte + sizes(tmp_index) - 1;
+        tmp = bytes(start_byte:end_byte);
+
+        % Retrieve deserilization function
+        f = handles2v(tmp_index);
+        f = cell2mat(f);
+
+        % Convert to value
+        tmp = f(tmp);
+
+        element = sprintf('%s/%s', model_name, sprintf(write_elements(k).Name, i));
+        set_param(element, 'value', tmp);
+
+        start_byte = end_bit + 1;
+      end
+
+      %READ END
     end
 
     pause(period);
@@ -127,9 +128,9 @@ function y = boolean2b(x)
 end
 
 function y = b2single(x)
-  y = typecast(tmp, 'single')
+  y = single(x);
 end
 
 function y = b2boolean(x)
-  y = typecast(tmp, 'uint8')
+  y = uint8(x);
 end
