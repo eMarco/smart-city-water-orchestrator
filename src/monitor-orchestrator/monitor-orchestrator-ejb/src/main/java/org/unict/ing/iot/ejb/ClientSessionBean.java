@@ -24,7 +24,8 @@ import org.unict.ing.iot.utils.mongodriver.DBConnectionSingletonSessionBeanLocal
 
 /**
  *
- * @author Marco Grassia <marco.grassia@studium.unict.it>
+ *
+ * @author aleskandro - eMarco - cursedLondor
  */
 @Stateless
 public class ClientSessionBean implements ClientSessionBeanRemote {
@@ -42,5 +43,15 @@ public class ClientSessionBean implements ClientSessionBeanRemote {
     @Override
     public List<GenericValue> findByClassNameAndFieldMatch(String name, String field, String value) {
         return this.db.getStorage().findByClassNameAndFieldMatch(name, field, value);
+    }
+
+    @Override
+    public List<GenericValue> findByClassNameAndFieldMatch(String name, String field, Integer value) {
+        return this.db.getStorage().findByClassNameAndFieldMatch(name, field, value);
+    }
+
+    @Override
+    public void insert(GenericValue value) {
+        this.db.getStorage().insert(value);
     }
 }

@@ -22,10 +22,13 @@ import org.unict.ing.iot.utils.model.GenericValue;
 
 /**
  *
- * @author Marco Grassia <marco.grassia@studium.unict.it>
+ * @author aleskandro - eMarco - cursedLondor
  */
 @Remote
 public interface ClientSessionBeanRemote {
     public List<GenericValue> findByClassName(String name);
     public List<GenericValue> findByClassNameAndFieldMatch(String name, String field, String value);
+    public List<GenericValue> findByClassNameAndFieldMatch(String name, String field, Integer value);
+
+    public void insert(GenericValue value);
 }

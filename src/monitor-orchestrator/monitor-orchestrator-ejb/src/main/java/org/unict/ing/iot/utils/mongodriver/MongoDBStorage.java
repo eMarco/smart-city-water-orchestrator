@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2018 aleskandro - eMarco - cursedLondor
  *
  * This program is free software: you can redistribute it and/or modify
@@ -77,19 +77,25 @@ public class MongoDBStorage implements Storage {
     public void updateOrInsert(GenericValue elem) {
         update(elem);
     }
-    
+
     @Override
     public List<GenericValue> findByClassName(String name) {
         String query = "{ className: {$regex: \".*" + name + ".*\" } }";
         return findBy(query);
     }
-    
+
     @Override
     public List<GenericValue> findByClassNameAndFieldMatch(String name, String field, String value) {
         String query = "{ $and: [ {className: {$regex: \".*" + name + ".*\" } }, { \""+ field + "\": \"" + value + "\" } ] }";
         return findBy(query);
     }
-    
+
+    @Override
+    public List<GenericValue> findByClassNameAndFieldMatch(String name, String field, Integer value) {
+        String query = "{ $and: [ {className: {$regex: \".*" + name + ".*\" } }, { \""+ field + "\": " + value + " } ] }";
+        return findBy(query);
+    }
+
     private List<GenericValue> findBy(String query) {
         MongoCursor<GenericValue> iterDoc;
         List<GenericValue> ret = new LinkedList();
@@ -112,12 +118,12 @@ public class MongoDBStorage implements Storage {
         collection.distinct("tankId").as(Integer.class).forEach((t) -> {
             tanksIds.add(t);
         });
-        
+
         tanksIds.forEach((tId) -> {
             ret.add(collection.find("{ $and: [ { \"className\": {$regex: \".*Tank.*\" } }, {\"tankId\": " + tId + "} ] }")
                     .as(GenericValue.class).next());// forEach(v -> ret.add(v));
         });
-        
+
         return ret;
     }
 }

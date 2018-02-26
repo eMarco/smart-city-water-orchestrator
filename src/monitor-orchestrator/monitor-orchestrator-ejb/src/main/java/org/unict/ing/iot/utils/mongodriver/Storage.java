@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2018 aleskandro - eMarco - cursedLondor
  *
  * This program is free software: you can redistribute it and/or modify
@@ -27,6 +27,7 @@ public interface Storage {
     public List<GenericValue> find(ObjectId _id);
     public List<GenericValue> findByClassName(String name);
     public List<GenericValue> findByClassNameAndFieldMatch(String name, String field, String value);
+    public List<GenericValue> findByClassNameAndFieldMatch(String name, String field, Integer value);
     public List<GenericValue> findLastTanks();
     public void remove(ObjectId _id);
     public void update(GenericValue elem);
@@ -35,5 +36,5 @@ public interface Storage {
     // Not used (TODO delete)
     public void findOrInsert(GenericValue elem);
     public void updateOrInsert(GenericValue elem);
-    
+
 }
