@@ -1,0 +1,6 @@
+*rtw
+*.original
+*.r20*
+*.slx*
+slprj/
+*.autosave
