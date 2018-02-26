@@ -102,6 +102,7 @@ export class AnalyzerComponent implements OnInit {
 
   applyData(data : any[], type : any) {
     // try {
+      var j : number = 0;
       var tanks : Set<String> = new Set();
       data.filter((elem) => tanks.add(elem.tankId));
 
@@ -129,9 +130,15 @@ export class AnalyzerComponent implements OnInit {
           console.log(columns);
 
           this.appendContainer("Tank " + tank + " - " + plot.name, chartName);
-          var buffer = this.createPlot(chartName, columns, plot.y_label);
+          var that = this;
+
+          setTimeout(function(){
+
+            that.createPlot(chartName, columns, plot.y_label);
+          }, j*10);
 
           i += 1;
+          j += 1;
         });
       });
     // }
