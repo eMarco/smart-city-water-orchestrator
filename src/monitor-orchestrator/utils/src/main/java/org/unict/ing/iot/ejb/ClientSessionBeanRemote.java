@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 aleskandro - eMarco - cursedLondor
+ * Copyright (C) 2018 Marco Grassia <marco.grassia@studium.unict.it>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,27 +14,21 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.unict.ing.iot.utils.mongodriver;
+package org.unict.ing.iot.ejb;
 
 import java.util.List;
-import org.bson.types.ObjectId;
+import javax.ejb.Remote;
 import org.unict.ing.iot.utils.model.GenericValue;
+
 /**
  *
+ * @author aleskandro - eMarco - cursedLondor
  */
-public interface Storage {
-
-    public List<GenericValue> find(ObjectId _id);
+@Remote
+public interface ClientSessionBeanRemote {
     public List<GenericValue> findByClassName(String name);
     public List<GenericValue> findByClassNameAndFieldMatch(String name, String field, String value);
     public List<GenericValue> findByClassNameAndFieldMatch(String name, String field, Integer value);
-    public List<GenericValue> findLastTanks();
-    public void remove(ObjectId _id);
-    public void update(GenericValue elem);
-    public void insert(GenericValue elem);
 
-    // Not used (TODO delete)
-    public void findOrInsert(GenericValue elem);
-    public void updateOrInsert(GenericValue elem);
-
+    public void insert(GenericValue value);
 }
