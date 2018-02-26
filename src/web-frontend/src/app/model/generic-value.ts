@@ -1,5 +1,7 @@
-import { Key } from './key';
+import { ObjectId } from './object-id';
 
 export abstract class GenericValue {
-  key?: Key;
+  id: ObjectId;
+
+  className: string;
 }
