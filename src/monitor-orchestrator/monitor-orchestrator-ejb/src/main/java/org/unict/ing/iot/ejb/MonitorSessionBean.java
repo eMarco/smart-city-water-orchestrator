@@ -71,7 +71,9 @@ public class MonitorSessionBean implements MonitorSessionBeanRemote {
     public float obtainValue() {
         return number;
     }
-    /**
-     * TODO Methods for RestAPIs
-     */
+    
+    @Override
+    public List<GenericValue> findByClassName(String name) {
+        return db.getStorage().findByClassName(name);
+    }
 }

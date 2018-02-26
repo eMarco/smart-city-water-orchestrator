@@ -25,7 +25,6 @@ import org.jongo.MongoCollection;
 import org.jongo.MongoCursor;
 import org.unict.ing.iot.utils.helper.JsonHelper;
 import org.unict.ing.iot.utils.model.GenericValue;
-import org.unict.ing.iot.utils.model.Tank;
 
 /**
  * An implementation of the Storage interface for MongoDB
@@ -104,7 +103,7 @@ public class MongoDBStorage implements Storage {
             // Put HERE a default query (TODO)
             iterDoc = collection.find().as(GenericValue.class);
         } else {
-            iterDoc = collection.find(query).as(GenericValue.class);
+            iterDoc = collection.find(query).sort("{_id: -1}").as(GenericValue.class);
         }
 
         iterDoc.forEach(v -> ret.add(v));
@@ -120,7 +119,7 @@ public class MongoDBStorage implements Storage {
         });
 
         tanksIds.forEach((tId) -> {
-            ret.add(collection.find("{ $and: [ { \"className\": {$regex: \".*Tank.*\" } }, {\"tankId\": " + tId + "} ] }")
+            ret.add(collection.find("{ $and: [ { \"className\": {$regex: \".*Tank.*\" } }, {\"tankId\": " + tId + "} ] }").sort("{_id: -1}")
                     .as(GenericValue.class).next());// forEach(v -> ret.add(v));
         });
 

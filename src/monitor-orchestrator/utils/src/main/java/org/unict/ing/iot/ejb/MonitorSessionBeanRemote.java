@@ -33,6 +33,7 @@ public interface MonitorSessionBeanRemote {
     List<GenericValue> getTanks();
     
     float obtainValue();
+    List<GenericValue> findByClassName(String name);
     
     void modify(float num);
 }
