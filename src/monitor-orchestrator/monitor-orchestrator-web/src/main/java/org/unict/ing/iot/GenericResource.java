@@ -20,8 +20,6 @@ import javax.naming.NamingException;
 import javax.ws.rs.core.MediaType;
 import org.unict.ing.iot.ejb.MonitorSessionBeanRemote;
 import org.unict.ing.iot.utils.helper.JsonHelper;
-import org.unict.ing.iot.utils.model.Tank;
-import org.unict.ing.iot.utils.model.Zone;
 
 /**
  * REST Web Service
@@ -31,7 +29,6 @@ import org.unict.ing.iot.utils.model.Zone;
 @Path("generic")
 @RequestScoped
 public class GenericResource {
-
     MonitorSessionBeanRemote monitorSessionBean = lookupMonitorSessionBeanRemote();
 
     @Context
@@ -51,7 +48,8 @@ public class GenericResource {
     @Produces(MediaType.TEXT_PLAIN)
     public String getXml() {
         //monitorSessionBean.put(new Zone(new Tank()));
-        return JsonHelper.writeList(monitorSessionBean.getZones());        
+        return JsonHelper.writeList(monitorSessionBean.findByClassName("Tank"));        
+        
     }
 
     /**

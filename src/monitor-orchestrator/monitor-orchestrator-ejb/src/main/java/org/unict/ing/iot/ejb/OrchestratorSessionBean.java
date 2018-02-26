@@ -28,6 +28,7 @@ import javax.ejb.Timeout;
 import javax.ejb.Timer;
 import javax.ejb.TimerConfig;
 import javax.ejb.TimerService;
+import org.unict.ing.iot.utils.helper.JsonHelper;
 import org.unict.ing.iot.utils.model.GenericValue;
 import org.unict.ing.iot.utils.model.Tank;
 import org.unict.ing.iot.utils.model.Zone;
@@ -75,6 +76,8 @@ public class OrchestratorSessionBean implements OrchestratorSessionBeanLocal {
     
     private void tankActuation() {
         List<GenericValue> tanks = monitorSessionBean.getTanks(); 
+        System.err.println(JsonHelper.writeList(tanks));
+                
         tanks.forEach(tankk -> { 
             if (tankk instanceof Tank) {
                 Tank tank = (Tank) tankk;
@@ -88,6 +91,7 @@ public class OrchestratorSessionBean implements OrchestratorSessionBeanLocal {
                     log += " INCREMENTING";
                     tank.getValve().increment();
                 }
+                        
                 if (tank.getCapacity() < capacityError()) {
                     log += " CLOSING TRIGGER";
                     tank.getTrigger().close();
