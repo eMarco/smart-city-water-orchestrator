@@ -56,13 +56,13 @@ public class Electrovalve implements Serializable {
      * TODO
      */
     public void increment() {
-        increment(10);
+        increment((float)0.1);
     }
     
     /**
      * TODO
      */
     public void decrement() {
-        decrement(10);
+        decrement((float)0.1);
     }
 }
