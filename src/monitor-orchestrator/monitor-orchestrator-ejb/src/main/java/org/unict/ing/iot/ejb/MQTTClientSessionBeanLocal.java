@@ -17,6 +17,6 @@ public interface MQTTClientSessionBeanLocal {
     
     public void publish(String topic, Tank tank);
     
-    public void createConnection();
+    //public void createConnection();
     
 }
