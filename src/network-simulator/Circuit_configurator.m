@@ -19,16 +19,6 @@ r_pompa      = 100;
 
 
 values = string([ vasca_r_in, vasca_sw ]);
-for i=1:zones_num
-    for k=1:(length(write_elements))
-        tmp_index = find(strcmp(classes, write_elements(k).Type));
-        tmp = values(k);
-        f = cell2mat(handles2v(tmp_index));
-        element = sprintf('%s/%s', model_name, sprintf(write_elements(k).Name, i));
-        tmp=f(tmp);
-        set_param(element, 'value', tmp);
-    end
-end
 
 
 model_name = 'Rete';
@@ -46,6 +36,7 @@ write_elements = [
       struct('Name', 'Vasca%d/trigger/vasca_sw', 'Type', 'uint8'),
 ];
 
+
 % CONFIG END
 
 classes = {'double','single','int8','uint8','int16','uint16','int32','uint32','int64','uint64'};
@@ -54,6 +45,17 @@ handles2b = {0, @single2b, 0, @boolean2b, 0, 0, 0, 0, 0, 0};
 handles2v = {0, @b2single, 0, @b2boolean, 0, 0, 0, 0, 0, 0};
 
 addpath RealTime_Pacer/
+
+for i=1:zones_num
+    for k=1:(length(write_elements))
+        tmp_index = find(strcmp(classes, write_elements(k).Type));
+        tmp = values(k);
+        f = cell2mat(handles2v(tmp_index));
+        element = sprintf('%s/%s', model_name, sprintf(write_elements(k).Name, i));
+        tmp=f(tmp);
+        set_param(element, 'value', tmp);
+    end
+end
 
 myMQTT = mqtt('tcp://localhost:1883');
 
