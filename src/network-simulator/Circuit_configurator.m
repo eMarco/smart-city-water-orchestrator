@@ -17,6 +17,20 @@ vasca_3_r    = 100;
 v_pompa      = 1600;
 r_pompa      = 100;
 
+
+values = string([ vasca_r_in, vasca_sw ]);
+for i=1:zones_num
+    for k=1:(length(write_elements))
+        tmp_index = find(strcmp(classes, write_elements(k).Type));
+        tmp = values(k);
+        f = cell2mat(handles2v(tmp_index));
+        element = sprintf('%s/%s', model_name, sprintf(write_elements(k).Name, i));
+        tmp=f(tmp);
+        set_param(element, 'value', tmp);
+    end
+end
+
+
 model_name = 'Rete';
 zone_name = 'Vasca%d';
 read_elements = [
@@ -80,7 +94,7 @@ while 1
       end
       %try
         % display(cell2mat(readings))
-        display(readings)
+        %display(readings)
         publish(myMQTT, publish_urls(i), readings);
       %catch
       %end
@@ -95,16 +109,16 @@ while 1
         %
         % % start_byte = 0;
         % % for k=length(write_elements):-1:1
-        for k=1:length(write_elements)
+        for k=1:(length(write_elements))
             % Get type index
-            tmp_index = find(strcmp(classes, read_elements(k).Type));
+            tmp_index = find(strcmp(classes, write_elements(k).Type));
             %
             % %   % Calculate end bit on size basis
             % %   end_byte = start_byte + sizes(tmp_index) - 1;
             % %   tmp = bytes(start_byte:end_byte);
             %
             %   % Get i-th element
-            tmp = values(i);
+            tmp = values(k);
             %
             %   % Retrieve deserilization function
             f = cell2mat(handles2v(tmp_index));
@@ -113,7 +127,7 @@ while 1
             tmp = f(tmp);
             %
             element = sprintf('%s/%s', model_name, sprintf(write_elements(k).Name, i));
-            
+            display(tmp);
             set_param(element, 'value', tmp);
             %
             % %   start_byte = end_bit + 1;
@@ -147,3 +161,4 @@ function y = b2boolean(x)
     y = sprintf('uint8(%s)',x);
  % y = uint8(x);
 end
+
