@@ -51,7 +51,7 @@ handles2v = {0, @b2single, 0, @b2boolean, 0, 0, 0, 0, 0, 0};
 % OPEN MODEL AND START SIMULATION
 
 open_system(model_name);
-set_param(model_name,'SimulationCommand','start')
+set_param(model_name,'SimulationCommand','start');
 
 % RESET THE MODEL (SIMULATION MUST BE RUNNING)
 values = string([ vasca_r_in, vasca_sw ]);

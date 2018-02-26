@@ -21,6 +21,7 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.ejb.EJB;
+import javax.ejb.EJBTransactionRolledbackException;
 import javax.ejb.SessionContext;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
@@ -65,7 +66,12 @@ public class OrchestratorSessionBean implements OrchestratorSessionBeanLocal {
     @Timeout
     public void timeout(Timer timer) {
         if (timer.getInfo().equals("ZONE")) {
-            tankActuation();
+            try {
+                tankActuation();
+            }
+            catch (EJBTransactionRolledbackException e)  {
+               timer.cancel();
+            }
         }
     }
     
