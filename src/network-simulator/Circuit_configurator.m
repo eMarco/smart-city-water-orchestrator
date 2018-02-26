@@ -27,6 +27,13 @@ vasca_3_r    = 100;
 v_pompa      = 1600;
 r_pompa      = 100;
 
+speedup      = num2str(100);
+
+% Initial conditions
+vasca_1_initial_voltage = 1400;
+vasca_2_initial_voltage = 1400;
+vasca_3_initial_voltage = 1400;
+
 model_name = 'Rete';
 zone_name = 'Vasca%d';
 read_elements = [
@@ -51,6 +58,7 @@ handles2v = {0, @b2single, 0, @b2boolean, 0, 0, 0, 0, 0, 0};
 % OPEN MODEL AND START SIMULATION
 
 open_system(model_name);
+set_param('Rete/pacer', 'simTimePerRealTime', speedup);
 set_param(model_name,'SimulationCommand','start');
 
 % RESET THE MODEL (SIMULATION MUST BE RUNNING)
