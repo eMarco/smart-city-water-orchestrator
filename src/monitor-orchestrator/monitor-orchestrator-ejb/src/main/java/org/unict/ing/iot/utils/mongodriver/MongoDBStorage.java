@@ -84,6 +84,12 @@ public class MongoDBStorage implements Storage {
         return findBy(query);
     }
     
+    @Override
+    public List<GenericValue> findByClassNameAndFieldMatch(String name, String field, String value) {
+        String query = "{ $and: [ {className: {$regex: \".*" + name + ".*\" } }, { \""+ field + "\": \"" + value + "\" } ] }";
+        return findBy(query);
+    }
+    
     private List<GenericValue> findBy(String query) {
         MongoCursor<GenericValue> iterDoc;
         List<GenericValue> ret = new LinkedList();
