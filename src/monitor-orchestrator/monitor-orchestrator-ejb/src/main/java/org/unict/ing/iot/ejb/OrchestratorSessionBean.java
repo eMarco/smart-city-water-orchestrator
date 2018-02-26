@@ -21,6 +21,7 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.ejb.EJB;
+import javax.ejb.EJBTransactionRolledbackException;
 import javax.ejb.SessionContext;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
@@ -31,7 +32,6 @@ import javax.ejb.TimerService;
 import org.unict.ing.iot.utils.helper.JsonHelper;
 import org.unict.ing.iot.utils.model.GenericValue;
 import org.unict.ing.iot.utils.model.Tank;
-import org.unict.ing.iot.utils.model.Zone;
 
 /**
  *
@@ -61,17 +61,18 @@ public class OrchestratorSessionBean implements OrchestratorSessionBeanLocal {
         TimerService timerService = context.getTimerService();
         timerService.getTimers().forEach((Timer t) -> t.cancel());
         timerService.createIntervalTimer(2020, ZONE_MULT * PERIOD * 1000, new TimerConfig("ZONE", true));
-        //timerService.createIntervalTimer(4000, FIXFINGER_MULT * PERIOD * 1000, new TimerConfig("FIXFINGERS", true));
     }
 
     @Timeout
     public void timeout(Timer timer) {
         if (timer.getInfo().equals("ZONE")) {
-            tankActuation();
+            try {
+                tankActuation();
+            }
+            catch (EJBTransactionRolledbackException e)  {
+               timer.cancel();
+            }
         }
-        /*if (timer.getInfo().equals("FIXFINGERS")) {
-            fixFingers();
-        }*/
     }
     
     private void tankActuation() {
@@ -99,9 +100,6 @@ public class OrchestratorSessionBean implements OrchestratorSessionBeanLocal {
                     log += " OPENING TRIGGER";
                     tank.getTrigger().open();
                 }
-                //monitorSessionBean.put(tank);
-                // TODO bool value for Tank to ? Actuation? (metrics)
-                // TODO MQTTClient.publish decomment
                 mQTTClientSessionBean.publish(tank.getTankId() + "/", tank);
                 LOG.warning(log);
             }

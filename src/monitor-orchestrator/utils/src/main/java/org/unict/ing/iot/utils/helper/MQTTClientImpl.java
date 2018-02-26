@@ -94,6 +94,8 @@ public class MQTTClientImpl implements MqttCallbackExtended {
             System.err.println("msg "+me.getMessage());
             System.err.println("loc "+me.getLocalizedMessage());
             System.err.println("excep "+me);
+            
+            
         }
     }
     @Override

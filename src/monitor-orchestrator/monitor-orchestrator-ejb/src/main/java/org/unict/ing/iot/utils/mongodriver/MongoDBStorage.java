@@ -38,7 +38,7 @@ public class MongoDBStorage implements Storage {
         // Using a single connection to provide better (query-oriented) scalability
         this.db = db;
         Jongo jongo = new Jongo(db);
-        this.collection = jongo.getCollection("waterCollection2");
+        this.collection = jongo.getCollection("waterCollection25");
     }
     /**
      * Insert
