@@ -1,5 +1,5 @@
 export class Trigger {
-  trigger: boolean;
+  opened: boolean;
 }
 /*
 "trigger":{"opened":true},

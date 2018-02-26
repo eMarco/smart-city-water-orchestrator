@@ -22,10 +22,22 @@ export class Tank extends GenericValue {
       toArray: Tank.toArray_1
     },
     {
+      name: "Input Resistance",
+      labels: ["Timestamp", "Input Resistance"],
+      y_label: "V",
+      toArray: Tank.toArray_2
+    },
+    {
       name: "Pression",
       labels: ["Timestamp", "Pression"],
       y_label: "V",
-      toArray: Tank.toArray_2
+      toArray: Tank.toArray_3
+    },
+    {
+      name: "Output Enabled\\Disabled",
+      labels: ["Timestamp", "Status"],
+      y_label: "Boolean",
+      toArray: Tank.toArray_4
     },
   ];
 
@@ -34,7 +46,15 @@ export class Tank extends GenericValue {
   }
 
   static toArray_2(stat : Tank): any {
+    return [ new Date(stat.id.time), stat.valve.flowRateResistance ];
+  }
+
+  static toArray_3(stat : Tank): any {
     return [ new Date(stat.id.time), stat.capacity ];
+  }
+
+  static toArray_4(stat : Tank): any {
+    return [ new Date(stat.id.time), (stat.trigger.opened == true) ? 1 : 0 ];
   }
 }
 /*
