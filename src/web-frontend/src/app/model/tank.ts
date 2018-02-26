@@ -14,11 +14,27 @@ export class Tank extends GenericValue {
 
   valve: Valve;
 
+  static plots = [
+    {
+      name: "Flow Rate",
+      labels: ["Timestamp", "Input Flow Rate", "Output Flow Rate"],
+      y_label: "A",
+      toArray: Tank.toArray_1
+    },
+    {
+      name: "Pression",
+      labels: ["Timestamp", "Pression"],
+      y_label: "V",
+      toArray: Tank.toArray_2
+    },
+  ];
 
-  static labels: string[] = ["Timestamp", "Capacity", "Input Flow Rate", "Output Flow Rate", "ID"];
-  static y_label: string = "MB";
-  static toArray(stat : Tank): any {
-    return [new Date(stat.id.timestamp*1000), stat.capacity, stat.inputFlowRate, stat.outputFlowRate, stat.tankId];
+  static toArray_1(stat : Tank): any {
+    return [ new Date(stat.id.time), stat.inputFlowRate, stat.outputFlowRate ];
+  }
+
+  static toArray_2(stat : Tank): any {
+    return [ new Date(stat.id.time), stat.capacity ];
   }
 }
 /*

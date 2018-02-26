@@ -3,14 +3,7 @@ import * as c3                                      from "c3";
 
 import { Headers, Http }                            from '@angular/http';
 
-import { CPUStat }                                  from '../model/cpu-stat';
-import { RAMStat }                                  from '../model/ram-stat';
-import { IOStat }                                   from '../model/io-stat';
-import { UptimeStat }                               from '../model/uptime-stat';
-import { GenericStat }                              from "../model/generic-stat";
-
-import {CPUSTATS}                                   from "../mock-stats";
-
+import { Tank }                                     from '../model/tank'
 
 @Component({
   selector: 'app-analyzer',
@@ -18,23 +11,17 @@ import {CPUSTATS}                                   from "../mock-stats";
   styleUrls: ['./analyzer.component.css']
 })
 export class AnalyzerComponent implements OnInit {
-  private static baseUrl = "http://localhost/rest/datamanager-web/datamanager";
+  private static baseUrl = "http://localhost/rest/monitor-orchestrator-web/webresources/";
 
   @ViewChild('dataContainer') private dataContainer: ElementRef;
 
-  fromDate: Date;
-  toDate: Date;
+  tank1: boolean = true;
+  tank2: boolean;
+  tank3: boolean;
+  tank4: boolean;
+  tank5: boolean;
 
-  scanner1: boolean = true;
-  scanner2: boolean;
-  scanner3: boolean;
-  scanner4: boolean;
-  scanner5: boolean;
-
-  CPUStat: boolean = true;
-  RAMStat: boolean;
-  IOStat: boolean;
-  UptimeStat: boolean;
+  Tank: boolean = true;
 
   constructor(private http: Http) { }
 
@@ -72,11 +59,10 @@ export class AnalyzerComponent implements OnInit {
       this.dataContainer.nativeElement.innerHTML = "";
   }
 
-  private retrieveData(scanner : string, type : any, from? : number, to?: number) {
-    var url : string = AnalyzerComponent.baseUrl + '/topics/' + type.name.toLowerCase() + '/scanners/' + scanner;
-    if (from != null && to != null ) url += '/' + from + '/' + to;
+  private retrieveData(tank : string, type : any) {
+    var url : string = AnalyzerComponent.baseUrl + type.name.toLowerCase() + "/" + tank;
     console.log(url);
-    // baseUrl + /topics/cpustat/scanners/distsystems_scanner_1/1518155143/151899143
+
     this.http
           .get(url)
           .subscribe(
@@ -90,35 +76,22 @@ export class AnalyzerComponent implements OnInit {
   }
 
   refreshData() {
-    var fromDate : number = null;
-    var toDate : number = null;
-
-    if (this.fromDate != null) fromDate = Math.round(new Date(this.fromDate).getTime()/1000);
-    if (this.toDate != null) toDate = Math.round(new Date(this.toDate).getTime()/1000);
-
-    var scanners : Set<string> = new Set();
+    var tanks : Set<string> = new Set();
     var topics : Set<any> = new Set();
 
-    if (this.scanner1) scanners.add("distsystems_scanner_1");
-    if (this.scanner2) scanners.add("distsystems_scanner_2");
-    if (this.scanner3) scanners.add("distsystems_scanner_3");
-    if (this.scanner4) scanners.add("distsystems_scanner_4");
-    if (this.scanner5) scanners.add("distsystems_scanner_5");
+    if (this.tank1) tanks.add("1");
+    if (this.tank2) tanks.add("2");
+    if (this.tank3) tanks.add("3");
 
-    if (this.CPUStat) topics.add(CPUStat);
-    if (this.RAMStat) topics.add(RAMStat);
-    if (this.IOStat) topics.add(IOStat);
-    if (this.UptimeStat) topics.add(UptimeStat);
+    if (this.Tank) topics.add(Tank);
 
     this.clearContainer();
 
-    scanners.forEach((scanner) => {
+    tanks.forEach((tank) => {
       topics.forEach((topic) => {
-        this.retrieveData(scanner, topic, fromDate, toDate);
+        this.retrieveData(tank, topic);
       });
     });
-
-    // this.applyData(CPUSTATS, CPUStat);
   }
 
   private mergeAll(values : any[], value: any[]) {
@@ -129,30 +102,37 @@ export class AnalyzerComponent implements OnInit {
 
   applyData(data : any[], type : any) {
     // try {
-      var scanners : Set<String> = new Set();
-      data.filter((elem) => scanners.add(elem.scannerId));
+      var tanks : Set<String> = new Set();
+      data.filter((elem) => tanks.add(elem.tankId));
 
-      scanners.forEach((scanner) => {
-        var chartName : string = 'chart_' + scanner + '_' + type.name;
+      tanks.forEach((tank) => {
 
-        var columns = new Array<Array<any>>();
-        for (var label in type.labels) {
-          columns.push(new Array<any>(type.labels[label]));
-        }
+        var i : number = 0;
+        type.plots.forEach((plot) => {
 
-        data  .filter((elem) => elem.scannerId == scanner)        // filter for selected scanner
-              .sort((e1, e2) => e1.timestamp - e2.timestamp)      // sort by timestamp
-              .map((measure) => {
+          var chartName : string = 'chart_' + tank + '_' + type.name + '_' + String(i);
 
-              this.mergeAll(columns, type.toArray(measure));
+          var columns = new Array<Array<any>>();
+          for (var label in plot.labels) {
+            columns.push(new Array<any>(plot.labels[label]));
+          }
 
-              // x_col.push(new Date(measure.timestamp));
+          data  .filter((elem) => elem.tankId == tank)        // filter for selected tank
+                .sort((e1, e2) => e1.timestamp - e2.timestamp)      // sort by timestamp
+                .map((measure) => {
+
+                this.mergeAll(columns, plot.toArray(measure));
+
+                // x_col.push(new Date(measure.timestamp));
+          });
+          console.log("Creating graph " + chartName);
+          console.log(columns);
+
+          this.appendContainer("Tank " + tank + " - " + plot.name, chartName);
+          var buffer = this.createPlot(chartName, columns, plot.y_label);
+
+          i += 1;
         });
-        console.log("Creating graph " + chartName);
-        console.log(columns);
-
-        this.appendContainer("Scanner " + scanner + " - " + type.name, chartName);
-        var buffer = this.createPlot(chartName, columns, type.y_label);
       });
     // }
     // catch (Exception) {
