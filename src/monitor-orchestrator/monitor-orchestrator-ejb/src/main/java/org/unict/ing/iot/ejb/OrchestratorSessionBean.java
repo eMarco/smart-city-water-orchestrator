@@ -43,6 +43,9 @@ import org.unict.ing.iot.utils.model.Sector;
 public class OrchestratorSessionBean implements OrchestratorSessionBeanLocal {
 
     @EJB
+    private AlertSessionBeanLocal alertSessionBean;
+
+    @EJB
     private MQTTClientSessionBeanLocal mQTTClientSessionBean;
     /***
      * CONFIGS for the timers of periodically called methods
@@ -146,8 +149,9 @@ public class OrchestratorSessionBean implements OrchestratorSessionBeanLocal {
                     float diff = (sector.getFlowRate() - sector.getFlowRateCounted());
                     log += ": diff = outputRate - sectorRate = " + diff;
                     if (diff < flowRateError()) {
-                        log += " - Closing trigger";
+                        log += " - Closing trigger - Sending alert";
                         sector.getTrigger().close();
+                        alertSessionBean.SendMail("alessandro+iot@madfarm.it", "Alert on " +sector.getSectorId() + " - Zone: " + sector.getTankId() , "Water LOSS!!");
                     } else {
                         log += " - Opening trigger";
                         sector.getTrigger().open();

@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2018 aleskandro - eMarco - cursedLondor
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,25 +16,13 @@
  */
 package org.unict.ing.iot.ejb;
 
-import java.util.List;
-import javax.ejb.Remote;
-import org.unict.ing.iot.utils.model.GenericValue;
+import javax.ejb.Local;
 
 /**
  *
  * @author aleskandro - eMarco - cursedLondor
  */
-@Remote
-public interface MonitorSessionBeanRemote {
-
-    void put(final GenericValue elem);
-
-    List<GenericValue> getTanks();
-    List<GenericValue> getSectors();
-    
-    float obtainValue();
-    List<GenericValue> findByClassName(String name);
-    
-    String sendMail();
-    void modify(float num);
+@Local
+public interface AlertSessionBeanLocal {
+    public void SendMail(String recipientEmail, String subject, String message);
 }

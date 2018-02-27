@@ -30,6 +30,9 @@ import org.unict.ing.iot.utils.mongodriver.DBConnectionSingletonSessionBeanLocal
 public class MonitorSessionBean implements MonitorSessionBeanRemote {
 
     @EJB
+    private AlertSessionBeanLocal alertSessionBean;
+
+    @EJB
     private MQTTClientSessionBeanLocal mqttClientSessionBean;
 
     @EJB
@@ -80,4 +83,11 @@ public class MonitorSessionBean implements MonitorSessionBeanRemote {
     public List<GenericValue> findByClassName(String name) {
         return db.getStorage().findByClassName(name);
     }
+    
+    @Override
+    public String sendMail() {
+        alertSessionBean.SendMail("alessandro.distefano1@gmail.com", "Test", "TestMessage");
+        return "DONE?";
+    }
+    
 }
