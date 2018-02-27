@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2018 aleskandro - eMarco - cursedLondor
  *
  * This program is free software: you can redistribute it and/or modify
@@ -24,6 +24,7 @@ import java.io.Serializable;
  */
 public class Electrovalve implements Serializable {
     private float flowRateResistance;
+    private static float STEP = (float) 0.10;
 
     public Electrovalve(float flowRateResistance) {
         this.flowRateResistance = flowRateResistance;
@@ -40,29 +41,23 @@ public class Electrovalve implements Serializable {
     public void setFlowRateResistance(float flowRateResistance) {
         this.flowRateResistance = flowRateResistance;
     }
-    
+
     public void increment(float incrementValue) {
-        this.flowRateResistance += incrementValue;
+        this.flowRateResistance *= (1 + incrementValue);
     }
-    
+
     public void decrement(float decrementValue) {
-        if (this.flowRateResistance > decrementValue)
-            this.flowRateResistance -= decrementValue;
+        if (decrementValue >= 1)
+            this.flowRateResistance *= (1 - decrementValue);
         else
-            System.err.println("Decrementing would set a value less than 0");
+            System.err.println("Decrementing would set a value equal or less than 0");
     }
-    
-    /**
-     * TODO
-     */
+
     public void increment() {
-        increment((float)0.1);
+        increment(STEP);
     }
-    
-    /**
-     * TODO
-     */
+
     public void decrement() {
-        decrement((float)0.1);
+        decrement(STEP);
     }
 }
