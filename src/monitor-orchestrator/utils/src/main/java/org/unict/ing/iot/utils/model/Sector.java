@@ -52,11 +52,14 @@ public final class Sector extends GenericValue implements Serializable {
     public void setSectorId(int sectorId) {
         this.sectorId = sectorId;
     }
-    
-    
+
+    public Sector(float flowRate, float flowRateCounted, int ownerTankId, int sectorId) {
+        this(flowRate, flowRateCounted, ownerTankId, new SchmidtTrigger(), sectorId);
+    }
 
     public Sector(float flowRate, float flowRateCounted, int tankId, SchmidtTrigger trigger, int sectorId) {
         this.flowRate    = flowRate;
+        this.flowRateCounted = flowRateCounted;
         this.trigger     = trigger;
         this.ownerTankId = tankId;
         this.sectorId    = sectorId;

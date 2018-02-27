@@ -74,26 +74,30 @@ public class MQTTClientImpl implements MqttCallbackExtended {
     
     public void publish(String topic, GenericValue value) {
         try {
+            if(client != null && !client.isConnected()) {
+                destructor();
+                creator(subscribedBean);
+            }
             String payload = "";
             if (value instanceof Tank) {
                 Tank tank = (Tank)value;
 
-                if(client != null && !client.isConnected()) {
-                    destructor();
-                    creator(subscribedBean);
-                }
                 payload = Float.toString(tank.getValve().getFlowRateResistance());
 
                 if(tank.getTrigger().isOpened() == true)
                     payload = payload + "|1|";
                 else 
                     payload = payload + "|0|";
-
-                System.err.println(payload);
             }
             if (value instanceof Sector) {
-                //TODO
+                Sector sector = (Sector)value;
+                
+                if(sector.getTrigger().isOpened() == true)
+                    payload = payload + "1|";
+                else 
+                    payload = payload + "0|";
             }
+            System.err.println(payload);
             MqttMessage message = new MqttMessage(payload.getBytes());
             message.setQos(QOS);
             client.publish("/actuators/zones/" + topic, message);
@@ -115,21 +119,35 @@ public class MQTTClientImpl implements MqttCallbackExtended {
     @Override
     public void messageArrived(String topic, MqttMessage message) {
         System.out.println("Entered in arrived");
+        String[] split2 = topic.split("[/]");
+        String payload = new String(message.getPayload(), 0);
+        System.out.println(payload);
+        String[] split = payload.split("[|]");
         try {
-            String payload = new String(message.getPayload(), 0);
-            System.out.println(payload);
-            String[] split = payload.split("[|]");
-            String[] split2 = topic.split("[/]");
-            Tank t = new Tank(Float.parseFloat(split[0]), Float.parseFloat(split[1]), Float.parseFloat(split[2]), Integer.parseInt(split2[3]));
-            t.getValve().setFlowRateResistance(Float.parseFloat(split[3]));
-            if(Integer.parseInt(split[4]) == 0) t.getTrigger().setOpened(false);
-            else t.getTrigger().setOpened(true);
-            System.out.println("[MQTT] Received a message. Topic: " + topic + " Value: " + t.toString());
-            try {
-                subscribedBean.put(t);
-            } catch(Exception e) {
-                System.err.println("Unable to call subscribedBean; dereferencing client to destroy (maybe an old deploy?)" + e.getMessage());
-                destructor();
+            if(split2.length>4) {
+                Sector s = new Sector(Float.parseFloat(split[0]), Float.parseFloat(split[1]), Integer.parseInt(split2[3]), Integer.parseInt(split2[6]));
+                if(Integer.parseInt(split[2]) == 0) s.getTrigger().setOpened(false);
+                else s.getTrigger().setOpened(true);
+                System.out.println("[MQTT] Received a message. Topic: " + topic + " Value: " + s.toString());
+                try {
+                    subscribedBean.put(s);
+                } catch(Exception e) {
+                    System.err.println("Unable to call subscribedBean; dereferencing client to destroy (maybe an old deploy?)" + e.getMessage());
+                    destructor();
+                }
+            }
+            else {
+                Tank t = new Tank(Float.parseFloat(split[0]), Float.parseFloat(split[1]), Float.parseFloat(split[2]), Integer.parseInt(split2[3]));
+                t.getValve().setFlowRateResistance(Float.parseFloat(split[3]));
+                if(Integer.parseInt(split[4]) == 0) t.getTrigger().setOpened(false);
+                else t.getTrigger().setOpened(true);
+                System.out.println("[MQTT] Received a message. Topic: " + topic + " Value: " + t.toString());
+                try {
+                    subscribedBean.put(t);
+                } catch(Exception e) {
+                    System.err.println("Unable to call subscribedBean; dereferencing client to destroy (maybe an old deploy?)" + e.getMessage());
+                    destructor();
+                }
             }
         } catch (NumberFormatException e) {
             System.err.println("Error on Arrived" + e.getMessage());
