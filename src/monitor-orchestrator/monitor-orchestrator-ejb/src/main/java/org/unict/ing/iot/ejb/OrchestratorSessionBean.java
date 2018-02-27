@@ -21,14 +21,10 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.ejb.EJB;
-import javax.ejb.EJBTransactionRolledbackException;
+import javax.ejb.Schedule;
 import javax.ejb.SessionContext;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
-import javax.ejb.Timeout;
-import javax.ejb.Timer;
-import javax.ejb.TimerConfig;
-import javax.ejb.TimerService;
 import org.unict.ing.iot.utils.helper.JsonHelper;
 import org.unict.ing.iot.utils.model.GenericValue;
 import org.unict.ing.iot.utils.model.Tank;
@@ -55,6 +51,7 @@ public class OrchestratorSessionBean implements OrchestratorSessionBeanLocal {
     private static final int SECTOR_MULT = 2;
     private static int counter         = 0;
     private static float VMAX          = 700;
+    private static float F_THRESHOLD     = (float)0.05;
     
     private static final Logger LOG = Logger.getLogger(OrchestratorSessionBean.class.getName());
     
@@ -66,32 +63,11 @@ public class OrchestratorSessionBean implements OrchestratorSessionBeanLocal {
     
     @PostConstruct
     private void init() {
-        TimerService timerService = context.getTimerService();
-        timerService.getTimers().forEach((Timer t) -> t.cancel());
-        timerService.createIntervalTimer(2020, ZONE_MULT * PERIOD * 1000, new TimerConfig("ZONE", true));
-        timerService.createIntervalTimer(2025, SECTOR_MULT * PERIOD * 1000, new TimerConfig("SECTOR", true));
-    }
-
-    @Timeout
-    public void timeout(Timer timer) {
-        if (timer.getInfo().equals("ZONE")) {
-            try {
-                tankActuation();
-            }
-            catch (EJBTransactionRolledbackException e)  {
-               timer.cancel();
-            }
-        }
-       if (timer.getInfo().equals("SECTOR")) {
-            try {
-                sectorActuation();
-            }
-            catch (EJBTransactionRolledbackException e)  {
-               timer.cancel();
-            }
-        }
+        System.err.println("INITINIT" + this.getClass().getClassLoader().toString());
+        
     }
     
+    @Schedule(dayOfMonth = "*", hour = "*", second = "*/" + PERIOD * ZONE_MULT, minute = "*")
     private void tankActuation() {
         List<GenericValue> tanks = monitorSessionBean.getTanks(); 
         System.err.println(JsonHelper.writeList(tanks));
@@ -106,27 +82,44 @@ public class OrchestratorSessionBean implements OrchestratorSessionBeanLocal {
             if (tankk instanceof Tank) {
                 Tank tank = (Tank) tankk;
                 String log = tank.toString();
+                
                 if (counter % 5 == 0) {
-                    float rj = Vtot2 / ((VMAX - tank.getCapacity()) * tank.getOutputFlowRate());
-                    tank.getValve().setFlowRateResistance(rj);
-                    //counter = 1;
+                    float rj;
+                    float c = (VMAX - tank.getCapacity());
+                    if (c > F_THRESHOLD && tank.getOutputFlowRate() > F_THRESHOLD) {
+                        rj = Vtot2 / (c * tank.getOutputFlowRate());
+                        tank.getValve().setFlowRateResistance(rj);
+                        log += " - Setting input resistance to " + rj + " - ";
+                    } else if (tank.getOutputFlowRate() < F_THRESHOLD && c > F_THRESHOLD) { // Full tank
+                        tank.getValve().increment();
+                    } else if (tank.getOutputFlowRate() > F_THRESHOLD && c < F_THRESHOLD) { 
+                        
+                    } else {
+                        
+                    }
+                    
+                    
+                    counter = 1;
+                    
                 } else {
-                    /*float diff = tank.getInputFlowRate() - tank.getOutputFlowRate();
+                    float diff = tank.getInputFlowRate() - tank.getOutputFlowRate();
                     log += " " + diff;
+                   
                     if (diff > flowRateError()) {
                         log += " DECREMENTING (RUBINETT)";
                         tank.getValve().increment();
                     } else {
                         log += " INCREMENTING (RUBINETT)";
                         tank.getValve().decrement();
-                    }*/
-                    //counter++;
+                    }
+                    
+                    counter++;
                 }
-                        
-                if (tank.getCapacity() < capacityError()) {
+                         
+                if (tank.getCapacity() < capacityError(true)) {
                     log += " CLOSING TRIGGER";
                     tank.getTrigger().close();
-                } else {
+                } else if (tank.getCapacity() > capacityError(false)) {
                     log += " OPENING TRIGGER";
                     tank.getTrigger().open();
                 }
@@ -137,9 +130,9 @@ public class OrchestratorSessionBean implements OrchestratorSessionBeanLocal {
         });
     }
     
+    @Schedule(dayOfMonth = "*", hour = "*", second = "*/" + PERIOD * SECTOR_MULT, minute = "*")
     private void sectorActuation() { 
         List<GenericValue> sectors = monitorSessionBean.getSectors(); 
-        
         sectors.forEach((s) -> {
             String log = "";
             if (s instanceof Sector) {
@@ -162,13 +155,17 @@ public class OrchestratorSessionBean implements OrchestratorSessionBeanLocal {
             }
         });
     }
+    
     private float flowRateError() {
         // TODO
         return 1;
     }
     
-    private float capacityError() {
-        return (float)(0.15 * VMAX);
+    private float capacityError(boolean stak) {
+        if (stak == false)
+            return (float)(0.15 * VMAX);
+        else
+            return (float)(0.25 * VMAX);
     }
     
 }

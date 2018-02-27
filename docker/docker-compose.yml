@@ -21,7 +21,7 @@ services:
             - broker
             - mongodb
         volumes:
-            - ../src/monitor-orchestrator/monitor-orchestrator-ear:/code/
+            - ../src/monitor-orchestrator/monitor-orchestrator-web:/code/
         ports:
             - 8080:8080
             - 9990:9990

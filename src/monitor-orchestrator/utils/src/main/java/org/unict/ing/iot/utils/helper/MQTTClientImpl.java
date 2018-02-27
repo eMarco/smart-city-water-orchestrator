@@ -119,11 +119,13 @@ public class MQTTClientImpl implements MqttCallbackExtended {
         System.out.println("Entered in arrived");
         String[] split2 = topic.split("[/]");
         String payload = new String(message.getPayload(), 0);
+        System.err.println(topic);
         System.out.println(payload);
         String[] split = payload.split("[|]");
         try {
-            if(split2.length>4) {
-                Sector s = new Sector(Float.parseFloat(split[0]), Float.parseFloat(split[1]), Integer.parseInt(split2[3]), Integer.parseInt(split2[6]));
+            if(topic.contains("/sectors")) {
+                Sector s = new Sector(Float.parseFloat(split[0]), Float.parseFloat(split[1]), Integer.parseInt(split2[3]), Integer.parseInt(split2[5]));
+                
                 if(Integer.parseInt(split[2]) == 0) s.getTrigger().setOpened(false);
                 else s.getTrigger().setOpened(true);
                 System.out.println("[MQTT] Received a message. Topic: " + topic + " Value: " + s.toString());
@@ -147,6 +149,7 @@ public class MQTTClientImpl implements MqttCallbackExtended {
                     destructor();
                 }
             }
+            System.err.println("[MQTT] All receives ended");
         } catch (NumberFormatException e) {
             System.err.println("Error on Arrived" + e.getMessage());
         }
@@ -162,6 +165,7 @@ public class MQTTClientImpl implements MqttCallbackExtended {
         try {
             System.err.println("Subscribing....");
             client.subscribe("/sensors/zones/+/", QOS);
+            client.subscribe("/sensors/zones/+/sectors/+/", QOS);
             System.err.println("Subscribed?");
         } catch (MqttException ex) {
             System.err.println(ex.getMessage());

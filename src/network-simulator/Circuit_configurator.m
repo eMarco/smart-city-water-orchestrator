@@ -140,7 +140,7 @@ while 1
               tmp = tmp.InputPort(sector_read_elements(k).Port).Data;
               readings = sprintf('%s%s|', readings, num2str(tmp));
         end
-        publish(myMQTT, sectors_publish_url(i), readings);
+        publish(myMQTT, sectors_publish_url(s), readings);
       end
 
       % PUBLISH end
