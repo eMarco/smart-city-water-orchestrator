@@ -1,21 +1,6 @@
 % CONFIG BEGIN
-addpath RealTime_Pacer/
-
-% STARTING MQTT (THE NEXT COMMAND WILL CRASH IF DOCKER (OR THE BROKER) IS
-% NOT RUNNING
-try
-    myMQTT = mqtt('tcp://localhost:1883');
-catch
-    disp("Unable to create MQTT Connection. Is broker reacheable and available?");
-end
-
 zones_num = 3;
 sectors_per_zone = [ 1, 1, 1 ];
-
-% Sector
-% flowRate = flowRateTotSector%d_%d
-% flowRateCounted = flowRate%d_%d
-% trigger = triggerStatusSector%d_%d
 
 period    = 10; % seconds
 
@@ -35,7 +20,7 @@ v_pompa      = 1600;
 r_pompa      = 100;
 
 model_name = 'Rete';
-zone_name = 'Vasca%d';
+
 zone_read_elements = [
       struct('Name', 'v_vasca_%d', 'Type', 'single', 'Port', 1),
       struct('Name', 'i_vasca_%d', 'Type', 'single', 'Port', 1),
@@ -60,6 +45,18 @@ sizes = [8,4,1,1,2,2,4,4,8,8];
 handles2b = {0, @single2b, 0, @boolean2b, 0, 0, 0, 0, 0, 0};
 handles2v = {0, @b2single, 0, @b2boolean, 0, 0, 0, 0, 0, 0};
 % CONFIG END
+
+
+
+addpath RealTime_Pacer/
+
+% STARTING MQTT (THE NEXT COMMAND WILL CRASH IF DOCKER (OR THE BROKER) IS
+% NOT RUNNING
+try
+    myMQTT = mqtt('tcp://localhost:1883');
+catch
+    disp("Unable to create MQTT Connection. Is broker reacheable and available?");
+end
 
 % OPEN MODEL AND START SIMULATION
 
@@ -145,6 +142,8 @@ while 1
 
     pause(period);
 end
+
+% HELPERS
 
 function y = concatb(varargin)
     y = fi(cell2mat(varargin{1,:}));
