@@ -40,6 +40,10 @@ sector_read_elements = [
       struct('Name', 'triggerStatusSector%d_%d', 'Type', 'uint8', 'Port', 1),
 ];
 
+sector_write_elements = [
+      struct('Name', 'Vasca%d/trigger/vasca_sw', 'Type', 'uint8'),
+];
+
 classes = {'double','single','int8','uint8','int16','uint16','int32','uint32','int64','uint64'};
 sizes = [8,4,1,1,2,2,4,4,8,8];
 handles2b = {0, @single2b, 0, @boolean2b, 0, 0, 0, 0, 0, 0};
@@ -79,17 +83,22 @@ end
 % CREATING SUBSCRIPTIONS AND PUBLISH_URLS
 
 subscriptions = containers.Map('KeyType', 'int32', 'ValueType', 'any');
-publish_urls = containers.Map('KeyType', 'int32', 'ValueType', 'any');
+publish_topics = containers.Map('KeyType', 'int32', 'ValueType', 'any');
 
 for i = 1:zones_num
-  tmp = struct('Sub', subscribe(myMQTT, sprintf('/actuators/zones/%d/', i)));
-  subscriptions(i) = tmp;
-
+  % Subscribe
   tmp = containers.Map('KeyType', 'int32', 'ValueType', 'any');
   for s = 1:sectors_per_zone(i)
-    tmp(s) = sprintf('/sensors/zones/%d/sectors/%d/', i)
+    tmp(s) = subscribe(myMQTT, sprintf('/actuators/zones/%d/sectors/%d/', i, s));
   end
-  publish_urls(i) = struct('Zone', sprintf('/sensors/zones/%d/', i), 'Sectors', tmp);
+  subscriptions(i) = struct('Sub', subscribe(myMQTT, sprintf('/actuators/zones/%d/', i)), 'Sectors', tmp);
+
+  % Create publish topics
+  tmp = containers.Map('KeyType', 'int32', 'ValueType', 'any');
+  for s = 1:sectors_per_zone(i)
+    tmp(s) = sprintf('/sensors/zones/%d/sectors/%d/', i, s);
+  end
+  publish_topics(i) = struct('Zone', sprintf('/sensors/zones/%d/', i), 'Sectors', tmp);
 end
 
 % INFINITE LOOP TO HANDLE MQTT COMMUNICATION
@@ -97,7 +106,8 @@ end
 while 1
     for i=1:zones_num
 
-      % PUBLISH Zone infos
+      % PUBLISH
+      % PUBLISH Zone
       readings = "";
       for k=1:length(zone_read_elements)
             element = sprintf('%s/%s', model_name, sprintf(zone_read_elements(k).Name, i));
@@ -105,22 +115,28 @@ while 1
             tmp = tmp.InputPort(zone_read_elements(k).Port).Data;
             readings = sprintf('%s%s|', readings, num2str(tmp));
       end
-      publish(myMQTT, publish_urls(i).Zone, readings);
+      publish(myMQTT, publish_topics(i).Zone, readings);
 
-      % PUBLISH Sectors infos
-      readings = "";
-      for k=1:length(zone_read_elements)
-            element = sprintf('%s/%s', model_name, sprintf(zone_read_elements(k).Name, i));
-            tmp = get_param(element, 'RuntimeObject');
-            tmp = tmp.InputPort(zone_read_elements(k).Port).Data;
-            readings = sprintf('%s%s|', readings, num2str(tmp));
+      % PUBLISH Sectors
+      sectors_publish_url = publish_topics(i).Sectors;
+
+      for s = 1:sectors_per_zone(i)
+        readings = "";
+        for k=1:length(sector_read_elements)
+              element = sprintf('%s/%s', model_name, sprintf(sector_read_elements(k).Name, i, s));
+              tmp = get_param(element, 'RuntimeObject');
+              tmp = tmp.InputPort(sector_read_elements(k).Port).Data;
+              readings = sprintf('%s%s|', readings, num2str(tmp));
+        end
+        publish(myMQTT, sectors_publish_url(i), readings);
       end
-      publish(myMQTT, publish_urls(i).Zone, readings);
 
       % PUBLISH end
 
       % READ
       try
+
+        % READ Zone
         values = strsplit(read(subscriptions(i).Sub), '|');
         %%%display(values);
         for k=1:(length(zone_write_elements))
@@ -135,6 +151,23 @@ while 1
             %%%display(tmp);
             set_param(element, 'value', tmp);
         end
+
+        % READ Sectors
+        for s = 1:sectors_per_zone(i)
+          for k=1:(length(sector_write_elements))
+              % Get type index
+              tmp_index = find(strcmp(classes, sector_write_elements(k).Type));
+              tmp = values(k);
+              % Retrieve deserilization function
+              f = cell2mat(handles2v(tmp_index));
+              % Convert to the proper value
+              tmp = f(tmp);
+              element = sprintf('%s/%s', model_name, sprintf(sector_write_elements(k).Name, i, s));
+              %%%display(tmp);
+              set_param(element, 'value', tmp);
+          end
+        end
+
       catch
       end
       %READ END
