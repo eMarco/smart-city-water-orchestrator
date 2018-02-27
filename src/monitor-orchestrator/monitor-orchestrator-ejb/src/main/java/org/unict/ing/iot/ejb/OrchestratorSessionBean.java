@@ -32,6 +32,7 @@ import javax.ejb.TimerService;
 import org.unict.ing.iot.utils.helper.JsonHelper;
 import org.unict.ing.iot.utils.model.GenericValue;
 import org.unict.ing.iot.utils.model.Tank;
+import org.unict.ing.iot.utils.model.Sector;
 
 /**
  *
@@ -42,12 +43,19 @@ import org.unict.ing.iot.utils.model.Tank;
 public class OrchestratorSessionBean implements OrchestratorSessionBeanLocal {
 
     @EJB
+    private AlertSessionBeanLocal alertSessionBean;
+
+    @EJB
     private MQTTClientSessionBeanLocal mQTTClientSessionBean;
     /***
      * CONFIGS for the timers of periodically called methods
      */
-    private static final int PERIOD    = 15; //seconds
+    private static final int PERIOD    = 3; //seconds
     private static final int ZONE_MULT = 2;
+    private static final int SECTOR_MULT = 2;
+    private static int counter         = 0;
+    private static float VMAX          = 700;
+    
     private static final Logger LOG = Logger.getLogger(OrchestratorSessionBean.class.getName());
     
     @EJB
@@ -61,6 +69,7 @@ public class OrchestratorSessionBean implements OrchestratorSessionBeanLocal {
         TimerService timerService = context.getTimerService();
         timerService.getTimers().forEach((Timer t) -> t.cancel());
         timerService.createIntervalTimer(2020, ZONE_MULT * PERIOD * 1000, new TimerConfig("ZONE", true));
+        timerService.createIntervalTimer(2025, SECTOR_MULT * PERIOD * 1000, new TimerConfig("SECTOR", true));
     }
 
     @Timeout
@@ -73,24 +82,45 @@ public class OrchestratorSessionBean implements OrchestratorSessionBeanLocal {
                timer.cancel();
             }
         }
+       if (timer.getInfo().equals("SECTOR")) {
+            try {
+                sectorActuation();
+            }
+            catch (EJBTransactionRolledbackException e)  {
+               timer.cancel();
+            }
+        }
     }
     
     private void tankActuation() {
         List<GenericValue> tanks = monitorSessionBean.getTanks(); 
         System.err.println(JsonHelper.writeList(tanks));
-                
+        float Vtot = 0;
+        for (int i = 0; i < tanks.size(); i++) {
+            Tank t = ((Tank)(tanks.get(i)));
+            Vtot += (VMAX - t.getCapacity()) *  t.getOutputFlowRate();
+        }
+        final float Vtot2 = Vtot;
         tanks.forEach(tankk -> { 
+            
             if (tankk instanceof Tank) {
                 Tank tank = (Tank) tankk;
                 String log = tank.toString();
-                float diff = tank.getOutputFlowRate() - tank.getInputFlowRate();
-                log += " " + diff;
-                if (diff < flowRateError()) {
-                    log += " DECREMENTING";
-                    tank.getValve().decrement();
+                if (counter % 5 == 0) {
+                    float rj = Vtot2 / ((VMAX - tank.getCapacity()) * tank.getOutputFlowRate());
+                    tank.getValve().setFlowRateResistance(rj);
+                    //counter = 1;
                 } else {
-                    log += " INCREMENTING";
-                    tank.getValve().increment();
+                    /*float diff = tank.getInputFlowRate() - tank.getOutputFlowRate();
+                    log += " " + diff;
+                    if (diff > flowRateError()) {
+                        log += " DECREMENTING (RUBINETT)";
+                        tank.getValve().increment();
+                    } else {
+                        log += " INCREMENTING (RUBINETT)";
+                        tank.getValve().decrement();
+                    }*/
+                    //counter++;
                 }
                         
                 if (tank.getCapacity() < capacityError()) {
@@ -100,21 +130,45 @@ public class OrchestratorSessionBean implements OrchestratorSessionBeanLocal {
                     log += " OPENING TRIGGER";
                     tank.getTrigger().open();
                 }
+                
                 mQTTClientSessionBean.publish(tank.getTankId() + "/", tank);
                 LOG.warning(log);
             }
         });
     }
     
-    
+    private void sectorActuation() { 
+        List<GenericValue> sectors = monitorSessionBean.getSectors(); 
+        
+        sectors.forEach((s) -> {
+            String log = "";
+            if (s instanceof Sector) {
+                Sector sector = (Sector)s;
+                if (sector.getTankId() == sector.getTankId()) {
+                    log += "Checking for Sector "  + sector.getSectorId() + " in zone " + sector.getTankId();
+                    float diff = (sector.getFlowRate() - sector.getFlowRateCounted());
+                    log += ": diff = outputRate - sectorRate = " + diff;
+                    if (diff < flowRateError()) {
+                        log += " - Closing trigger - Sending alert";
+                        sector.getTrigger().close();
+                        alertSessionBean.SendMail("alessandro+iot@madfarm.it", "Alert on " +sector.getSectorId() + " - Zone: " + sector.getTankId() , "Water LOSS!!");
+                    } else {
+                        log += " - Opening trigger";
+                        sector.getTrigger().open();
+                    }
+                    mQTTClientSessionBean.publish(sector.getTankId() + "/sectors/" + sector.getSectorId() + "/", sector);
+                    LOG.warning(log);
+                }
+            }
+        });
+    }
     private float flowRateError() {
         // TODO
         return 1;
     }
     
     private float capacityError() {
-        // TODO
-        return 1;
+        return (float)(0.15 * VMAX);
     }
     
 }

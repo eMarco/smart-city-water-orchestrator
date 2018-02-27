@@ -25,6 +25,8 @@ import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.unict.ing.iot.ejb.MonitorSessionBeanRemote;
+import org.unict.ing.iot.utils.model.GenericValue;
+import org.unict.ing.iot.utils.model.Sector;
 import org.unict.ing.iot.utils.model.Tank;
 
 /**
@@ -70,21 +72,28 @@ public class MQTTClientImpl implements MqttCallbackExtended {
         }
     }
     
-    public void publish(String topic, Tank tank) {
+    public void publish(String topic, GenericValue value) {
         try {
-            if(client != null && !client.isConnected()) {
-                destructor();
-                creator(subscribedBean);
-            }
-            String payload = Float.toString(tank.getValve().getFlowRateResistance());
-            
-            if(tank.getTrigger().isOpened() == true)
-                payload = payload + "|1|";
-            else 
-                payload = payload + "|0|";
+            String payload = "";
+            if (value instanceof Tank) {
+                Tank tank = (Tank)value;
 
-            System.err.println(payload);
-            
+                if(client != null && !client.isConnected()) {
+                    destructor();
+                    creator(subscribedBean);
+                }
+                payload = Float.toString(tank.getValve().getFlowRateResistance());
+
+                if(tank.getTrigger().isOpened() == true)
+                    payload = payload + "|1|";
+                else 
+                    payload = payload + "|0|";
+
+                System.err.println(payload);
+            }
+            if (value instanceof Sector) {
+                //TODO
+            }
             MqttMessage message = new MqttMessage(payload.getBytes());
             message.setQos(QOS);
             client.publish("/actuators/zones/" + topic, message);

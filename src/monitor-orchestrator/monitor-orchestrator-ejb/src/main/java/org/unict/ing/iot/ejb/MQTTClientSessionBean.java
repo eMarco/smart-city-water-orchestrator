@@ -13,6 +13,7 @@ import javax.ejb.EJB;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import org.unict.ing.iot.utils.helper.MQTTClientImpl;
+import org.unict.ing.iot.utils.model.GenericValue;
 import org.unict.ing.iot.utils.model.Tank;
 
 /**
@@ -43,7 +44,7 @@ public class MQTTClientSessionBean implements MQTTClientSessionBeanLocal{
     }
     
     @Override
-    public void publish(String topic, Tank tank) {
-        myClient.publish(topic, tank);
+    public void publish(String topic, GenericValue value) {
+        myClient.publish(topic, value);
     }
 }

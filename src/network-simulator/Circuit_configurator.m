@@ -1,11 +1,13 @@
 % CONFIG BEGIN
-zones_num = 3;
+speedup      = num2str(50);
+
+zones_num    = 3;
 sectors_per_zone = [ 1, 1, 1 ];
 
-period    = 10; % seconds
+period       = 5; % seconds
 
 vasca_sw     = uint8(1);
-vasca_r_in   = single(100);
+vasca_r_in   = single(zones_num);
 
 vasca_1_c    = 10;
 vasca_1_r    = 100;
@@ -16,8 +18,15 @@ vasca_2_r    = 100;
 vasca_3_c    = 10;
 vasca_3_r    = 100;
 
-v_pompa      = 1600;
+v_pompa      = 700;
 r_pompa      = 100;
+
+
+
+% Initial conditions
+vasca_1_initial_voltage = 700;
+vasca_2_initial_voltage = 700;
+vasca_3_initial_voltage = 700;
 
 model_name = 'Rete';
 
@@ -65,7 +74,9 @@ end
 % OPEN MODEL AND START SIMULATION
 
 open_system(model_name);
+set_param('Rete/pacer', 'simTimePerRealTime', speedup);
 set_param(model_name,'SimulationCommand','start');
+%input('Start simulation and press enter > ', 's');
 
 % RESET THE MODEL (SIMULATION MUST BE RUNNING)
 values = string([ vasca_r_in, vasca_sw ]);
@@ -104,6 +115,7 @@ end
 % INFINITE LOOP TO HANDLE MQTT COMMUNICATION
 
 while 1
+    pause(period);
     for i=1:zones_num
 
       % PUBLISH
@@ -148,7 +160,7 @@ while 1
             % Convert to the proper value
             tmp = f(tmp);
             element = sprintf('%s/%s', model_name, sprintf(zone_write_elements(k).Name, i));
-            %%%display(tmp);
+            display(tmp);
             set_param(element, 'value', tmp);
         end
 
@@ -173,7 +185,7 @@ while 1
       %READ END
     end
 
-    pause(period);
+
 end
 
 % HELPERS

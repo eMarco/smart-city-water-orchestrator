@@ -48,8 +48,8 @@ public class GenericResource {
     @Produces(MediaType.TEXT_PLAIN)
     public String getXml() {
         //monitorSessionBean.put(new Zone(new Tank()));
-        return JsonHelper.writeList(monitorSessionBean.findByClassName("Tank"));        
-        
+        //return JsonHelper.writeList(monitorSessionBean.findByClassName("Tank"));        
+        return monitorSessionBean.sendMail();
     }
 
     /**
