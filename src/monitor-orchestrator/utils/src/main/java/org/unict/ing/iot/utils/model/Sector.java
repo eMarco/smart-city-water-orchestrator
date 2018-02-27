@@ -85,7 +85,7 @@ public final class Sector extends GenericValue implements Serializable {
 
     @Override
     public String toString() {
-        return "Sector{" + "flowRate=" + flowRate + ", ownerTankId=" + ownerTankId + ", trigger=" + trigger + '}';
+        return "Sector{" + "flowRate=" + flowRate + ", flowRateCounted=" + flowRateCounted + ", tankId=" + ownerTankId + ", sectorId=" + sectorId + ", trigger=" + trigger + '}';
     }
-
+    
 }

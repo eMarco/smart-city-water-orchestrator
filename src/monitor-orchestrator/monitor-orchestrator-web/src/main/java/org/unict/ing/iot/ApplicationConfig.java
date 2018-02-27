@@ -30,6 +30,7 @@ public class ApplicationConfig extends Application {
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(org.unict.ing.iot.GenericResource.class);
+        resources.add(org.unict.ing.iot.SectorResource.class);
         resources.add(org.unict.ing.iot.TankResource.class);
         resources.add(org.unict.ing.iot.TestResource.class);
     }
