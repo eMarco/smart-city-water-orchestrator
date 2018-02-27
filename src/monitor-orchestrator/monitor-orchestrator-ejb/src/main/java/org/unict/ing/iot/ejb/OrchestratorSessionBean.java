@@ -32,6 +32,7 @@ import javax.ejb.TimerService;
 import org.unict.ing.iot.utils.helper.JsonHelper;
 import org.unict.ing.iot.utils.model.GenericValue;
 import org.unict.ing.iot.utils.model.Tank;
+import org.unict.ing.iot.utils.model.Sector;
 
 /**
  *
@@ -48,6 +49,7 @@ public class OrchestratorSessionBean implements OrchestratorSessionBeanLocal {
      */
     private static final int PERIOD    = 3; //seconds
     private static final int ZONE_MULT = 2;
+    private static final int SECTOR_MULT = 2;
     private static int counter         = 0;
     private static float VMAX          = 700;
     
@@ -64,6 +66,7 @@ public class OrchestratorSessionBean implements OrchestratorSessionBeanLocal {
         TimerService timerService = context.getTimerService();
         timerService.getTimers().forEach((Timer t) -> t.cancel());
         timerService.createIntervalTimer(2020, ZONE_MULT * PERIOD * 1000, new TimerConfig("ZONE", true));
+        timerService.createIntervalTimer(2025, SECTOR_MULT * PERIOD * 1000, new TimerConfig("SECTOR", true));
     }
 
     @Timeout
@@ -71,6 +74,14 @@ public class OrchestratorSessionBean implements OrchestratorSessionBeanLocal {
         if (timer.getInfo().equals("ZONE")) {
             try {
                 tankActuation();
+            }
+            catch (EJBTransactionRolledbackException e)  {
+               timer.cancel();
+            }
+        }
+       if (timer.getInfo().equals("SECTOR")) {
+            try {
+                sectorActuation();
             }
             catch (EJBTransactionRolledbackException e)  {
                timer.cancel();
@@ -123,7 +134,30 @@ public class OrchestratorSessionBean implements OrchestratorSessionBeanLocal {
         });
     }
     
-    
+    private void sectorActuation() { 
+        List<GenericValue> sectors = monitorSessionBean.getSectors(); 
+        
+        sectors.forEach((s) -> {
+            String log = "";
+            if (s instanceof Sector) {
+                Sector sector = (Sector)s;
+                if (sector.getTankId() == sector.getTankId()) {
+                    log += "Checking for Sector "  + sector.getSectorId() + " in zone " + sector.getTankId();
+                    float diff = (sector.getFlowRate() - sector.getFlowRateCounted());
+                    log += ": diff = outputRate - sectorRate = " + diff;
+                    if (diff < flowRateError()) {
+                        log += " - Closing trigger";
+                        sector.getTrigger().close();
+                    } else {
+                        log += " - Opening trigger";
+                        sector.getTrigger().open();
+                    }
+                    mQTTClientSessionBean.publish(sector.getTankId() + "/sectors/" + sector.getSectorId() + "/", sector);
+                    LOG.warning(log);
+                }
+            }
+        });
+    }
     private float flowRateError() {
         // TODO
         return 1;

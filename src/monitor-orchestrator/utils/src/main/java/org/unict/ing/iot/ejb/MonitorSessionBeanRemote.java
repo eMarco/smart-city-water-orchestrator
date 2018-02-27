@@ -29,8 +29,8 @@ public interface MonitorSessionBeanRemote {
 
     void put(final GenericValue elem);
 
-    List<GenericValue> getZones();
     List<GenericValue> getTanks();
+    List<GenericValue> getSectors();
     
     float obtainValue();
     List<GenericValue> findByClassName(String name);

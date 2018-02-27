@@ -6,6 +6,7 @@
 package org.unict.ing.iot.ejb;
 
 import javax.ejb.Local;
+import org.unict.ing.iot.utils.model.GenericValue;
 import org.unict.ing.iot.utils.model.Tank;
 
 /**
@@ -15,6 +16,6 @@ import org.unict.ing.iot.utils.model.Tank;
 @Local
 public interface MQTTClientSessionBeanLocal {
     
-    public void publish(String topic, Tank tank);
+    public void publish(String topic, GenericValue value);
     
 }

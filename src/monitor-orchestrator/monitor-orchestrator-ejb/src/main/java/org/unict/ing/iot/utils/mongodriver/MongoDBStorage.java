@@ -38,7 +38,7 @@ public class MongoDBStorage implements Storage {
         // Using a single connection to provide better (query-oriented) scalability
         this.db = db;
         Jongo jongo = new Jongo(db);
-        this.collection = jongo.getCollection("waterCollection25");
+        this.collection = jongo.getCollection("waterCollection2555");
     }
     /**
      * Insert
@@ -111,18 +111,30 @@ public class MongoDBStorage implements Storage {
     }
 
     @Override
-    public List<GenericValue> findLastTanks() {
+    public List<GenericValue> findLast(String field, String className) {
         List<Integer> tanksIds = new LinkedList<>();
         List<GenericValue> ret = new LinkedList<>();
-        collection.distinct("tankId").as(Integer.class).forEach((t) -> {
+        collection.distinct(field).as(Integer.class).forEach((t) -> {
             tanksIds.add(t);
         });
 
         tanksIds.forEach((tId) -> {
-            ret.add(collection.find("{ $and: [ { \"className\": {$regex: \".*Tank.*\" } }, {\"tankId\": " + tId + "} ] }").sort("{_id: -1}")
+            ret.add(collection.find("{ $and: [ { \"className\": {$regex: \".*"+ className +".*\" } }, {\"" + field +"\": " + tId + "} ] }").sort("{_id: -1}")
                     .as(GenericValue.class).next());// forEach(v -> ret.add(v));
         });
 
         return ret;
     }
+
+    @Override
+    public List<GenericValue> findLastTanks() {
+        return findLast("tankId", "Tank");
+    }
+
+    @Override
+    public List<GenericValue> findLastSectors() {
+        return findLast("sectorId", "Sector");
+    }
+    
+
 }

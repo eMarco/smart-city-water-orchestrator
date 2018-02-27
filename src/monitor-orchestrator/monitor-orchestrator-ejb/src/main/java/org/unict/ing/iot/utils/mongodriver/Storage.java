@@ -29,6 +29,8 @@ public interface Storage {
     public List<GenericValue> findByClassNameAndFieldMatch(String name, String field, String value);
     public List<GenericValue> findByClassNameAndFieldMatch(String name, String field, Integer value);
     public List<GenericValue> findLastTanks();
+    public List<GenericValue> findLastSectors();
+    public List<GenericValue> findLast(String field, String className);
     public void remove(ObjectId _id);
     public void update(GenericValue elem);
     public void insert(GenericValue elem);
