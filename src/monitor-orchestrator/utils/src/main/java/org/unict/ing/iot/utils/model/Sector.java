@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2018 aleskandro - eMarco - cursedLondor
  *
  * This program is free software: you can redistribute it and/or modify
@@ -28,7 +28,7 @@ public final class Sector extends GenericValue implements Serializable {
     private int   ownerTankId;
     private int   sectorId;
     private final SchmidtTrigger trigger;
-    
+
     public int getOwnerTankId() {
         return ownerTankId;
     }
@@ -52,8 +52,8 @@ public final class Sector extends GenericValue implements Serializable {
     public void setSectorId(int sectorId) {
         this.sectorId = sectorId;
     }
-    
-    
+
+
 
     public Sector(float flowRate, float flowRateCounted, int tankId, SchmidtTrigger trigger, int sectorId) {
         this.flowRate    = flowRate;
@@ -82,7 +82,7 @@ public final class Sector extends GenericValue implements Serializable {
 
     @Override
     public String toString() {
-        return "Sector{" + "flowRate=" + flowRate + ", ownerTankId=" + ownerTankId + ", trigger=" + trigger + '}';
+        return "Sector{" + "flowRate=" + flowRate + ", tankId=" + ownerTankId + ", trigger=" + trigger + '}';
     }
 
 }

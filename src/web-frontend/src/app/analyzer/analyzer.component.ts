@@ -4,6 +4,7 @@ import * as c3                                      from "c3";
 import { Headers, Http }                            from '@angular/http';
 
 import { Tank }                                     from '../model/tank'
+import { Sector }                                     from '../model/sector'
 
 @Component({
   selector: 'app-analyzer',
@@ -22,6 +23,7 @@ export class AnalyzerComponent implements OnInit {
   tank5: boolean;
 
   Tank: boolean = true;
+  Sectors: boolean = true;
 
   constructor(private http: Http) { }
 
@@ -84,6 +86,7 @@ export class AnalyzerComponent implements OnInit {
     if (this.tank3) tanks.add("3");
 
     if (this.Tank) topics.add(Tank);
+    if (this.Sectors) topics.add(Sector);
 
     this.clearContainer();
 
