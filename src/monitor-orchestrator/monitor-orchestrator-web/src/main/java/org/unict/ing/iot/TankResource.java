@@ -74,7 +74,7 @@ public class TankResource {
     @Path(value = "/{id:([0-9]+)}")
     public String getId(
             @PathParam(value = "id") String id) {
-        System.out.println(id);
+        
         return JsonHelper.writeList(clientSessionBean.findByClassNameAndFieldMatch("org.unict.ing.iot.utils.model.Tank", "tankId", Integer.parseInt(id)));
     }
 

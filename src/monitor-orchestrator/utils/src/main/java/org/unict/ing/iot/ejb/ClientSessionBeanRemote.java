@@ -17,6 +17,7 @@
 package org.unict.ing.iot.ejb;
 
 import java.util.List;
+import java.util.Map;
 import javax.ejb.Remote;
 import org.unict.ing.iot.utils.model.GenericValue;
 
@@ -29,6 +30,7 @@ public interface ClientSessionBeanRemote {
     public List<GenericValue> findByClassName(String name);
     public List<GenericValue> findByClassNameAndFieldMatch(String name, String field, String value);
     public List<GenericValue> findByClassNameAndFieldMatch(String name, String field, Integer value);
+    public List<GenericValue> findByClassNameAndFieldMatch(String name, Map<String, ? extends Object> fields);
 
     public void insert(GenericValue value);
 }

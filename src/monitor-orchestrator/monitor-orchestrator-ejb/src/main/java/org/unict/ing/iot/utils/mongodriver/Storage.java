@@ -17,6 +17,7 @@
 package org.unict.ing.iot.utils.mongodriver;
 
 import java.util.List;
+import java.util.Map;
 import org.bson.types.ObjectId;
 import org.unict.ing.iot.utils.model.GenericValue;
 /**
@@ -28,6 +29,7 @@ public interface Storage {
     public List<GenericValue> findByClassName(String name);
     public List<GenericValue> findByClassNameAndFieldMatch(String name, String field, String value);
     public List<GenericValue> findByClassNameAndFieldMatch(String name, String field, Integer value);
+    public List<GenericValue> findByClassNameAndFieldMatch(String name, Map<String, ? extends Object> fields);
     public List<GenericValue> findLastTanks();
     public List<GenericValue> findLastSectors();
     public List<GenericValue> findLast(String field, String className);

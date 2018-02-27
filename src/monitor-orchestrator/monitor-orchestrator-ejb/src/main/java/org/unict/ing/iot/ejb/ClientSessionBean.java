@@ -17,6 +17,7 @@
 package org.unict.ing.iot.ejb;
 
 import java.util.List;
+import java.util.Map;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import org.unict.ing.iot.utils.model.GenericValue;
@@ -48,6 +49,11 @@ public class ClientSessionBean implements ClientSessionBeanRemote {
     @Override
     public List<GenericValue> findByClassNameAndFieldMatch(String name, String field, Integer value) {
         return this.db.getStorage().findByClassNameAndFieldMatch(name, field, value);
+    }
+
+    @Override
+    public List<GenericValue> findByClassNameAndFieldMatch(String name, Map<String, ? extends Object> fields) {
+        return this.db.getStorage().findByClassNameAndFieldMatch(name, fields);
     }
 
     @Override

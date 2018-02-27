@@ -50,7 +50,7 @@ sector_read_elements = [
 ];
 
 sector_write_elements = [
-      struct('Name', 'Vasca%d/trigger/vasca_sw', 'Type', 'uint8'),
+      struct('Name', 'Sector%d_%d/trigger/sector_sw', 'Type', 'uint8'),
 ];
 
 classes = {'double','single','int8','uint8','int16','uint16','int32','uint32','int64','uint64'};

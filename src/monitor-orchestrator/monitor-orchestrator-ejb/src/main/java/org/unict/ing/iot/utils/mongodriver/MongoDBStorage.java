@@ -19,6 +19,7 @@ package org.unict.ing.iot.utils.mongodriver;
 import com.mongodb.DB;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import org.bson.types.ObjectId;
 import org.jongo.Jongo;
 import org.jongo.MongoCollection;
@@ -95,6 +96,20 @@ public class MongoDBStorage implements Storage {
         return findBy(query);
     }
 
+    @Override
+    public List<GenericValue> findByClassNameAndFieldMatch(String name, Map<String, ? extends Object> fields) {
+        String query = "{ $and: [ {className: {$regex: \".*" + name + ".*\" } }";
+
+        for (String field : fields.keySet()) {
+            query += ", { \""+ field + "\": " + fields.get(field) + " }";
+        }
+
+        query += " ] }";
+        System.out.println("QUERY STRING " + query);
+
+        return findBy(query);
+    }
+
     private List<GenericValue> findBy(String query) {
         MongoCursor<GenericValue> iterDoc;
         List<GenericValue> ret = new LinkedList();
@@ -135,6 +150,6 @@ public class MongoDBStorage implements Storage {
     public List<GenericValue> findLastSectors() {
         return findLast("sectorId", "Sector");
     }
-    
+
 
 }

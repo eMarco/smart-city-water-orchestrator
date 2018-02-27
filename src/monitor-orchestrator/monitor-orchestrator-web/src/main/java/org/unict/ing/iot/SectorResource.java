@@ -16,6 +16,7 @@
  */
 package org.unict.ing.iot;
 
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
@@ -36,9 +37,9 @@ import org.unict.ing.iot.utils.helper.JsonHelper;
  *
  * @author aleskandro - eMarco - cursedLondor
  */
-@Path("tank")
+@Path("sector")
 @RequestScoped
-public class TankResource {
+public class SectorResource {
 
     ClientSessionBeanRemote clientSessionBean = lookupClientSessionBeanRemote();
 
@@ -48,11 +49,11 @@ public class TankResource {
     /**
      * Creates a new instance of
      */
-    public TankResource() {
+    public SectorResource() {
     }
 
     /**
-     * tank/
+     * sector/
      *
      * @return | all the data
      */
@@ -60,22 +61,43 @@ public class TankResource {
     @Produces(MediaType.TEXT_PLAIN)
     @Path(value = "/")
     public String getAll() {
-        return JsonHelper.writeList(clientSessionBean.findByClassName("org.unict.ing.iot.utils.model.Tank"));
+        return JsonHelper.writeList(clientSessionBean.findByClassName("org.unict.ing.iot.utils.model.Sector"));
     }
 
     /**
-     * tank/id/
+     * sector/id/
      *
-     * @param id
+     * @param tid | tankID
      * @return | an instance of java.lang.String
      */
     @GET
     @Produces(MediaType.TEXT_PLAIN)
-    @Path(value = "/{id:([0-9]+)}")
+    @Path(value = "/{tid:([0-9]+)}")
+    public String getAllFromTank(
+            @PathParam(value = "tid") String tid) {
+
+        return JsonHelper.writeList(clientSessionBean.findByClassNameAndFieldMatch("org.unict.ing.iot.utils.model.Sector", "ownerTankId", Integer.parseInt(tid)));
+    }
+
+    /**
+     * sector/id/
+     *
+     * @param tid | TankID
+     * @param sid | SectorID
+     * @return | an instance of java.lang.String
+     */
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    @Path(value = "/{tid:([0-9]+)}/{sid:([0-9]+)}")
     public String getId(
-            @PathParam(value = "id") String id) {
-        System.out.println(id);
-        return JsonHelper.writeList(clientSessionBean.findByClassNameAndFieldMatch("org.unict.ing.iot.utils.model.Tank", "tankId", Integer.parseInt(id)));
+            @PathParam(value = "tid") String tid,
+            @PathParam(value = "sid") String sid) {
+
+        HashMap<String, Integer> fields = new HashMap<>();
+        fields.put("ownerTankId", Integer.parseInt(tid));
+        fields.put("sectorId", Integer.parseInt(sid));
+
+        return JsonHelper.writeList(clientSessionBean.findByClassNameAndFieldMatch("org.unict.ing.iot.utils.model.Sector", fields));
     }
 
     private ClientSessionBeanRemote lookupClientSessionBeanRemote() {
