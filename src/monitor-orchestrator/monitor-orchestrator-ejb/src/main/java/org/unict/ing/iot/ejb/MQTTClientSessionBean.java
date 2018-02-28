@@ -31,6 +31,7 @@ public class MQTTClientSessionBean implements MQTTClientSessionBeanLocal{
    
     
     @PostConstruct
+    //Initialize MQTT Client
     private void init() {
         System.out.println("[MQTT] Creating connection...");
         myClient = new MQTTClientImpl(monitorSessionBean);

@@ -33,9 +33,6 @@ public class MonitorSessionBean implements MonitorSessionBeanRemote {
     private AlertSessionBeanLocal alertSessionBean;
 
     @EJB
-    private MQTTClientSessionBeanLocal mqttClientSessionBean;
-
-    @EJB
     private DBConnectionSingletonSessionBeanLocal db;
     
     /**

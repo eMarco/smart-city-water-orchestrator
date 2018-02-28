@@ -77,6 +77,7 @@ public class OrchestratorSessionBean implements OrchestratorSessionBeanLocal {
     private void tankActuation() {
         List<GenericValue> tanks = monitorSessionBean.getTanks();
         System.err.println(JsonHelper.writeList(tanks));
+        
         float _Vtot = 0, _IOtot = 0, _Ptot = 0;
         for (int i = 0; i < tanks.size(); i++) {
             Tank t = ((Tank)(tanks.get(i)));
@@ -98,6 +99,8 @@ public class OrchestratorSessionBean implements OrchestratorSessionBeanLocal {
 
                 float rj = 0;
                 float c = (VMAX - tank.getCapacity());
+                
+                //Decide actuation strategy based on Tank capacity and Output
                 if (c > F_THRESHOLD && tank.getOutputFlowRate() > F_THRESHOLD) {                // 1: Tank NOT FULL    w\      OUTPUT
 
                         rj = Ptot / (c * tank.getOutputFlowRate());
@@ -139,10 +142,12 @@ public class OrchestratorSessionBean implements OrchestratorSessionBeanLocal {
             String log = "";
             if (s instanceof Sector) {
                 Sector sector = (Sector)s;
-                if (sector.getTankId() == sector.getTankId()) {
+                if (sector.getTankId() == sector.getTankId()) { // TODO: WTF?
                     log += "Checking for Sector "  + sector.getSectorId() + " in zone " + sector.getTankId();
                     float diff = (sector.getFlowRate() - sector.getFlowRateCounted());
                     log += ": diff = outputRate - sectorRate = " + diff;
+                    
+                    //Problem of water loss?
                     if (diff < flowRateError()) {
                         log += " - Closing trigger - Sending alert";
                         sector.getTrigger().close();
@@ -151,6 +156,7 @@ public class OrchestratorSessionBean implements OrchestratorSessionBeanLocal {
                             alertSessionBean.SendMail("alessandro+iot@madfarm.it", "Alert on " +sector.getSectorId() + " - Zone: " + sector.getTankId() , "Water LOSS!!");
                             mailer.put(el, Boolean.TRUE);
                         }
+                        
                     } else {
                         log += " - Opening trigger";
                         sector.getTrigger().open();
