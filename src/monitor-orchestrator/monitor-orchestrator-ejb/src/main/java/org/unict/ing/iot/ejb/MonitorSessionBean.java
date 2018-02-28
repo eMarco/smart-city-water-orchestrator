@@ -38,8 +38,6 @@ public class MonitorSessionBean implements MonitorSessionBeanRemote {
     @EJB
     private DBConnectionSingletonSessionBeanLocal db;
     
-    private static float number = 0;
-    
     /**
      * Used by the MqttSessionBean to put elements in the database
      * @param elem 
@@ -67,16 +65,6 @@ public class MonitorSessionBean implements MonitorSessionBeanRemote {
     @Override
     public List<GenericValue> getSectors() {
         return db.getStorage().findLastSectors();
-    }
-    
-    @Override
-    public void modify(float num) {
-        number = num;
-    }
-    
-    @Override
-    public float obtainValue() {
-        return number;
     }
     
     @Override

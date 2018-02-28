@@ -16,7 +16,10 @@
  */
 package org.unict.ing.iot.ejb;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
@@ -46,12 +49,15 @@ public class OrchestratorSessionBean implements OrchestratorSessionBeanLocal {
     /***
      * CONFIGS for the timers of periodically called methods
      */
-    private static final int PERIOD    = 3; //seconds
-    private static final int ZONE_MULT = 2;
+    private static final int PERIOD      = 3; //seconds
+    private static final int ZONE_MULT   = 2;
     private static final int SECTOR_MULT = 2;
-    private static int counter         = 0;
-    private static float VMAX          = 700;
-    private static float F_THRESHOLD     = (float)0.05;
+    private static int counter           = 0;
+    private static float VMAX            = 700;
+    private static float F_THRESHOLD     = 0.05f;
+    private static float HYSTERESIS_ON   = 0.15f;
+    private static float HYSTERESIS_OFF  = 0.25f;
+    private static final Map<String, Boolean> mailer = new HashMap<>();
 
     private static final Logger LOG = Logger.getLogger(OrchestratorSessionBean.class.getName());
 
@@ -140,7 +146,11 @@ public class OrchestratorSessionBean implements OrchestratorSessionBeanLocal {
                     if (diff < flowRateError()) {
                         log += " - Closing trigger - Sending alert";
                         sector.getTrigger().close();
-                        alertSessionBean.SendMail("alessandro+iot@madfarm.it", "Alert on " +sector.getSectorId() + " - Zone: " + sector.getTankId() , "Water LOSS!!");
+                        String el = String.valueOf(sector.getTankId()) + String.valueOf(sector.getSectorId());
+                        if(!Objects.equals(mailer.get(el), Boolean.TRUE)) {
+                            alertSessionBean.SendMail("alessandro+iot@madfarm.it", "Alert on " +sector.getSectorId() + " - Zone: " + sector.getTankId() , "Water LOSS!!");
+                            mailer.put(el, Boolean.TRUE);
+                        }
                     } else {
                         log += " - Opening trigger";
                         sector.getTrigger().open();
@@ -152,16 +162,20 @@ public class OrchestratorSessionBean implements OrchestratorSessionBeanLocal {
         });
     }
 
+    @Schedule(dayOfMonth = "*", hour = "*/1", second = "*", minute = "*")
+    private void resetMailer() {
+        mailer.clear();
+    }
+    
     private float flowRateError() {
-        // TODO : SET ME!
         return 1;
     }
 
     private float capacityError(boolean stak) {
         if (stak == false)
-            return (float)(0.15 * VMAX);
+            return (float)(HYSTERESIS_ON * VMAX);
         else
-            return (float)(0.25 * VMAX);
+            return (float)(HYSTERESIS_OFF * VMAX);
     }
 
 }

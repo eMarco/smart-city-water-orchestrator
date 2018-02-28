@@ -29,7 +29,6 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
-        resources.add(org.unict.ing.iot.GenericResource.class);
         resources.add(org.unict.ing.iot.SectorResource.class);
         resources.add(org.unict.ing.iot.TankResource.class);
         resources.add(org.unict.ing.iot.TestResource.class);
