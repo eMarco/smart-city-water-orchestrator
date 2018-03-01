@@ -174,8 +174,10 @@ public class OrchestratorSessionBean implements OrchestratorSessionBeanLocal {
                         log += " - Closing trigger - Sending alert";
                         sector.getTrigger().close();
                         String el = String.valueOf(sector.getTankId()) + String.valueOf(sector.getSectorId());
+                        System.err.println("WATER LOSS: " + el + mailer);
                         if(!Objects.equals(mailer.get(el), Boolean.TRUE)) {
                             alertSessionBean.SendMail("alessandro+iot@madfarm.it", "Alert on " +sector.getSectorId() + " - Zone: " + sector.getTankId() , "Water LOSS!!");
+                            System.err.println("SENDING MAIL FOR " + el);
                             mailer.put(el, Boolean.TRUE);
                         }
                         
@@ -190,7 +192,7 @@ public class OrchestratorSessionBean implements OrchestratorSessionBeanLocal {
         });
     }
 
-    @Schedule(dayOfMonth = "*", hour = "*/1", second = "*", minute = "*")
+    @Schedule(dayOfMonth = "*", hour = "*", second = "0", minute = "0")
     private void resetMailer() {
         mailer.clear();
     }
