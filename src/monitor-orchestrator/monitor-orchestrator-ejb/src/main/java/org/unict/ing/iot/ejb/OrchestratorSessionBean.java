@@ -16,7 +16,10 @@
  */
 package org.unict.ing.iot.ejb;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
@@ -46,16 +49,21 @@ public class OrchestratorSessionBean implements OrchestratorSessionBeanLocal {
     /***
      * CONFIGS for the timers of periodically called methods
      */
-    private static final int PERIOD    = 3; //seconds
-    private static final int ZONE_MULT = 2;
+    private static final int PERIOD      = 3; //seconds
+    private static final int ZONE_MULT   = 2;
     private static final int SECTOR_MULT = 2;
     private static final int TANK_CAP_MIN = 600;
     private static final int TANK_CAP_MAX = 670;
-    private static int counter         = 0;
     private static final float VMAX          = 700;
-    private static final float F_THRESHOLD     = (float)0.05;
     private static final float DECREMENT_STEP  = (float)0.5;
     private static final float INCREMENT_STEP  = (float)0.1;
+    private static int counter           = 0;
+    private static float VMAX            = 700;
+    private static float F_THRESHOLD     = 0.05f;
+    private static float HYSTERESIS_ON   = 0.15f;
+    private static float HYSTERESIS_OFF  = 0.25f;
+    private static final Map<String, Boolean> mailer = new HashMap<>();
+
     private static final Logger LOG = Logger.getLogger(OrchestratorSessionBean.class.getName());
 
     @EJB
@@ -74,6 +82,7 @@ public class OrchestratorSessionBean implements OrchestratorSessionBeanLocal {
     private void tankActuation() {
         List<GenericValue> tanks = monitorSessionBean.getTanks();
         System.err.println(JsonHelper.writeList(tanks));
+        
         float _Vtot = 0, _IOtot = 0, _Ptot = 0;
         for (int i = 0; i < tanks.size(); i++) {
             Tank t = ((Tank)(tanks.get(i)));
@@ -108,12 +117,10 @@ public class OrchestratorSessionBean implements OrchestratorSessionBeanLocal {
 
                 float rj = 0;
                 float c = (VMAX - tank.getCapacity());
-
-                
+                //Decide actuation strategy based on Tank capacity and Output
                 if (tank.getCapacity() > TANK_CAP_MIN && 
                         tank.getCapacity() < TANK_CAP_MAX && 
                         tank.getOutputFlowRate() > F_THRESHOLD) {
-                    
                     rj = Ptot / (c * tank.getOutputFlowRate());
                     tank.getValve().setFlowRateResistance(rj*100);
                     
@@ -157,14 +164,21 @@ public class OrchestratorSessionBean implements OrchestratorSessionBeanLocal {
             String log = "";
             if (s instanceof Sector) {
                 Sector sector = (Sector)s;
-                if (sector.getTankId() == sector.getTankId()) {
+                if (sector.getTankId() == sector.getTankId()) { // TODO: WTF?
                     log += "Checking for Sector "  + sector.getSectorId() + " in zone " + sector.getTankId();
                     float diff = (sector.getFlowRate() - sector.getFlowRateCounted());
                     log += ": diff = outputRate - sectorRate = " + diff;
+                    
+                    //Problem of water loss?
                     if (diff < flowRateError()) {
                         log += " - Closing trigger - Sending alert";
                         sector.getTrigger().close();
-                        alertSessionBean.SendMail("alessandro+iot@madfarm.it", "Alert on " +sector.getSectorId() + " - Zone: " + sector.getTankId() , "Water LOSS!!");
+                        String el = String.valueOf(sector.getTankId()) + String.valueOf(sector.getSectorId());
+                        if(!Objects.equals(mailer.get(el), Boolean.TRUE)) {
+                            alertSessionBean.SendMail("alessandro+iot@madfarm.it", "Alert on " +sector.getSectorId() + " - Zone: " + sector.getTankId() , "Water LOSS!!");
+                            mailer.put(el, Boolean.TRUE);
+                        }
+                        
                     } else {
                         log += " - Opening trigger";
                         sector.getTrigger().open();
@@ -176,16 +190,20 @@ public class OrchestratorSessionBean implements OrchestratorSessionBeanLocal {
         });
     }
 
+    @Schedule(dayOfMonth = "*", hour = "*/1", second = "*", minute = "*")
+    private void resetMailer() {
+        mailer.clear();
+    }
+    
     private float flowRateError() {
-        // TODO : SET ME!
         return 1;
     }
 
     private float capacityError(boolean stak) {
         if (stak == false)
-            return (float)(0.15 * VMAX);
+            return (float)(HYSTERESIS_ON * VMAX);
         else
-            return (float)(0.25 * VMAX);
+            return (float)(HYSTERESIS_OFF * VMAX);
     }
 
 }

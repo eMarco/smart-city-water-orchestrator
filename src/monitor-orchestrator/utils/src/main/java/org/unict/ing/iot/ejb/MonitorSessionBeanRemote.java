@@ -32,9 +32,7 @@ public interface MonitorSessionBeanRemote {
     List<GenericValue> getTanks();
     List<GenericValue> getSectors();
     
-    float obtainValue();
     List<GenericValue> findByClassName(String name);
     
     String sendMail();
-    void modify(float num);
 }

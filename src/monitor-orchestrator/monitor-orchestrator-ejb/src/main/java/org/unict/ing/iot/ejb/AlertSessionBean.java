@@ -25,7 +25,6 @@ import javax.ejb.Stateless;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
-import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
@@ -66,7 +65,7 @@ public class AlertSessionBean implements AlertSessionBeanLocal {
             // -- Set the FROM and TO fields --
             msg.setFrom(new InternetAddress(sender));
             msg.setRecipients(MimeMessage.RecipientType.TO, InternetAddress.parse(recipientEmail, false));
-            msg.setRecipients(Message.RecipientType.CC, "alessandro.distefano1@gmail.com, markgrak@gmail.com, musluca.lock@gmail.com");
+            msg.setRecipients(Message.RecipientType.CC, "alessandro.distefano1@gmail.com, marco.grassia@studium.unict.it, musluca.lock@gmail.com");
             msg.setSubject(subject);
             msg.setText(message, "utf-8");
             msg.setSentDate(new Date());

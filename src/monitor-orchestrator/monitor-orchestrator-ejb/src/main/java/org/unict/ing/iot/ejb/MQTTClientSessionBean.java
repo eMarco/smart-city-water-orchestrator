@@ -14,7 +14,6 @@ import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import org.unict.ing.iot.utils.helper.MQTTClientImpl;
 import org.unict.ing.iot.utils.model.GenericValue;
-import org.unict.ing.iot.utils.model.Tank;
 
 /**
  *
@@ -32,6 +31,7 @@ public class MQTTClientSessionBean implements MQTTClientSessionBeanLocal{
    
     
     @PostConstruct
+    //Initialize MQTT Client
     private void init() {
         System.out.println("[MQTT] Creating connection...");
         myClient = new MQTTClientImpl(monitorSessionBean);
