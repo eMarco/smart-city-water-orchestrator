@@ -4,17 +4,17 @@ speedup      = num2str(50);
 zones_num    = 3;
 sectors_per_zone = [ 1, 1, 1 ];
 
-period       = 5; % seconds
+period       = 1; % seconds
 
 vasca_sw     = uint8(1);
-vasca_r_in   = single(zones_num);
+vasca_r_in   = 100*single(zones_num);
 
 vasca_1_c    = 10;
 vasca_1_r    = 100;
 
 vasca_2_c    = 10;
 vasca_2_r    = 100;
-
+ 
 vasca_3_c    = 10;
 vasca_3_r    = 100;
 
