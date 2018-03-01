@@ -49,10 +49,13 @@ public class OrchestratorSessionBean implements OrchestratorSessionBeanLocal {
     private static final int PERIOD    = 3; //seconds
     private static final int ZONE_MULT = 2;
     private static final int SECTOR_MULT = 2;
+    private static final int TANK_CAP_MIN = 600;
+    private static final int TANK_CAP_MAX = 670;
     private static int counter         = 0;
-    private static float VMAX          = 700;
-    private static float F_THRESHOLD     = (float)0.05;
-
+    private static final float VMAX          = 700;
+    private static final float F_THRESHOLD     = (float)0.05;
+    private static final float DECREMENT_STEP  = (float)0.5;
+    private static final float INCREMENT_STEP  = (float)0.1;
     private static final Logger LOG = Logger.getLogger(OrchestratorSessionBean.class.getName());
 
     @EJB
@@ -67,7 +70,7 @@ public class OrchestratorSessionBean implements OrchestratorSessionBeanLocal {
 
     }
 
-    @Schedule(dayOfMonth = "*", hour = "*", second = "*/" + PERIOD * ZONE_MULT, minute = "*")
+    @Schedule(dayOfMonth = "*", hour = "*", second = "*/2", minute = "*")
     private void tankActuation() {
         List<GenericValue> tanks = monitorSessionBean.getTanks();
         System.err.println(JsonHelper.writeList(tanks));
@@ -84,6 +87,19 @@ public class OrchestratorSessionBean implements OrchestratorSessionBeanLocal {
         final float IOtot = _IOtot;
         final float Ptot = _Ptot;
 
+                /*
+                // c * tank.getOutputFlowRate() is probably too small
+                } else if (tank.getOutputFlowRate() < F_THRESHOLD && c > F_THRESHOLD) {         // 2: Tank NOT FULL    w\      NO OUTPUT
+                    // Increase RES to yeld on other tanks                                      // RES SMALL increment
+                    tank.getValve().increment(1-(c/Vtot));
+                } else if (tank.getOutputFlowRate() > F_THRESHOLD && c < F_THRESHOLD) {         // 3: FULL Tank        w\      OUTPUT
+                    // Increase RES to yeld on other tanks                                      // RES MEDIUM increment
+                    tank.getValve().increment(1-(tank.getOutputFlowRate()/IOtot));
+                } else /* (tank.getOutputFlowRate() < F_THRESHOLD && c < F_THRESHOLD) */ //{      // 4: FULL Tank        w\      NO OUTPUT
+                    // Increase RES to yeld on other tanks                                      // RES HUGE increment
+                /*    tank.getValve().increment(1-((c * tank.getOutputFlowRate())/Ptot));
+                }*/
+       
         tanks.forEach(tankk -> {
 
             if (tankk instanceof Tank) {
@@ -92,32 +108,40 @@ public class OrchestratorSessionBean implements OrchestratorSessionBeanLocal {
 
                 float rj = 0;
                 float c = (VMAX - tank.getCapacity());
-                if (c > F_THRESHOLD && tank.getOutputFlowRate() > F_THRESHOLD) {                // 1: Tank NOT FULL    w\      OUTPUT
 
-                        rj = Ptot / (c * tank.getOutputFlowRate());
-                        tank.getValve().setFlowRateResistance(rj);
-
-                // c * tank.getOutputFlowRate() is probably too small
-                } else if (tank.getOutputFlowRate() < F_THRESHOLD && c > F_THRESHOLD) {         // 2: Tank NOT FULL    w\      NO OUTPUT
-                    // Increase RES to yeld on other tanks                                      // RES SMALL increment
-                    tank.getValve().increment(1-(c/Vtot));
-                } else if (tank.getOutputFlowRate() > F_THRESHOLD && c < F_THRESHOLD) {         // 3: FULL Tank        w\      OUTPUT
-                    // Increase RES to yeld on other tanks                                      // RES MEDIUM increment
-                    tank.getValve().increment(1-(tank.getOutputFlowRate()/IOtot));
-                } else /* (tank.getOutputFlowRate() < F_THRESHOLD && c < F_THRESHOLD) */ {      // 4: FULL Tank        w\      NO OUTPUT
-                    // Increase RES to yeld on other tanks                                      // RES HUGE increment
-                    tank.getValve().increment(1-((c * tank.getOutputFlowRate())/Ptot));
+                
+                if (tank.getCapacity() > TANK_CAP_MIN && 
+                        tank.getCapacity() < TANK_CAP_MAX && 
+                        tank.getOutputFlowRate() > F_THRESHOLD) {
+                    
+                    rj = Ptot / (c * tank.getOutputFlowRate());
+                    tank.getValve().setFlowRateResistance(rj*100);
+                    
+                } else  if (tank.getCapacity() < TANK_CAP_MIN) {
+                    
+                    log += "Tank capacity under setPoint_min: DECREMENTING";
+                    tank.getValve().decrement(DECREMENT_STEP);
+                    
+                } else if (tank.getCapacity() > TANK_CAP_MAX) {
+                    
+                    log += "Tank capacity over setPoint_max: INCREMENTING";
+                    tank.getValve().increment(INCREMENT_STEP);
+                    
                 }
 
-                log += " - Setting input resistance to " + rj + " - ";
+                log += " - Setting input resistance to " + tank.getValve().getFlowRateResistance() + " - ";
 
                 // OUTPUT SWITCH
                 if (tank.getCapacity() <= capacityError(true)) {                                // ALMOST EMPTY TANK ==>    FORCE NO OUTPUT
+                    
                     log += " CLOSING TRIGGER";
                     tank.getTrigger().close();
+                    
                 } else if (tank.getCapacity() > capacityError(false)) {                         // ALMOST EMPTY TANK ==>    RE-ENABLE OUTPUT
+                    
                     log += " OPENING TRIGGER";
                     tank.getTrigger().open();
+                    
                 }
 
                 mQTTClientSessionBean.publish(tank.getTankId() + "/", tank);

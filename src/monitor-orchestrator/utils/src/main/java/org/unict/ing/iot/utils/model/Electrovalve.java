@@ -44,10 +44,13 @@ public class Electrovalve implements Serializable {
 
     public void increment(float incrementValue) {
         this.flowRateResistance *= (1 + incrementValue);
+        if (this.flowRateResistance < 1) {
+            this.flowRateResistance = 100;
+        }
     }
 
     public void decrement(float decrementValue) {
-        if (decrementValue >= 1)
+        if (decrementValue >= 0)
             this.flowRateResistance *= (1 - decrementValue);
         else
             System.err.println("Decrementing would set a value equal or less than 0");
