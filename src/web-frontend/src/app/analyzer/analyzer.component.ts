@@ -12,7 +12,7 @@ import { Sector }                                     from '../model/sector'
   styleUrls: ['./analyzer.component.css']
 })
 export class AnalyzerComponent implements OnInit {
-  private static baseUrl = "http://localhost/rest/monitor-orchestrator-web/webresources/";
+  private static baseUrl = "http://localhost/rest/monitor-orchestrator-web-1.0-SNAPSHOT/webresources/";
 
   @ViewChild('dataContainer') private dataContainer: ElementRef;
 

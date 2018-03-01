@@ -103,7 +103,7 @@ public class SectorResource {
     private ClientSessionBeanRemote lookupClientSessionBeanRemote() {
         try {
             javax.naming.Context c = new InitialContext();
-            return (ClientSessionBeanRemote) c.lookup("java:global/monitor-orchestrator-ear-1.0-SNAPSHOT/monitor-orchestrator-ejb-1.0-SNAPSHOT/ClientSessionBean!org.unict.ing.iot.ejb.ClientSessionBeanRemote");
+            return (ClientSessionBeanRemote) c.lookup("java:global/monitor-orchestrator-web-1.0-SNAPSHOT/ClientSessionBean!org.unict.ing.iot.ejb.ClientSessionBeanRemote");
         } catch (NamingException ne) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);
