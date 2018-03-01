@@ -58,7 +58,7 @@ public class OrchestratorSessionBean implements OrchestratorSessionBeanLocal {
     private static final float DECREMENT_STEP  = (float)0.5;
     private static final float INCREMENT_STEP  = (float)0.1;
     private static int counter           = 0;
-    private static float VMAX            = 700;
+    
     private static float F_THRESHOLD     = 0.05f;
     private static float HYSTERESIS_ON   = 0.15f;
     private static float HYSTERESIS_OFF  = 0.25f;
