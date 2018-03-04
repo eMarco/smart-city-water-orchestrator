@@ -180,11 +180,12 @@ public class OrchestratorSessionBean implements OrchestratorSessionBeanLocal {
                             System.err.println("SENDING MAIL FOR " + el);
                             mailer.put(el, Boolean.TRUE);
                         }
-                        
-                    } else {
-                        log += " - Opening trigger";
-                        sector.getTrigger().open();
+
                     }
+                    // else {
+                    //     log += " - Opening trigger";
+                    //     sector.getTrigger().open();
+                    // }
                     mQTTClientSessionBean.publish(sector.getTankId() + "/sectors/" + sector.getSectorId() + "/", sector);
                     LOG.warning(log);
                 }
