@@ -170,7 +170,7 @@ public class OrchestratorSessionBean implements OrchestratorSessionBeanLocal {
                     log += ": diff = outputRate - sectorRate = " + diff;
                     
                     //Problem of water loss?
-                    if (diff < flowRateError()) {
+                    if (diff > 1 && diff > sector.getFlowRate() * flowRateError()) {
                         log += " - Closing trigger - Sending alert";
                         sector.getTrigger().close();
                         String el = String.valueOf(sector.getTankId()) + String.valueOf(sector.getSectorId());
@@ -199,7 +199,7 @@ public class OrchestratorSessionBean implements OrchestratorSessionBeanLocal {
     }
     
     private float flowRateError() {
-        return 1;
+        return 0.1f;
     }
 
     private float capacityError(boolean stak) {
